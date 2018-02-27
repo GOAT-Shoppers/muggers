@@ -3,10 +3,38 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  fullName: {
+    type: Sequelize.VIRTUAL,
+    get(){
+       return this.firstName +' '+this.lastName
+    }
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
+    validate: { 
+      isEmail: true,
+      notEmpty: true
+    }
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
   password: {
     type: Sequelize.STRING,
@@ -26,8 +54,17 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
-  }
-})
+  },
+ }//, {
+//   scopes: {
+//     admin: {
+//       where: {
+//         isAdmin: true
+//       }
+//     }
+//   }  
+// }
+)
 
 module.exports = User
 
@@ -65,3 +102,4 @@ const setSaltAndPassword = user => {
 
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
+
