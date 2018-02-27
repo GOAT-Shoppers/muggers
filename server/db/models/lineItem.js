@@ -1,9 +1,8 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-// Foreign key for Order Model
-// Foreign key for Product Model
-// Needs a price for the entire order that can be passed to Order
+// Attributes: Price, Quantity
+// Associations with Order and Product
 const LineItem = db.define('lineItem', {
   quantity: {
     type: Sequelize.INTEGER,
