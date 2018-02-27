@@ -4,11 +4,13 @@ const db = require('../db');
 const Product = db.define('product', {
     name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        isEmpty: false
     },
     description: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
+        isEmpty: false
     },
     price: {
         type: Sequelize.DECIMAL,
