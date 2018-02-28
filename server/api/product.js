@@ -5,8 +5,8 @@ router.param('productId', function (req, res, next, productId) {
   Product.findById(productId)
     .then(product => {
       req.product = product;
-      next()
     })
+    .catch(next)
 })
 
 router.get('/', function (req, res, next) {
@@ -37,7 +37,7 @@ router.delete('/:productId', function (req, res, next) {
 })
 
 router.put('/:productId', function (req, res, next) {
-  Product.findById(req.params.id)
+  Product.findById(req.params.productId)
     .then(function (product) {
       return product.update(req.body)
     })
@@ -48,13 +48,7 @@ router.put('/:productId', function (req, res, next) {
 })
 
 router.post('/', function (req, res, next) {
-  Product.create({
-    name: req.body.name,
-    description: req.body.description,
-    stock: req.body.stock,
-    price: req.body.price,
-    photo: req.body.imgUrl || 'http://everyrole.com/media/individual/project/cover/default.png'
-  })
+  Product.create(req.body)
     .then(product => res.send(product))
     .catch(next)
 })
