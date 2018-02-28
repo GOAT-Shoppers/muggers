@@ -33,7 +33,7 @@ router.get('/:userId', (req, res, next) => {
 router.put('/:userId', (req, res, next) => {
   User.findById(req.params.userId)
     .then(user => user.update(req.body))
-    .then(newUser => res.json(newUser.dataValues))
+    .then(newUser => res.json(newUser))
     .catch(next)
 })
 
