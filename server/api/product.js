@@ -38,7 +38,7 @@ router.get('/:id', (req, res, next) => {
 
 
 router.delete('/:id', (req, res, next) => {
-  Product.destroy({ where: { id: req.product.id } })
+  Product.destroy(req.product.id)
     .then(() => res.sendStatus(204))
     .catch(next);
 });
@@ -47,6 +47,10 @@ router.put('/:id', (req, res, next) => {
   return Product.update(req.body, { where: { id: req.product.id }})
     .then((updatedProduct) => res.json(updatedProduct))
     .catch(next);
+});
+
+router.get('/:id/reviews', (req, res, next) => {
+  res.json(req.product);  // still not complete need to find out what req.product contains
 });
 
 
