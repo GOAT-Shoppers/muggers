@@ -8,20 +8,23 @@ const Address = require('./address');
 
 Category.belongsToMany(Product, {through: 'product_category'});
 Product.belongsToMany(Category, {through: 'product_category'});
-// Product.belongsToMany(Category);
+
 
 LineItem.belongsTo(Order);
 LineItem.belongsTo(Product);
 
-Order.belongsTo(Address);
-User.hasMany(Order); //Order.belongsTo(User)
+User.hasMany(Order);
+Order.belongsTo(User);
 
 Address.hasMany(Order);
+Order.belongsTo(Address);
+
 Address.belongsTo(User);
 User.hasMany(Address);
 
 Review.belongsTo(User);
 User.hasMany(Review);
+
 Review.belongsTo(Product);
 Product.hasMany(Review);
 /**
