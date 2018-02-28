@@ -20,7 +20,7 @@ const data = {
       name: 'Jar'
     },
     {
-      name: 'Shot glass'
+      name: 'Espresso shot'
     },
     {
       name: 'Recycled can'
@@ -32,42 +32,48 @@ const data = {
       description: "Elegant in design, the Mason can hold all the water you might want to drink in one sitting. Lightly branded, this conveys a cool and relaxed environment. This jar says that you didn't try to decorate your home, it just happened. The Mason tells people you believe in recycling.",
       price: 15,
       stock: 10000,
-      categoryId: 2
+      categoryId: 2,
+      photo: 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages-na.ssl-images-amazon.com%2Fimages%2FI%2F41j9XVxogiL._SL500_AC_SS350_.jpg&imgrefurl=https%3A%2F%2Fwww.amazon.com%2FBall-Quart-Jar-Wide-Mouth%2Fdp%2FB00CNHCDR6&docid=oL0anP3-V8QRGM&tbnid=HJCpMQM07WJa9M%3A&vet=10ahUKEwjep5Tmp8fZAhVhuVkKHfBAAOQQMwiLAigCMAI..i&w=350&h=350&bih=630&biw=1112&q=mason%20jar&ved=0ahUKEwjep5Tmp8fZAhVhuVkKHfBAAOQQMwiLAigCMAI&iact=mrc&uact=8'
     },
     {
       name: 'Avery',
-      description: "Imagine a Mason but with a handle. That mean it's more portable, it's fancy, and best of all, there is no branding. This is the ideal drinking jar for anyone that wants to prove they're not limited by the restrains of capitalism. The Avery holds just as much liquid as the Mason, but speaks to a more independent water drinker. The Avery can also be used to drink soda, juice, and milk.",
+      description: "Imagine a Mason but with a handle. That means it's more portable, it's fancy, and best of all, there is no branding. This is the ideal drinking jar for anyone that wants to prove they're not limited by the restrains of capitalism. The Avery holds just as much liquid as the Mason, but speaks to a more independent water drinker. The Avery can also be used to drink soda, juice, and milk.",
       price: 20,
       stock: 5000,
-      categoryId: 2
+      categoryId: 2,
+      photo: 'https://target.scene7.com/is/image/Target/16728716?wid=520&hei=520&fmt=pjpeg'
     },
     {
       name: 'Borris',
-      description: "Best for cold winter nights, this mug is a perfect gift for the tea drinker. With a thick layer of ceramic, this mug is perfect for the hottest of beverages. It's tall and skinny in design, allowing you to hold as much liquid as you want, without it getting cold.",
+      description: "The Borris is the go to mug for any hot beverage. It's got a handle shaped perfectly for your hand, and a design that works for both tea and coffee. It's tall and skinny in design, allowing you to hold as much liquid as you want, without it getting cold.",
       price: 17,
       stock: 2500,
-      categoryId: 1
+      categoryId: 1,
+      photo: 'https://i.pinimg.com/originals/fa/e6/91/fae691db77c4fcdc2325f974fda510fb.jpg'
     },
     {
       name: 'Cleopatra',
-      description: "This is our fun mug. Curvy in design, it has drawn inspiration from middle eastern designs. If you want a mug to add color to your cabinet, this is the one to get. Currently available in regal blue, you can drink coffee or tea out of this mug and feel confident that you've made the right choice.",
+      description: "This is our fun mug. Curvy in design, it has drawn inspiration from middle eastern designs. If you want a mug to add patterns to your cabinet, this is the one to get. Currently available in just black and white, it is a classic must have in your collection. You can drink coffee or tea out of this mug and feel confident that you've made the right choice.",
       price: 35,
       stock: 10000,
-      categoryId: 1
+      categoryId: 1,
+      photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSClhZaqCpsMnCdWVX4IzxDgEseg2jOeAoxmxvl7vo53S-Ti2Ef'
     },
     {
       name: 'Rivington',
-      description: "The Rivington was once a diet coke can. Since then, it has been washed, re-used, and re-cycled. We've added a layer of ceramic to insulate the interior of the can. We've left the outside branding intact, so it continues to look like the adored silver and red coke can we all know and love. If you know someone who is trying to ween off diet coke and onto cappucinos, get them this gift today.",
+      description: "The Rivington was once a diet coke can. Since then, it has been washed, re-used, and re-cycled. We've altered both the interior and exterior of the can so that it can hold hot beverages. We've added a handle for every day use, but we've kept the adored Coke logo. If you know someone who is trying to ween off Coke and onto cappucinos, get them this gift today.",
       price: 28,
       stock: 10000,
-      categoryId: 4
+      categoryId: 4,
+      photo: 'https://images-na.ssl-images-amazon.com/images/I/61dikCP5C1L._SY355_.jpg'
     },
     {
       name: 'Kesha',
-      description: "Your every day shot glass. This shot glass can hold up to one shot and a half. Don't forget that when you fill it to the top and think you're only taking one shot. It's more than one! The Kesha is sleek in design but has a color scheme that conveys 'fun'. If you take this shot glass to a party, your friends will know you're about to have a good night.",
+      description: "Your every day glass for espresso. The Kesha was once used for alcoholic shots but has since been remodeled to serve the needs of caffeine addicts everywhere. This comes with a colorful confetti design, which can bring the fun of a party scene into your morning espresso. A perfect gift for an individual who just got into espresso.",
       price: 10,
       stock: 50000,
-      categoryId: 3
+      categoryId: 3,
+      photo: 'https://cdn.shopify.com/s/files/1/1348/9761/products/multi-confetti-glitter-shot-glass-slant-harlan-ruby_1280x1280.jpg?v=1501085771'
     }
   ]
 }
