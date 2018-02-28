@@ -20,9 +20,9 @@ router.get('/', function (req, res, next) {
 })
 
 
-router.get('/:productId', function (req, res, next) {
+router.get('/:productId', function (req, res, next) { //should be :id
   Product.findAll({
-    where: { id: req.product},
+    where: { id: req.product},      //should be req.product.id
     include: [{ model: Review }]
   })
     .then(products => res.send(products))
@@ -31,7 +31,7 @@ router.get('/:productId', function (req, res, next) {
 
 
 router.delete('/:productId', function (req, res, next) {
-  Product.destroy({ where: { id: req.product } })
+  Product.destroy({ where: { id: req.product } }) //req.product.id
     .then(() => res.sendStatus(204))
     .catch(next);
 })

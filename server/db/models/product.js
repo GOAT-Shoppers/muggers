@@ -26,8 +26,11 @@ const Product = db.define('product', {
     }
 });
 
-Product.prototype.isAvailable = function() {
+Product.prototype.isAvailable = function() {   
    return this.stock ? true : false; //return !!this.stock === this line
 }
+
+
+//Instance method that calcs average rating ???
 
 module.exports = Product;
