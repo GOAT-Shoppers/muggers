@@ -12,7 +12,7 @@ const Order = db.define('order', {
     }
   },
   status: {
-    type: Sequelize.ENUM('open', 'shipped', 'delivered'),
+    type: Sequelize.ENUM('open', 'cancelled', 'shipped', 'delivered'),
     allowNull: false
   }
 })
