@@ -6,34 +6,34 @@ const Address = db.define('address', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      isEmpty: false
+      notEmpty: true
     }
   },
   state: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      isEmpty: false
+      notEmpty: true
     }
   },
   city: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      isEmpty: false
+      notEmpty: true
     }
   },
   zip: {
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
-      isEmpty: false
+      notEmpty: true
     }
   }
 })
 
 Address.prototype.fullAddress = function() {
-  return `${this.street} ${this.state} ${this.city} ${this.zip}`
+  return `${this.street}\n${this.state}\n${this.city}\n${this.zip}`
 }
 
 module.exports = Address;
