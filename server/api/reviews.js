@@ -32,6 +32,6 @@ router.delete('/:prodId/:reviewId', (req, res, next) => {
       id: req.params.reviewId
     }
   })
-  .then(res.send(204))
+  .then(res.send(204).end())
   .catch(next)
 })
