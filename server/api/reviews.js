@@ -2,11 +2,7 @@ const router = require('express').Router();
 const {Review} = require('../db/models');
 
 router.get('/:prodId', (req, res, next) => {
-  Review.findAll({
-    where: {
-      productId: req.params.prodId
-    }
-  })
+  Review.findById(req.params.prodId)
   .then(review => res.json(review))
   .catch(next)
 })
