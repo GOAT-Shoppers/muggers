@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require('sequelize');
+const db = require('../db');
 
 // Need to be associated with Line Item and User
 // Attributes: UserId, addressId, email, status(s,d)
@@ -18,4 +18,4 @@ const Order = db.define('order', {
   }
 })
 
-module.exports = Order
+module.exports = Order;

@@ -5,20 +5,20 @@ const Product = db.define('product', {
     name: {
         type: Sequelize.STRING,
         allowNull: false,
-        isEmpty: false
+        isEmpty: false //missing validation wrapper???
     },
     description: {
         type: Sequelize.TEXT,
         allowNull: false,
-        isEmpty: false
+        isEmpty: false //missing validation wrapper???
     },
     price: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL, //change to integer
         allowNull: false
     },
     stock: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0
+        type: Sequelize.INTEGER, 
+        defaultValue: 0 //include validation for neg nums
     },
     photo: {
         type: Sequelize.STRING,
@@ -27,7 +27,7 @@ const Product = db.define('product', {
 });
 
 Product.prototype.isAvailable = function() {
-   return this.stock ? true : false;
+   return this.stock ? true : false; //return !!this.stock === this line
 }
 
 module.exports = Product;
