@@ -22,7 +22,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/:productId', function (req, res, next) {
   Product.findAll({
-    where: { productid: req.params.productId },
+    where: { id: req.params.productId },
     include: [{ model: Review }]
   })
     .then(products => res.send(products))
@@ -37,7 +37,7 @@ router.delete('/:productId', function (req, res, next) {
 })
 
 router.put('/:productId', function (req, res, next) {
-  Product.findById(req.params.id)
+  Product.findById(req.params.productId)
     .then(function (product) {
       return product.update(req.body)
     })
