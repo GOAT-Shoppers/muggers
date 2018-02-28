@@ -35,3 +35,5 @@ router.delete('/:prodId/:reviewId', (req, res, next) => {
   .then(res.send(204).end())
   .catch(next)
 })
+
+module.exports = router;
