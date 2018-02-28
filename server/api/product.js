@@ -5,8 +5,8 @@ router.param('productId', function (req, res, next, productId) {
   Product.findById(productId)
     .then(product => {
       req.product = product;
-      next()
     })
+    .catch(next)
 })
 
 router.get('/', function (req, res, next) {
@@ -44,7 +44,7 @@ router.put('/:productId', function (req, res, next) {
     .then(function (updatedProduct) {
       res.send(updatedProduct)
     })
-       .catch(next)
+    .catch(next)
 })
 
 router.post('/', function (req, res, next) {
