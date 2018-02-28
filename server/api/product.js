@@ -1,12 +1,12 @@
-const router = require('express').Router()
-const { Product, Review, Category} = require('../db/models')
+const router = require('express').Router();
+const { Product, Review, Category} = require('../db/models');
 
 router.param('productId', function (req, res, next, productId) {
   Product.findById(productId)
     .then(product => {
-      req.product = product;
+      req.product = product; //Eager load reviews
     })
-    .catch(next)
+    .catch(next);
 })
 
 router.get('/', function (req, res, next) {
@@ -16,24 +16,24 @@ router.get('/', function (req, res, next) {
     }]
   })
     .then(products => res.send(products))
-    .catch(next)
+    .catch(next);
 })
 
 
-router.get('/:productId', function (req, res, next) {
+router.get('/:productId', function (req, res, next) { //should be :id
   Product.findAll({
-    where: { id: req.product},
+    where: { id: req.product},      //should be req.product.id
     include: [{ model: Review }]
   })
     .then(products => res.send(products))
-    .catch(next)
+    .catch(next);
 })
 
 
 router.delete('/:productId', function (req, res, next) {
-  Product.destroy({ where: { id: req.product } })
+  Product.destroy({ where: { id: req.product } }) //req.product.id
     .then(() => res.sendStatus(204))
-    .catch(next)
+    .catch(next);
 })
 
 router.put('/:productId', function (req, res, next) {
@@ -44,7 +44,7 @@ router.put('/:productId', function (req, res, next) {
     .then(function (updatedProduct) {
       res.send(updatedProduct)
     })
-    .catch(next)
+    .catch(next);
 })
 
 router.post('/', function (req, res, next) {

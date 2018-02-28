@@ -14,7 +14,7 @@ LineItem.belongsTo(Order);
 LineItem.belongsTo(Product);
 
 Order.belongsTo(Address);
-User.hasMany(Order);
+User.hasMany(Order); //Order.belongsTo(User)
 
 Address.hasMany(Order);
 Address.belongsTo(User);
