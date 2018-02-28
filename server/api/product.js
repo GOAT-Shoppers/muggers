@@ -22,7 +22,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/:productId', function (req, res, next) {
   Product.findAll({
-    where: { id: req.params.productId },
+    where: { id: req.product},
     include: [{ model: Review }]
   })
     .then(products => res.send(products))
@@ -31,7 +31,7 @@ router.get('/:productId', function (req, res, next) {
 
 
 router.delete('/:productId', function (req, res, next) {
-  Product.destroy({ where: { id: req.params.productId } })
+  Product.destroy({ where: { id: req.product } })
     .then(() => res.sendStatus(204))
     .catch(next)
 })
@@ -44,20 +44,13 @@ router.put('/:productId', function (req, res, next) {
     .then(function (updatedProduct) {
       res.send(updatedProduct)
     })
-    .catch(next)
+       .catch(next)
 })
 
 router.post('/', function (req, res, next) {
-  Product.create({
-    name: req.body.name,
-    description: req.body.description,
-    stock: req.body.stock,
-    price: req.body.price,
-    photo: req.body.imgUrl || 'http://everyrole.com/media/individual/project/cover/default.png'
-  })
+  Product.create(req.body)
     .then(product => res.send(product))
     .catch(next)
 })
 
 module.exports = router;
-
