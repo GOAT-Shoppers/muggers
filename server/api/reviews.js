@@ -15,14 +15,14 @@ router.post('/', (req, res, next) => {
 })
 
 
-router.put('/:prodId/:reviewId', (req, res, next) => {
+router.put('/id/:reviewId', (req, res, next) => {
   Review.findById(req.params.reviewId)
   .then(review => review.update(req.body))
   .then(updatedReview => res.json(updatedReview))
   .catch(next)
 })
 
-router.delete('/:prodId/:reviewId', (req, res, next) => {
+router.delete('/id/:reviewId', (req, res, next) => {
   Review.delete({
     where: {
       id: req.params.reviewId
