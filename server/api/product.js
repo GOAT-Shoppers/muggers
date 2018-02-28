@@ -22,7 +22,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/:productId', function (req, res, next) {
   Product.findAll({
-    where: { productid: req.params.productId },
+    where: { id: req.product},
     include: [{ model: Review }]
   })
     .then(products => res.send(products))
@@ -31,7 +31,7 @@ router.get('/:productId', function (req, res, next) {
 
 
 router.delete('/:productId', function (req, res, next) {
-  Product.destroy({ where: { id: req.params.productId } })
+  Product.destroy({ where: { id: req.product } })
     .then(() => res.sendStatus(204))
     .catch(next)
 })
@@ -54,4 +54,3 @@ router.post('/', function (req, res, next) {
 })
 
 module.exports = router;
-

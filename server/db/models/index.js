@@ -6,8 +6,9 @@ const Product = require('./product');
 const Review = require('./review');
 const Address = require('./address');
 
-Category.hasMany(Product);
-Product.belongsTo(Category);
+Category.belongsToMany(Product, {through: 'product_category'});
+Product.belongsToMany(Category, {through: 'product_category'});
+// Product.belongsToMany(Category);
 
 LineItem.belongsTo(Order);
 LineItem.belongsTo(Product);
