@@ -33,7 +33,7 @@ const Address = db.define('address', {
 })
 
 Address.prototype.fullAddress = function() {
-  return `${this.street}\n${this.state}\n${this.city}\n${this.zip}`
+  return `${this.street}\n${this.city}, ${this.state}\n${this.zip}`
 }
 
 module.exports = Address;

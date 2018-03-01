@@ -1,35 +1,51 @@
-// /* global describe beforeEach it */
+// /* global describes beforeEach it */
 
-// const {expect} = require('chai')
-// const db = require('../index')
-// const User = db.model('user')
+const {expect} = require('chai')
+const db = require('../index')
+const User = db.model('user')
 
-// describe('User model', () => {
-//   beforeEach(() => {
-//     return db.sync({force: true})
-//   })
+describe('User model', () => {
+  beforeEach(() => {
+    return db.sync({force: true})
+  })
 
-//   describe('instanceMethods', () => {
-//     describe('correctPassword', () => {
-//       let cody
+    describe('instanceMethods', () => {
+      describe('correctPassword', () => {
+          let cody;
+        beforeEach(() => {
+          return User.create({
+            firstName: 'Cody',
+            lastName: 'Puppy',
+            email: 'cody@puppybook.com',
+            password: 'bones'
+          })
+            .then(user => {
+              cody = user
+            })
+        })
 
-//       beforeEach(() => {
-//         return User.create({
-//           email: 'cody@puppybook.com',
-//           password: 'bones'
-//         })
-//           .then(user => {
-//             cody = user
-//           })
-//       })
+        it('returns false if the password is incorrect', () => {
+          expect(cody.correctPassword('bonez')).to.be.equal(false)
+        })
+      describe('fullName', () => {
+        let gabby
 
-//       it('returns true if the password is correct', () => {
-//         expect(cody.correctPassword('bones')).to.be.equal(true)
-//       })
+        beforeEach(() => {
+          return User.create({
+            firstName: 'Gabby',
+            lastName: 'Jose',
+            email: 'gabby@me.com',
+            password: 'avocado'
+          })
+          .then(user => {
+            gabby = user
+          })
+        })
 
-//       it('returns false if the password is incorrect', () => {
-//         expect(cody.correctPassword('bonez')).to.be.equal(false)
-//       })
-//     }) // end describe('correctPassword')
-//   }) // end describe('instanceMethods')
-// }) // end describe('User model')
+        it('returns user\'s full name', ()=> {
+          expect(gabby.fullName).to.be.equal('Gabby Jose')
+        })
+      })
+    })
+  })  
+})
