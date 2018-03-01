@@ -5,9 +5,9 @@ router.use('/users', require('./users'));
 router.use('/products', require('./product'));
 router.use('/categories', require('./category'));
 router.use('/reviews', require('./reviews'));
-router.use('orders', require('/order'));
+router.use('/orders', require('/order'));
 router.use('/lineitems', require('/lineItem'));
-router.use('addresses', require('/address'));
+router.use('/addresses', require('/address'));
 
 
 router.use((req, res, next) => {
