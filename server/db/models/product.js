@@ -5,20 +5,27 @@ const Product = db.define('product', {
     name: {
         type: Sequelize.STRING,
         allowNull: false,
-        isEmpty: false //missing validation wrapper???
+        validate: {
+            notEmpty: false
+        }
     },
     description: {
         type: Sequelize.TEXT,
         allowNull: false,
-        isEmpty: false //missing validation wrapper???
+        validate: {
+            notEmpty: false
+        }
     },
     price: {
-        type: Sequelize.DECIMAL, //change to integer
+        type: Sequelize.INTEGER,
         allowNull: false
     },
     stock: {
         type: Sequelize.INTEGER,
-        defaultValue: 0 //include validation for neg nums
+        defaultValue: 0,
+        validate: {
+            min: 0
+        }
     },
     photo: {
         type: Sequelize.STRING,
@@ -27,7 +34,7 @@ const Product = db.define('product', {
 });
 
 Product.prototype.isAvailable = function() {
-   return this.stock ? true : false; //return !!this.stock === this line
+   return !!this.stock;
 }
 
 //Instance method that calcs average rating ???
