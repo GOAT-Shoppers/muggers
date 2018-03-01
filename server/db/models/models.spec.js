@@ -1,32 +1,12 @@
 
 const { expect } = require('chai')
-const db = require('../index')
-const Product = require('./product')
-const Review = require('./review')
-const LineItem = require('./lineItem')
-const Order = require('./order')
-const Category = require('./category')
-
-// before('Await database sync', () => db.didSync)
-// afterEach('Clear the tables', () => db.truncate({ cascade: true }))
-
-// describe('Order Models', () => {
-//   let order;
-
-//   before('create order', function () { order = Order.create() })
-//   it('require email', () => {
-//     return order
-//       .then(() => { throw new Error('Promise should have rejected'); })
-//       .catch(err => {
-//         expect(err).to.be.an('object');
-//         expect(err.errors).to.contain.a.thing.with.properties({
-//           path: 'email',
-//           type: 'notNull Violation'
-//         });
-//       });
-//   })
-// })
-
+const db = require('../index');
+const Product = require('./product');
+const Review = require('./review');
+const LineItem = require('./lineItem');
+const Order = require('./order');
+const Category = require('./category');
+const Address = require('./address');
 
 describe('Order', () => {
   describe('Attributes', () => {
@@ -106,6 +86,51 @@ describe('Product', () => {
       expect(attributes.photo).to.be.a('object');
     });
   })
+  describe('instance methods', () => {
+    let currentOrder;
+    beforeEach(()=> {
+      return Product.create({
+        name: "Thing",
+        description: "So descriptive!",
+        price: 299
+      })
+      .then(createdOrder =>
+        {currentOrder = createdOrder}
+      )
+    })
+
+    it('is available displays the current stock', () => {
+      expect(currentOrder.isAvailable()).to.eql(false)
+    })
+
+    it('full prices displays price in decimals', () => {
+      expect(currentOrder.displayPrice()).to.eql(2.99)
+    })
+  })
 })
+describe('Address model', ()=> {
+  describe('Instance methods', () => {
+    let place;
+    beforeEach(() => {
+
+      return Address.create({
+        street: '12 Somewhere st',
+        state: 'New York',
+        city: 'Buffalo',
+        zip: '12345'
+      })
+        .then(address => {
+          place = address
+        })
+    })
+
+    it('return full address', () => {
+      expect(place.fullAddress()).to.be.equal('12 Somewhere st\nBuffalo, New York\n12345')
+    })
+
+  })
+  
+})
+
 
   

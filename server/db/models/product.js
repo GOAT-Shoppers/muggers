@@ -37,6 +37,10 @@ Product.prototype.isAvailable = function() {
    return !!this.stock;
 }
 
+Product.prototype.displayPrice = function(){
+    return this.price / 100;
+}
+
 //Instance method that calcs average rating ???
 
 module.exports = Product;
