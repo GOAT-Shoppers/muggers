@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const {Category, Product} = require('../db/models');
 
-router.get('/', function (req, res, next) {
+router.get('/', (req, res, next) => {
   Category.findAll()
     .then(category => res.json(category))
     .catch(next)
 })
 
-router.post('/', function(req, res, next){
+router.post('/', (req, res, next) => {
   Category.create({
     name: req.body.name
   })
@@ -15,7 +15,7 @@ router.post('/', function(req, res, next){
   .catch(next)
 })
 
-router.get('/:id', function(req, res, next){
+router.get('/:id', (req, res, next) => {
   Category.findAll({
     where: { id: req.params.id },
     include: [{ model: Product }]
