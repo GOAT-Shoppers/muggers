@@ -42,20 +42,23 @@ Product.prototype.displayPrice = function(){
     return (this.price/100).toFixed(2);
 }
 
-Product.prototype.averageRating = async function() {
-  let average = await function (){
-    this.getReviews()
-      .then(reviews => reviews.map(el => el.getDataValue('rating')))
-      .then(arrayOfRating => {
-        const divisor = arrayOfRating.length;
-        const total = arrayOfRating.reduce((acc, el) => {
-          acc += el
-          return acc;
-        }, 0)
-        average = total / divisor;
-      })
-  }
-  return average
+Product.prototype.averageRating = function () {
+  let instance = this
+  let average;
+  return this.getReviews()
+    .then(reviews => reviews.map(el => el.getDataValue('rating')))
+    .then(arrayOfRating => {
+      const divisor = arrayOfRating.length;
+      const total = arrayOfRating.reduce((acc, el) => {
+        acc += el
+        return acc;
+      }, 0)
+      return total / divisor;
+    })
+    .then(average => {
+      instance.dataValues.averageRating = average
+      return instance
+    })
 }
 
 module.exports = Product;

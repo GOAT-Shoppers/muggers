@@ -22,7 +22,13 @@ router.get('/:id', (req, res, next) => {
     where: { id: req.params.id },
     include: [{ model: Review }]
   })
-    .then(products => res.json(products))
+    .then(product => {
+      return product.averageRating()
+    })
+    .then(prod => {
+      console.log(prod)
+      res.json(prod)
+    })
     .catch(next);
 });
 
@@ -40,13 +46,5 @@ router.get('/:id/reviews', (req, res, next) => {
     .then(reviews => res.json(reviews))
     .catch(next)
 });
-
-router.get('/:id/holymoly', (req,res,next) => {
-  Product.findById(req.params.id)
-  .then(
-    prod => {console.log('This is what we care about:',prod.averageRating())
-    res.sendStatus(200);}
-  )
-})
 
 module.exports = router;
