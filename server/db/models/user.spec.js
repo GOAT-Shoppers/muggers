@@ -1,4 +1,4 @@
-// /* global describe beforeEach it */
+// /* global describes beforeEach it */
 
 const {expect} = require('chai')
 const db = require('../index')
