@@ -8,6 +8,7 @@ router.get('/', function (req, res, next) {
 })
 
 router.post('/', function(req, res, next){
+  console.log(req.body)
   Category.create({
     name: req.body.name
   })
@@ -15,9 +16,9 @@ router.post('/', function(req, res, next){
   .catch(next)
 })
 
-router.get('/:categoryId', function(req, res, next){
+router.get('/:id', function(req, res, next){
   Category.findAll({
-    where: { categoryid: req.params.categoryId },
+    where: { id: req.params.id },
     include: [{ model: Product }]
   })
   .then(category => res.send(category))
