@@ -1,16 +1,6 @@
 const router = require('express').Router();
 const { Product, Review, Category, User } = require('../db/models');
 
-// router.param('id', function (req, res, next, id) {
-//   console.log("Hi Dan", id)
-//   Product.findById(id)
-//     .then(product => {
-//       console.log("Product: ", product)
-//       req.product = product;
-//     })
-//     .catch(next);
-// });
-
 router.get('/', (req, res, next) => {
   Product.findAll({
     include: [{
