@@ -1,12 +1,7 @@
 
 const { expect } = require('chai')
 const db = require('../index');
-const Product = require('./product');
-const Review = require('./review');
-const LineItem = require('./lineItem');
-const Order = require('./order');
-const Category = require('./category');
-const Address = require('./address');
+const { User, Order, LineItem, Review, Product, Address, Category } = require('./index')
 
 describe('Order', () => {
   describe('Attributes', () => {
@@ -127,9 +122,7 @@ describe('Address model', ()=> {
     it('return full address', () => {
       expect(place.fullAddress()).to.be.equal('12 Somewhere st\nBuffalo, New York\n12345')
     })
-
-  })
-  
+  })  
 })
 
 
