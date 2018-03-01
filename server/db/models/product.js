@@ -38,7 +38,7 @@ Product.prototype.isAvailable = function() {
 }
 
 Product.prototype.displayPrice = function(){
-    return this.price / 100;
+    return (this.price/100).toFixed(2);
 }
 
 //Instance method that calcs average rating ???
