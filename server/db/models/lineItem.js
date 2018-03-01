@@ -9,8 +9,14 @@ const LineItem = db.define('lineItem', {
     allowNull: false
   },
   price: {
-    type: Sequelize.DECIMAL, //Use integer instead of decimal then use virtual to get price
+    type: Sequelize.INTEGER,
     allowNull: false
+  },
+  getPrice: {
+    type: Sequelize.VIRTUAL,
+    get() {
+      return this.price / 100;
+    }
   }
 })
 
