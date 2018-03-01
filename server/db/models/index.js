@@ -10,7 +10,7 @@ const db = require('../db');
 Category.belongsToMany(Product, {through: 'product_category'});
 Product.belongsToMany(Category, {through: 'product_category'});
 
-
+Order.hasMany(LineItem);
 LineItem.belongsTo(Order);
 LineItem.belongsTo(Product);
 
