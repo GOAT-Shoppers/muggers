@@ -21,9 +21,6 @@
 //   })
 // })
 
-
-
-
 import {UserHome, mapState} from './user-home';
 import { expect } from 'chai';
 import enzyme, { shallow }  from 'enzyme';
@@ -62,6 +59,5 @@ describe('Auth Form', () => {
         expect(userHome.find('h3').text()).to.be.equal('Welcome, gabby@me.com')
       })
     })
-
   })
 })
