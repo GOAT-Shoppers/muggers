@@ -45,7 +45,7 @@ const mapLogin = (state) => {
   }
 }
 
-const mapSignup = (state) => {
+export const mapSignup = (state) => {
   return {
     name: 'signup',
     displayName: 'Sign Up',

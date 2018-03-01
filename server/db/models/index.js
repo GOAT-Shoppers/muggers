@@ -5,6 +5,7 @@ const Category = require('./category');
 const Product = require('./product');
 const Review = require('./review');
 const Address = require('./address');
+const db = require('../db');
 
 Category.belongsToMany(Product, {through: 'product_category'});
 Product.belongsToMany(Category, {through: 'product_category'});
@@ -40,5 +41,6 @@ module.exports = {
   Review,
   Product,
   Address,
-  Category
+  Category,
+  db
 }
