@@ -20,14 +20,14 @@ const User = db.define('user', {
   fullName: {
     type: Sequelize.VIRTUAL,
     get(){
-       return this.firstName +' '+this.lastName
+       return this.firstName + ' ' + this.lastName
     }
   },
   email: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
-    validate: { 
+    validate: {
       isEmail: true,
       notEmpty: true
     }
@@ -62,7 +62,7 @@ const User = db.define('user', {
 //         isAdmin: true
 //       }
 //     }
-//   }  
+//   }
 // }
 )
 

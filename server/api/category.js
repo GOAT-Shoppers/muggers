@@ -3,7 +3,7 @@ const {Category, Product} = require('../db/models');
 
 router.get('/', function (req, res, next) {
   Category.findAll()
-    .then(category => res.send(category))
+    .then(category => res.json(category))
     .catch(next)
 })
 
@@ -11,16 +11,16 @@ router.post('/', function(req, res, next){
   Category.create({
     name: req.body.name
   })
-  .then(category => res.send(category))
+  .then(category => res.json(category))
   .catch(next)
 })
 
-router.get('/:categoryId', function(req, res, next){
+router.get('/:id', function(req, res, next){
   Category.findAll({
-    where: { categoryid: req.params.categoryId },
+    where: { id: req.params.id },
     include: [{ model: Product }]
   })
-  .then(category => res.send(category))
+  .then(category => res.json(category))
   .catch(next)
 })
 

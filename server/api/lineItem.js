@@ -1,8 +1,10 @@
 const router = require('express').Router()
-const { LineItem } = require('../db/models')
+const { LineItem, Product } = require('../db/models')
 
 router.get('/', function(req, res, next){
-  LineItem.findAll()
+  LineItem.findAll({
+  include: { model: Product }
+})
   .then((item) => {
     res.send(item)
   })
@@ -10,11 +12,9 @@ router.get('/', function(req, res, next){
 })
 
 router.post('/', function(req, res, next){
-  LineItem.create({
-    quantity: req.body.quantity,
-    price: req.body.price
-  })
-  .catch(next)
+  LineItem.create(req.body)
+    .then(lineItem => res.json(lineItem))
+    .catch(next)
 })
 
 module.exports = router;

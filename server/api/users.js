@@ -7,40 +7,40 @@ router.get('/', (req, res, next) => {
     // explicitly select only the id and email fields - even though
     // users' passwords are encrypted, it won't help if we just
     // send everything to anyone who asks!
-    attributes: ['id', 'email']
+    attributes: ['lastName', 'firstName', 'id', 'email', 'isAdmin']
   })
     .then(users => res.json(users))
     .catch(next);
 })
 
 router.post('/', (req, res, next) => {
-  User.findOrCreate(req.body)
+  User.create(req.body)
     .then(user => res.status(201).json(user))
     .catch(next);
 })
 
-router.get('/:userId', (req, res, next) => { //convention id
+router.get('/:id', (req, res, next) => { //convention id
   User.findOne({
-    attributes: ['id', 'email'],
+    attributes: ['lastName', 'firstName', 'id', 'email', 'isAdmin'],
     where: {
-      id: req.params.userId
+      id: req.params.id
     }
   })
     .then(user => res.json(user))
     .catch(next);
 });
 
-router.put('/:userId', (req, res, next) => {
-  User.findById(req.params.userId)
+router.put('/:id', (req, res, next) => {
+  User.findById(req.params.id)
     .then(user => user.update(req.body))
     .then(newUser => res.json(newUser))
     .catch(next);
 });
 
-router.delete('/:userId', (req, res, next) => {
+router.delete('/:id', (req, res, next) => {
   User.destroy({
     where: {
-      id: req.params.userId
+      id: req.params.id
     }
   })
     .then(() => res.status(204).end())
