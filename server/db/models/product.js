@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
+const Review = ('./review');
 
 const Product = db.define('product', {
     name: {
@@ -41,6 +42,21 @@ Product.prototype.displayPrice = function(){
     return (this.price/100).toFixed(2);
 }
 
-//Instance method that calcs average rating ???
+Product.prototype.averageRating = function() {
+  let average;
+  return this.getReviews()
+  .then(reviews => reviews.map(el => el.getDataValue('rating')))
+  .then(arrayOfRating => {
+    const divisor = arrayOfRating.length;
+    const total = arrayOfRating.reduce((acc, el) => {
+      acc += el
+      return acc;
+    }, 0)
+    return total/divisor;
+  })
+  .then(average => {
+    console.log('Here is the average ',average)
+    return average})
+}
 
 module.exports = Product;

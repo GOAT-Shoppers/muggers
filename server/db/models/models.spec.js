@@ -90,7 +90,21 @@ describe('Product', () => {
         price: 299
       })
       .then(createdOrder =>
-        {currentOrder = createdOrder}
+        {
+          currentOrder = createdOrder
+          Review.create({
+            productId: currentOrder.id,
+            rating: 4
+          })
+          Review.create({
+            productId: currentOrder.id,
+            rating: 3
+          })
+          Review.create({
+            productId: currentOrder.id,
+            rating: 5
+          })
+        }
       )
     })
 
@@ -98,8 +112,12 @@ describe('Product', () => {
       expect(currentOrder.isAvailable()).to.eql(false)
     })
 
-    it('full prices displays price in decimals', () => {
+    it('full price displays price in decimals', () => {
       expect(currentOrder.displayPrice()).to.eql(2.99)
+    })
+
+    it('reviews calculates average rating', () => {
+      expect(currentOrder.averageRating()).to.be.an('number');
     })
   })
 })
@@ -122,8 +140,5 @@ describe('Address model', ()=> {
     it('return full address', () => {
       expect(place.fullAddress()).to.be.equal('12 Somewhere st\nBuffalo, New York\n12345')
     })
-  })  
+  })
 })
-
-
-  
