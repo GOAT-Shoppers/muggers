@@ -15,7 +15,7 @@ const LineItem = db.define('lineItem', {
   getPrice: {
     type: Sequelize.VIRTUAL,
     get() {
-      return this.price / 100;
+      return (this.price / 100).toFixed(2);
     }
   }
 })
