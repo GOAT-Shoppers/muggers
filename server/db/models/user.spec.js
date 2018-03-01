@@ -32,6 +32,27 @@ describe('User model', () => {
       it('returns false if the password is incorrect', () => {
         expect(cody.correctPassword('bonez')).to.be.equal(false)
       })
-    }) // end describe('correctPassword')
+     })
+    
+    describe('fullName', () => {
+      let gabby
+
+      beforeEach(() => {
+        return User.create({
+          firstName: 'Gabby',
+          lastName: 'Jose',
+          email: 'gabby@me.com',
+          password: 'avocado'
+        })
+        .then(user => {
+          gabby = user
+        })
+      })
+
+      it('returns user\'s full name', ()=> {
+        expect(gabby.fullName).to.be.equal('Gabby Jose')
+      })
+    })
+    // end describe('correctPassword')
   }) // end describe('instanceMethods')
 }) // end describe('User model')

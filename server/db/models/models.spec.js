@@ -7,6 +7,26 @@ const LineItem = require('./lineItem')
 const Order = require('./order')
 const Category = require('./category')
 
+// before('Await database sync', () => db.didSync)
+// afterEach('Clear the tables', () => db.truncate({ cascade: true }))
+
+// describe('Order Models', () => {
+//   let order;
+
+//   before('create order', function () { order = Order.create() })
+//   it('require email', () => {
+//     return order
+//       .then(() => { throw new Error('Promise should have rejected'); })
+//       .catch(err => {
+//         expect(err).to.be.an('object');
+//         expect(err.errors).to.contain.a.thing.with.properties({
+//           path: 'email',
+//           type: 'notNull Violation'
+//         });
+//       });
+//   })
+// })
+
 
 describe('Order', () => {
   describe('Attributes', () => {
@@ -39,9 +59,18 @@ describe('Review', () => {
       expect(attributes.rating).to.be.a('object');
     });
     describe('rating attribute', () => {
-      const { attributes: { rating } } = Order;
-      it('Validates rating', () => {
-        //expect(rating.validate.min).to.equal(0);
+      let currentReview;
+      beforeEach(() => {
+        return Review.create({
+          text: 'This is great!',
+          rating: 3
+        })
+          .then(review => {
+            currentReview = review
+          })
+      })
+      it('Returns the rating we expect', () => {
+        expect(currentReview.rating).to.equal(3);
       });
     });
  })
@@ -79,23 +108,4 @@ describe('Product', () => {
   })
 })
 
-//   before('Await database sync', () => db.didSync)
-//   afterEach('Clear the tables', () => db.truncate({ cascade: true }))
-
-//   describe('Order Models', () => {
-//     let order;
-
-//     before('create order', function () { order = Order.create() })
-//     it('require email', () => {
-//       return order
-//         .then(() => { throw new Error('Promise should have rejected'); })
-//         .catch(err => {
-//           expect(err).to.be.an('object');
-//           expect(err.errors).to.contain.a.thing.with.properties({
-//             path: 'email',
-//             type: 'notNull Violation'
-//           });
-//       });
-//    })
-//   })
-// })
+  
