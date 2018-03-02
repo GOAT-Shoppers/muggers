@@ -26,7 +26,6 @@ router.get('/:id', (req, res, next) => {
       return product.averageRating()
     })
     .then(prod => {
-      console.log(prod)
       res.json(prod)
     })
     .catch(next);
