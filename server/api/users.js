@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {User} = require('../db/models');
+const { User, Order, LineItem, Address } = require('../db/models');
 module.exports = router;
 
 router.get('/', (req, res, next) => {
@@ -19,7 +19,7 @@ router.post('/', (req, res, next) => {
     .catch(next);
 })
 
-router.get('/:id', (req, res, next) => { //convention id
+router.get('/:id', (req, res, next) => {
   User.findOne({
     attributes: ['lastName', 'firstName', 'id', 'email', 'isAdmin'],
     where: {
@@ -27,6 +27,27 @@ router.get('/:id', (req, res, next) => { //convention id
     }
   })
     .then(user => res.json(user))
+    .catch(next);
+});
+
+router.get('/:id/orders', (req, res, next) => {
+  Order.findAll({
+    where: {
+      userId: req.params.id
+    },
+    include: { model: LineItem }
+  })
+    .then(orders => res.json(orders))
+    .catch(next);
+});
+
+router.get('/:id/addresses', (req, res, next) => {
+  Address.findAll({
+    where: {
+      userId: req.params.id
+    }
+  })
+    .then(addresses => res.json(addresses))
     .catch(next);
 });
 

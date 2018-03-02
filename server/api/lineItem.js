@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const { LineItem, Product } = require('../db/models')
 
-router.get('/', function(req, res, next){
+router.get('/', (req, res, next) => {
   LineItem.findAll({
   include: { model: Product }
 })
@@ -11,7 +11,7 @@ router.get('/', function(req, res, next){
   .catch(next)
 })
 
-router.post('/', function(req, res, next){
+router.post('/', (req, res, next) => {
   LineItem.create(req.body)
     .then(lineItem => res.json(lineItem))
     .catch(next)
