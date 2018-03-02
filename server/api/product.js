@@ -22,7 +22,12 @@ router.get('/:id', (req, res, next) => {
     where: { id: req.params.id },
     include: [{ model: Review }]
   })
-    .then(products => res.json(products))
+    .then(product => {
+      return product.averageRating()
+    })
+    .then(prod => {
+      res.json(prod)
+    })
     .catch(next);
 });
 
