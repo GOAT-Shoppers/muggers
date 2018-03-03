@@ -36,15 +36,20 @@ export const updatingProduct = product => dispatch => {
 
 //REDUCER
 export default  (products = [], action) => {
+
     switch (action.type) {
         case SET_PRODUCTS:
             return action.allProducts;
+
         case POST_PRODUCT:
             return [...products, action.product ];
+
         case UPDATE_PRODUCT:
             return products.map(product => {
-                return product.id === action.product.id ? action.product : product;
+                return product.id === action.product.id ?
+                action.product : product;
             });
+
         default: return products;
     }
 }
