@@ -83,12 +83,12 @@ describe('Product', () => {
   })
   describe('instance methods', () => {
     let currentOrder;
-    // beforeEach(()=> {
-    //   return Product.create({
-    //     name: "Thing",
-    //     description: "So descriptive!",
-    //     price: 299
-    //   })
+    beforeEach(()=> {
+      return Product.create({
+        name: "Thing",
+        description: "So descriptive!",
+        price: 299
+      })
     //   .then(createdOrder =>
     //     {
     //       currentOrder = createdOrder
@@ -106,7 +106,7 @@ describe('Product', () => {
     //       })
     //     }
     //   )
-    // })
+    })
 
     it('is available displays the current stock', () => {
       expect(currentOrder.isAvailable()).to.eql(false)
