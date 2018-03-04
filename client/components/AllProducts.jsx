@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 
-export const AllProducts = props => {
+export class AllProducts extends Component {
+    constructor() {
+        super();
+        this.state = {
+            quantity: null
+        }
+        this.handleChange = this.handleChange.bind(this);
+    }
 
-        const { products } = props;
+    handleChange(event) {
+        this.setState({ quantity: event.target.quantity.value });
+    }
+
+    render() {
+        const { products } = this.props;
+
         return (
         <div>
             <div>
@@ -13,19 +26,42 @@ export const AllProducts = props => {
             </div>
             <div>
                 {
-                    products.map(product => <Link to={`/products/${product.id}`} key={product.id}><h3>{product.name}</h3></Link>)
+                products.map(product => (
+                    <div key={product.id}>
+                        <Link to={`/products/${product.id}`}>
+                            <div>
+                                <img src={product.photo} />
+                            </div>
+                            <div>
+                                <h4>{ product.name }</h4>
+                                <h5>{ product.price }</h5>
+                            </div>
+                        </Link>
+                        <div>
+                            <label htmlFor="quantity">Quantity</label>
+                            <input name="quantity" onChange={this.handleChange} />
+                        </div>
+                        <button type="submit">Add to cart</button>
+                    </div>
+                ))
                 }
             </div>
-            <div> {/* Only render if Admin */}
+            {/* Only render below if Admin */}
+            {/* <div> 
                 <Link to={'/addProduct'}>Add a product!</Link>
-            </div>
+            </div> */}
         </div>
         )
+    }
 }
+
+const mapDispatch = dispatch => ({
+    handleSubmit: {}
+})
 
 const mapState = state => ({
     products: state.products
 });
 
-export default connect(mapState, null)(AllProducts);
+export default connect(mapState, mapDispatch)(AllProducts);
 
