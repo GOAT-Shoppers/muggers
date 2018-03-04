@@ -16,9 +16,10 @@ export const AllProducts = props => {
                     products.map(product => <Link to={`/products/${product.id}`} key={product.id}><h3>{product.name}</h3></Link>)
                 }
             </div>
-            <div> {/* Only render if Admin */}
+            {/* Only render below if Admin */}
+            {/* <div> 
                 <Link to={'/addProduct'}>Add a product!</Link>
-            </div>
+            </div> */}
         </div>
         )
 }
