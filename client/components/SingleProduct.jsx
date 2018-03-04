@@ -12,7 +12,8 @@ const { product } = props;
             <h5>Price: { product.price }</h5>
             <h5>Quantity: { product.stock }</h5>
             <h4>{ product.description }</h4>
-            {/* Incorporate rating */}
+            <button type="submit">Add to Cart</button>
+            {/* Incorporate rating and reviews and ability to add review*/}
         </div>
         )
 }
