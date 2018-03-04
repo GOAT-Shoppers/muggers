@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Order, LineItem, Address } = require('../db/models');
+const { Order, LineItem, Address, Product } = require('../db/models');
 
 module.exports = router;
 
@@ -19,7 +19,10 @@ router.post('/', (req, res, next) => {
 
 //GET ORDER BY ID W/EAGER LOADED LINE ITEMS
 router.get('/:id', (req, res, next) => {
-  Order.findById(req.params.id, { include: [LineItem, Address] })
+  Order.findById(req.params.id, { include: [{
+    model: LineItem,
+    include: Product
+  }, Address] })
       .then(orders => res.json(orders))
       .catch(next);
 });
