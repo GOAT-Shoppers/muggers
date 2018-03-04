@@ -11,6 +11,7 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+//const { User } = require('./db/models')
 module.exports = app
 
 /**
@@ -54,6 +55,12 @@ const createApp = () => {
   // auth and api routes
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
+
+//code added by me
+  app.use(function (req, res, next) {
+    console.log('SESSION: ', req.session);
+    next();
+  })
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))

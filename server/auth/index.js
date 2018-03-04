@@ -39,5 +39,10 @@ router.post('/logout', (req, res) => {
 router.get('/me', (req, res) => {
   res.json(req.user)
 })
+//addition
+router.delete('/me', function (req, res) {
+  req.logOut();
+  res.sendStatus(204);
+});
 
 router.use('/google', require('./google'))
