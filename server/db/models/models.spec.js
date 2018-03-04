@@ -87,11 +87,12 @@ describe('Product', () => {
       return Product.create({
         name: "Thing",
         description: "So descriptive!",
-        price: 299
+        price: 299,
+        stock: 1000
       })
-    //   .then(createdOrder =>
-    //     {
-    //       currentOrder = createdOrder
+      .then(createdOrder =>
+        {
+          currentOrder = createdOrder
     //       Review.create({
     //         productId: currentOrder.id,
     //         rating: 4
@@ -104,12 +105,12 @@ describe('Product', () => {
     //         productId: currentOrder.id,
     //         rating: 5
     //       })
-    //     }
-    //   )
+        }
+      )
     })
 
     it('is available displays the current stock', () => {
-      expect(currentOrder.isAvailable()).to.eql(false)
+      expect(currentOrder.isAvailable()).to.eql(true)
     })
 
     xit('full price displays price in decimals', () => {
