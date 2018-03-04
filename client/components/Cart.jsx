@@ -1,15 +1,25 @@
-import React from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {default as LineItem} from './LineItem.jsx'
+import { fetchOrder } from '../store'
 
-// props is all props
-export const Cart = (props) => {
+function Cart (props) {
+  const { order, loading } = props
+  console.log(order)
 
-  // HTML Component
+  if (order.lineItems){
+    var lineItems = order.lineItems
+    var totalPrice = lineItems.map((lineItem) => lineItem.getTotal * 1).reduce(function (a, b) {
+      return a + b
+    }, 0)
+
+    totalPrice = Math.ceil(totalPrice * 100) / 100
+  }
+
   return (
     <div>
-      <h1>{props.email}'s Shopping Cart</h1>
+      <h1>Your Cart</h1>
       <hr />
       <div className="cartContainer">
         <div className="lineItemName">Item</div>
@@ -17,21 +27,46 @@ export const Cart = (props) => {
         <div className="lineItemPriceQuantity">Quantity</div>
       </div>
       <hr />
-      <LineItem />
+      <LineItem loading={loading} lineItems={lineItems} />
       <hr />
+      Total: {totalPrice}
       <button>Checkout</button>
     </div>
   )
 }
 
-export const mapState = (state) => {
-  return {
-    email: state.user.email
+export class CartLoader extends Component{
+  componentDidMount() {
+    // Hard coded in orderId until we finish authorization
+    let orderId = 3
+    this.props.loadOrder(orderId)
+  }
+
+  render() {
+    return (
+      <Cart {...this.props} />
+    )
   }
 }
 
-export default connect(mapState)(Cart)
+export const mapState = (state) => {
+  return {
+    order: state.order,
+    lineItems: state.order.lineItems
+  }
+}
+
+const mapProps = function (dispatch) {
+  return {
+    loadOrder(orderId) {
+      dispatch(fetchOrder(orderId));
+    }
+  }
+}
+
+export default connect(mapState, mapProps)(CartLoader)
 
 Cart.propTypes = {
-  email: PropTypes.string
+  order: PropTypes.object,
+  loading: PropTypes.bool
 }
