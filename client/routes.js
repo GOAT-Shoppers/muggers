@@ -12,6 +12,7 @@ import { Login,
         Review
        } from './components';
 import {me} from './store';
+import UserPage from './components/User/UserPage'
 import Review from './components/Review.jsx'
 import { fetchReviews } from './store/review';
 
@@ -44,6 +45,7 @@ class Routes extends Component {
             <Switch>
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
+            <Route path="/myaccount" component={UserPage} />
             </Switch>
         }
         {/* Displays our Login component as a fallback */}

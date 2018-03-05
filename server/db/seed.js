@@ -82,31 +82,36 @@ const userData = [
       firstName: 'Sylvia',
       lastName: 'Plath',
       email: 'sylvia@plath.com',
-      isAdmin: false
+      isAdmin: false,
+      password: '1234'
     },
     {
       firstName: 'Angelina',
       lastName: 'Jolie',
       email: 'angie@jolie.com',
-      isAdmin: false
+      isAdmin: false,
+      password: '1234'
     },
     {
       firstName: 'Michelle',
       lastName: 'Obama',
       email: 'michelle@obama.com',
-      isAdmin: false
+      isAdmin: false,
+      password: 'obama'
     },
     {
       firstName: 'Ellen',
       lastName: 'Degeneres',
       email: 'ellen@gmail.com',
-      isAdmin: true
+      isAdmin: true,
+      password: '123ab'
     },
     {
       firstName: 'Spongebob',
       lastName: 'Squarepants',
       email: 'sponge@bob.com',
-      isAdmin: true
+      isAdmin: true,
+      password: 'abcd'
     },
   ];
 

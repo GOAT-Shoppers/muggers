@@ -38,7 +38,7 @@ describe('Auth Form', () => {
     }
 
     it('should return state object', () => {
-      expect(mapSignup(fakeState).error).to.be.equal('You broken!')
+      expect(map(fakeState).error).to.be.equal('You broken!')
     })
 
     describe('the plain component', () => {
