@@ -17,7 +17,7 @@ export const fetchAddresses = () => dispatch => {
     axios.get('/api/addresses')
         .then(results => results.data)
         .then(addresses => dispatch(getAddresses(addresses)))
-        .catch(error => console.errore('Could not get addresses ', error));
+        .catch(error => console.error('Could not get addresses ', error));
 }
 
 export const createAddress = address => dispatch => {
