@@ -4,8 +4,7 @@ import { createReview, getProdReviews, fetchReviews } from '../store/review'
 
 const Review = (props) => {
   const reviews = props.reviews;
-  const firstThreeReviews = reviews.slice(0,3)
-  const restOfReviews = reviews.slice(3)
+
   //this add review section would only be available to logged in users, if logged out, the render would start with the reviews.map
   return (
     <div>
