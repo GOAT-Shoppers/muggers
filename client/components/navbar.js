@@ -22,16 +22,7 @@ const Navbar = ({ handleClick, isLoggedIn, handleInputChange, handleSearch }) =>
           {/* The navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
-          <div>
-          <form className="form-group">
-            <input
-              className="form-control"
-              placeholder="Enter product name"
-              onChange={evt => handleInputChange(evt)}
-            />
-            <button onClick={handleSearch}><Link to={`/products/${handleSearch()}`}>Search</Link></button>
-          </form>
-          </div>
+
         </div>
       )}
     </nav>
