@@ -1,64 +1,68 @@
 
 import React, { Component } from "react";
-//import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import axios from 'axios'
+import { connect } from 'react-redux';
+import { updateUser } from '../../store'
+// import { Link } from 'react-router-dom';
 
 
 class UserPageEdit extends Component {
   constructor() {
-    super()
-    this.state = {}
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    super();
+
+    this.state = {
+      user: {}
+    }
   }
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value })
+  componentDidMount() {
+    this.setState({ user: this.props.user })
   }
-  handleSubmit() {
-    axios.put(`api/users/${this.props.user.id}`, this.state)
-      .then(console.log)
 
-  }
   render() {
-    const user = this.props.user
-
+    const user = this.state.user
 
     return (
       <div className="col-md-12">
             <h3> Edit your Profile</h3>
             <h4>Details</h4>
               <form onClick={this.handleSubmit}>
-                 <h4>First Name</h4>
-                      <input type="text" placeholder={user.firstName} name="FirstName" onChange={this.handleChange} />
-                  <h4>Last Name</h4>
-                        <input type="text" placeholder={user.lastName} name="lastName" onChange={this.handleChange} />
-                  <h4>Email</h4>
-                     <input type="text" placeholder={user.email} name="email" onChange={this.handleChange}  />
-                  <h4>Password</h4>
-                        <input type="text" placeholder={user.password} name="password" onChange={this.handleChange} />
-                        <br />
-                  <h4>Address</h4>
-                          <input type="text" placeholder={user.address} name="address" onChange={this.handleChange} />     
+                  <h4>First Name</h4>
+                        <input type="text" placeholder={user.firstName} name="FirstName" value={this.state.user.firstName} />
+                    <h4>Last Name</h4>
+                          <input type="text" placeholder={user.lastName} name="lastName" value={this.state.user.lastName} />
+                    <h4>Email</h4>
+                      <input type="text" placeholder={user.email} name="email" value={this.state.user.email} />
+                    <h4>Password</h4>
+                          <input type="text" name="password" value={this.state.password} />
+                          <br />
                     <div><button type="submit">Submit</button> </div>
-              </form>
-              </div> 
+                </form>
+              </div>
     )
   }
 }
 
-export default UserPageEdit;
-// const mapState = state =>({
+const mapState = state => {
+  console.log("state!!!!!!!!!!!! ", state.user)
+    if (!state.user.firstName) state.user.firstName = "first";
+    if (!state.user.lasttName) state.user.lastName = "last";
+  return {
+    user: state.user
+  }
+}
+const mapDispatch = dispatch => ({
+  handleSubmit (e, firstName, lastName, email, password) {
+    e.preventDefault();
 
-// })
-// const mapDispatch = (dispatch) => {
-//   return {
+    const user = {
+      firstName: e.target.FirstName.value,
+      lastName: e.tartget.lastName.value,
+      email: e.target.email.value,
+      password: e.target.password.value
+    }
+    dispatch(updateUser(user));
+  }
+})
 
-//   }
-// }
 
-
-//export default connect(mapState)(UserPageEdit);
-
-
+export default connect(mapState, mapDispatch)(UserPageEdit);

@@ -10,7 +10,7 @@ export const UserHome = (props) => {
 
   return (
     <div>
-      <h3>Welcome, {fullName}</h3>
+      <h3>Welcome, { fullName === 'null null' ? 'Guest' : fullName }</h3>
     </div>
   )
 }
