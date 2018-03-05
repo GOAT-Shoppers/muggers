@@ -6,12 +6,15 @@ import user from './user';
 import productReducer from './productReducer';
 import categoryReducer from './categoryReducer';
 import addressReducer from './addressReducer';
+import lineItem from './lineItem'
 
 const reducer = combineReducers({
   user,
   productReducer,
   categoryReducer,
-  addressReducer
+  addressReducer,
+  order,
+  lineItem
 });
 
 const middleware = composeWithDevTools(applyMiddleware(
@@ -20,6 +23,8 @@ const middleware = composeWithDevTools(applyMiddleware(
 ));
 const store = createStore(reducer, middleware);
 
-export default store;
-export * from './user';
+export default store
+export * from './user'
+export * from './order'
+export * from './lineItem'
 export * from './products';

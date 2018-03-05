@@ -10,3 +10,5 @@ export { default as AllProducts } from './AllProducts.jsx';
 export { default as Home } from './Home.jsx';
 export { default as NewAddress } from './NewAddress.jsx';
 export { default as SingleProduct } from './SingleProduct.jsx';
+export {default as Cart} from './Cart.jsx'
+export {default as Checkout } from './Checkout.jsx'
