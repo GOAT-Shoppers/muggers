@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 const GET_ADDRESSES = 'GET_ADDRESSES';
-const POST_ADDRESS = 'POST ADDRESS';
+const POST_ADDRESS = 'POST_ADDRESS';
 const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
-const DELETE_ADDRESS = 'DELETE ADDRESS';
+const DELETE_ADDRESS = 'DELETE_ADDRESS';
 
 export const getAddresses = addresses => ({ type: GET_ADDRESSES, addresses });
 
@@ -17,7 +17,7 @@ export const fetchAddresses = () => dispatch => {
     axios.get('/api/addresses')
         .then(results => results.data)
         .then(addresses => dispatch(getAddresses(addresses)))
-        .catch(error => console.errore('Could not get addresses ', error));
+        .catch(error => console.error('Could not get addresses ', error));
 }
 
 export const createAddress = address => dispatch => {
