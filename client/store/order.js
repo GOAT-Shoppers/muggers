@@ -5,7 +5,6 @@ import axios from 'axios'
  **/
 const GET_ONE_ORDER = 'GET_ONE_ORDER'
 const LOADING = 'LOADING'
-
 const DELETE_LINE_ITEM = 'DELETE_LINE_ITEM'
 const CHECK_OUT = 'CHECK_OUT'
 /**
@@ -14,7 +13,7 @@ const CHECK_OUT = 'CHECK_OUT'
 const initialState = {
   defaultOrder: {},
   defaultLoading: true,
-  order: {}
+  order: {},
 }
 
 /**
@@ -60,7 +59,7 @@ export const fetchOrder = (orderId) => {
   }
 }
 
-export const checkoutOrder = (orderId) => {
+export const checkoutOrder = (orderId, history) => {
   let status = {
     status: 'checkedOut'
   }
@@ -68,9 +67,9 @@ export const checkoutOrder = (orderId) => {
     axios.put(`/api/orders/${orderId}`, status)
       .then(order => order.data)
       .then(orderData => {
-        console.log(orderData)
-        return dispatch(checkout(orderData)
-      )})
+        dispatch(checkout(orderData))
+        history.push(`/checkout`)
+      })
       .catch(err => console.log(err))
   }
 }

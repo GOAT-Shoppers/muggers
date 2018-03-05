@@ -38,6 +38,7 @@ form div {
   display: flex;
   justify-content: flex-end;
   flex-basis: 30%;
+  max-height: 1em;
 }
 
 .lineItemImg{

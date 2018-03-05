@@ -2,10 +2,10 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {default as LineItem} from './LineItem.jsx'
-import { fetchOrder, removeLineItem, checkoutOrder } from '../store'
+import { fetchOrder, removeLineItem, checkoutOrder, changeQuant } from '../store'
 
 function Cart (props) {
-  const { order, loading, handleClick, handleCheckout } = props
+  const { order, loading, handleClick, handleCheckout, handleQuantityChange } = props
 
   if (order.lineItems){
     var lineItems = order.lineItems
@@ -28,8 +28,13 @@ function Cart (props) {
       <LineItem
       loading={loading}
       lineItems={lineItems}
-      clickHandle={handleClick} />
+      clickHandle={handleClick}
+      quantChangeHandle={handleQuantityChange}
+       />
       <hr />
+      {
+        // This total doesn't update dynamically.
+      }
       Total: {totalPrice}
       <button
         onClick={handleCheckout.bind(this, order.id)}
@@ -59,7 +64,7 @@ export const mapState = (state) => {
   }
 }
 
-const mapProps = function (dispatch) {
+const mapProps = function (dispatch, ownProps) {
   return {
     loadOrder(orderId) {
       dispatch(fetchOrder(orderId));
@@ -68,7 +73,10 @@ const mapProps = function (dispatch) {
       dispatch(removeLineItem(lineItem));
     },
     handleCheckout(orderId) {
-      dispatch(checkoutOrder(orderId))
+      dispatch(checkoutOrder(orderId, ownProps.history))
+    },
+    handleQuantityChange(lineItemId, quantity) {
+      dispatch(changeQuant(lineItemId, quantity))
     }
   }
 }
