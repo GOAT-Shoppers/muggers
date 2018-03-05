@@ -6,8 +6,8 @@ import UserPageEdit from './UserPage-Edit'
 //import UserPageOrders from './UserPage-Orders'
 
 const UserPage = (props) => {
-  const { user, isLoggedIn } = props
-
+  const { user, isLoggedIn, admin } = props
+console.log(admin)
   return (
   <div>
                   <div>
@@ -37,7 +37,8 @@ const UserPage = (props) => {
 const mapStatetoProps = (state) => {
   return {
     user: state.user,
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    admin: state.user.isAdmin
   }
 }
 

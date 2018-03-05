@@ -6,7 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
-//const UPDATE_USER = 'UPDATE_USER'
+//const EDIT_USER = 'EDIT_USER'
 
 
 /**
@@ -19,7 +19,7 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
-//const updateUser = user => ({type: UPDATE_USER})
+//const editUser = user => ({type: EDIT_USER})
 
 /**
  * THUNK CREATORS
@@ -51,13 +51,13 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
-// export const updatingUser = user => 
+// export const editUser = user => 
 //   dispatch => {
 //      axios.put(`/api/users/${user.id}`, user)
 //            .then(results => results.data)
 //           .then(updatedUser => dispatch(updateUser(updatedUser)))
 //           .catch(error => console.error('Could not update user ', error));
-//}
+// }
 /**
  * REDUCER
  */

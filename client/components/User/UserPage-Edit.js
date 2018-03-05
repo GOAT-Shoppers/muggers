@@ -1,6 +1,7 @@
 
 import React, { Component } from "react";
 //import { connect } from 'react-redux';
+//import{ editedUser } from '../store/user';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 
@@ -37,7 +38,7 @@ class UserPageEdit extends Component {
                   <h4>Email</h4>
                      <input type="text" placeholder={user.email} name="email" onChange={this.handleChange}  />
                   <h4>Password</h4>
-                        <input type="text" placeholder={user.password} name="password" onChange={this.handleChange} />
+                        <input type="text" placeholder={`******`} name="password" onChange={this.handleChange} />
                         <br />
                   <h4>Address</h4>
                           <input type="text" placeholder={user.address} name="address" onChange={this.handleChange} />     
@@ -49,7 +50,7 @@ class UserPageEdit extends Component {
 }
 
 export default UserPageEdit;
-// const mapState = state =>({
+
 
 // })
 // const mapDispatch = (dispatch) => {
@@ -57,8 +58,3 @@ export default UserPageEdit;
 
 //   }
 // }
-
-
-//export default connect(mapState)(UserPageEdit);
-
-
