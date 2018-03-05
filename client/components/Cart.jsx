@@ -75,8 +75,9 @@ const mapProps = function (dispatch, ownProps) {
     handleCheckout(orderId) {
       dispatch(checkoutOrder(orderId, ownProps.history))
     },
-    handleQuantityChange(lineItemId, quantity) {
+    handleQuantityChange(lineItemId, quantity, orderId) {
       dispatch(changeQuant(lineItemId, quantity))
+      dispatch(fetchOrder(orderId))
     }
   }
 }
