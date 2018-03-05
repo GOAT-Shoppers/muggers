@@ -19,3 +19,29 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+/* MIMI'S CSS HERE */
+.flexContainer {
+  display: flex;
+}
+
+.cartContainer {
+  display: flex;
+}
+
+.lineItemName{
+  display: flex;
+  flex-basis: 40%;
+}
+
+.lineItemPriceQuantity{
+  display: flex;
+  justify-content: flex-end;
+  flex-basis: 30%;
+  max-height: 1em;
+}
+
+.lineItemImg{
+  max-height: 4em;
+}
+/* MIMI'S CSS HERE */
