@@ -10,11 +10,6 @@ const CHECK_OUT = 'CHECK_OUT'
 /**
  * INITIAL STATE
  **/
-const initialState = {
-  defaultOrder: {},
-  defaultLoading: true,
-  order: {},
-}
 
 /**
  * ACTION CREATORS
@@ -24,10 +19,10 @@ const getOneOrder = order => ({
   order
 })
 
-const loading = status => ({
-  type: LOADING,
-  loading: status
-})
+// const loading = status => ({
+//   type: LOADING,
+//   loading: status
+// })
 
 const deleteLineItem = (order) => ({
   type: DELETE_LINE_ITEM,
@@ -53,8 +48,8 @@ export const fetchOrder = (orderId) => {
   return function thunk(dispatch){
     orderGetter(orderId)
       .then(orderWithLineItems =>
-        dispatch(getOneOrder(orderWithLineItems || initialState.defaultOrder)))
-      .then(() => dispatch(loading(true)))
+        dispatch(getOneOrder(orderWithLineItems || {})))
+      // .then(() => dispatch(loading(true)))
       .catch(err => console.log(err))
   }
 }
@@ -94,7 +89,7 @@ export const removeLineItem = (lineItemId) => {
  * REDUCER
  **/
 
-export default function (state = initialState, action) {
+export default function (state = {}, action) {
   switch (action.type) {
     case GET_ONE_ORDER:
       return action.order

@@ -18,7 +18,7 @@ Grab checkout button functionality from Cart.jsx
 function CheckoutComponent (props) {
   const testUser = {
     id: 2,
-    loggedIn: false,
+    loggedIn: true,
     email: "abcd@aol.com"
   }
 
