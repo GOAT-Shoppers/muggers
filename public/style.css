@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+
 }
 
 a {
@@ -23,11 +24,12 @@ form div {
 .content:before {
   content: "";
   background-image: url('http://ozon4life.com/data/out/46/image-159936655.jpg');
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   left: 0;
   right: 0;
   position: fixed;
+
   filter: sepia(1);
   z-index: -1;
   background-size: fixed;
@@ -35,7 +37,7 @@ form div {
 }
 
 .content {
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   z-index: 0;
@@ -45,6 +47,14 @@ form div {
   color: white;
 }
 
+btn {
+  color: #ccc;
+}
+
+.rating {
+  background-color: #337ab7;
+  color: #ccc;
+}
 
 /* MIMI'S CSS HERE */
 .flexContainer {

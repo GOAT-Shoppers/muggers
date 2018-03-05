@@ -1,26 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createReview, getProdReviews, fetchReviews } from '../store/review'
+import { createReview, fetchReviews } from '../store/review'
 
 const Review = (props) => {
   const reviews = props.reviews;
-
   //this add review section would only be available to logged in users, if logged out, the render would start with the reviews.map
   return (
     <div>
       <h3>Add a review</h3>
       <form onSubmit={evt => props.handleSubmit(evt)}>
-        <label>Rating:</label>
-          <select id="rating">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
+          <div className="col-auto my-1">
+            <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Rating</label>
+            <select className="custom-select mr-sm-2 rating" id="inlineFormCustomSelect">
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+              <option value="4">Four</option>
+              <option value="5">Five</option>
+            </select>
+        </div>
         <label>What do you have to say about this mug?</label>
-        <input name="text" placeholder="Submit a review" />
-        <button type="submit">Submit</button>
+        <div className="input-group">
+        <textarea className="form-control" aria-label="With textarea" />
+      </div>
+        <button type="submit" className="btn btn-outline-dark rating">Submit</button>
       </form>
       {reviews.reverse().map(el =>
         (<div key={el.id}>
