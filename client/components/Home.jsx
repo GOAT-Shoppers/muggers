@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchProducts } from '../store/productReducer';
 import { fetchCategories } from '../store/categoryReducer';
+import AllProducts from './AllProducts.jsx'
 
 export class Home extends Component {
     componentDidMount() {
@@ -15,6 +16,7 @@ export class Home extends Component {
                 <h1>Welcome USER</h1>
                 <div>IMAGE</div>
                 <div>PRODUCTS</div>
+                <AllProducts products={this.props.products} />
             </div>
         )
     }

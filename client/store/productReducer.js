@@ -35,7 +35,7 @@ export const updatingProduct = product => dispatch => {
 }
 
 //REDUCER
-export default  (products = [], action) => {
+export default (products = [], action) => {
 
     switch (action.type) {
         case SET_PRODUCTS:
