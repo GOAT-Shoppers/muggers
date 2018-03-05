@@ -1,3 +1,4 @@
+
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import createLogger from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
@@ -6,7 +7,8 @@ import user from './user';
 import productReducer from './productReducer';
 import categoryReducer from './categoryReducer';
 import addressReducer from './addressReducer';
-import lineItem from './lineItem'
+import lineItem from './lineItem';
+import review from './review';
 
 const reducer = combineReducers({
   user,
@@ -14,7 +16,8 @@ const reducer = combineReducers({
   categoryReducer,
   addressReducer,
   order,
-  lineItem
+  lineItem,
+  review
 });
 
 const middleware = composeWithDevTools(applyMiddleware(
