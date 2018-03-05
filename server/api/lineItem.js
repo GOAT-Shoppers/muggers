@@ -11,10 +11,29 @@ router.get('/', (req, res, next) => {
   .catch(next)
 })
 
+router.get('/:id', (req, res, next) => {
+  LineItem.findById(req.params.id)
+    .then((item) => {
+      res.send(item)
+    })
+    .catch(next)
+})
+
 router.post('/', (req, res, next) => {
   LineItem.create(req.body)
     .then(lineItem => res.json(lineItem))
     .catch(next)
 })
+
+router.delete('/:id', (req, res, next) => {
+  LineItem.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(() => res.status(204).end())
+    .catch(next)
+})
+
 
 module.exports = router;

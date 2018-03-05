@@ -2,11 +2,10 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {default as LineItem} from './LineItem.jsx'
-import { fetchOrder } from '../store'
+import { fetchOrder, removeLineItem, checkoutOrder } from '../store'
 
 function Cart (props) {
-  const { order, loading } = props
-  console.log(order)
+  const { order, loading, handleClick, handleCheckout } = props
 
   if (order.lineItems){
     var lineItems = order.lineItems
@@ -16,7 +15,6 @@ function Cart (props) {
 
     totalPrice = Math.ceil(totalPrice * 100) / 100
   }
-
   return (
     <div>
       <h1>Your Cart</h1>
@@ -27,10 +25,15 @@ function Cart (props) {
         <div className="lineItemPriceQuantity">Quantity</div>
       </div>
       <hr />
-      <LineItem loading={loading} lineItems={lineItems} />
+      <LineItem
+      loading={loading}
+      lineItems={lineItems}
+      clickHandle={handleClick} />
       <hr />
       Total: {totalPrice}
-      <button>Checkout</button>
+      <button
+        onClick={handleCheckout.bind(this, order.id)}
+      >Checkout</button>
     </div>
   )
 }
@@ -60,6 +63,12 @@ const mapProps = function (dispatch) {
   return {
     loadOrder(orderId) {
       dispatch(fetchOrder(orderId));
+    },
+    handleClick(lineItem) {
+      dispatch(removeLineItem(lineItem));
+    },
+    handleCheckout(orderId) {
+      dispatch(checkoutOrder(orderId))
     }
   }
 }
