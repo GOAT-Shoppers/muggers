@@ -1,10 +1,13 @@
-import react, { Component } from 'react';
+
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchProducts } from '../store';
+import { fetchProducts } from '../store/productReducer';
+import { fetchCategories } from '../store/categoryReducer';
 
 export class Home extends Component {
     componentDidMount() {
         this.props.loadProducts();
+        this.props.loadCategories();
     }
 
     render() {
@@ -19,11 +22,13 @@ export class Home extends Component {
 }
 
 const mapState = state => ({
-    products: state.products
+    products: state.products,
+    categories: state.categories
 });
 
 const mapDispatch = dispatch => ({
-    loadProducts: () => dispatch(fetchProducts())
+    loadProducts: () => dispatch(fetchProducts()),
+    loadCategories: () => dispatch(fetchCategories())
 });
 
 export default connect(mapState, mapDispatch)(Home);
