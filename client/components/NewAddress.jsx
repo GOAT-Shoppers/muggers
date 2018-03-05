@@ -55,10 +55,10 @@ const mapDispatch = (dispatch, ownProps) => ({
         const id = ownProps.match.params.user.id; //may need to modify. just starting point. Need to find out how our information is flowing once we all come together for the merge
         event.preventDefault();
         const address = {
-            street: event.target.street.value,
-            city: event.target.city.value,
-            state: event.target.state.value,
-            zip: event.tartget.zip.value,
+            street: this.state.street,
+            city: this.state.city,
+            state: this.state.state,
+            zip: this.state.zip,
             userId: id
         }
         dispatch(createAddress(address));
