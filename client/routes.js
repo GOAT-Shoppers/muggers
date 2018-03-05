@@ -1,10 +1,20 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
-import PropTypes from 'prop-types'
-import {Login, Signup, UserHome} from './components'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Login,
+        Signup,
+        UserHome,
+        AllProducts,
+        SingleProduct,
+        Cart,
+        Checkout,
+        Review
+       } from './components';
+import {me} from './store';
 import UserPage from './components/User/UserPage'
-import {me} from './store'
+import Review from './components/Review.jsx'
+import { fetchReviews } from './store/review';
 
 /**
  * COMPONENT
@@ -12,6 +22,8 @@ import {me} from './store'
 class Routes extends Component {
   componentDidMount () {
     this.props.loadInitialData()
+    this.props.fetchAllReviews()
+//trying to find a place to load all reviews - might have to be a product page since we will need the product ID to load reviews
   }
 
   render () {
@@ -22,6 +34,12 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/products/:id/reviews" component={Review} />
+        <Route path="/cart" component={Cart} />
+        <Route path="/checkout" component={Checkout} />
+        <Route exact path="/products" component={AllProducts} />
+        <Route path="/products/:id" component={SingleProduct} />
+
         {
           isLoggedIn &&
             <Switch>
@@ -52,6 +70,9 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
+    },
+    fetchAllReviews() {
+      dispatch(fetchReviews())
     }
   }
 }

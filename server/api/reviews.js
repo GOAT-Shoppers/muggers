@@ -22,9 +22,9 @@ router.post('/', (req, res, next) => {
 });
 
 router.put('/:id', (req, res, next) => {
-  Review.findById(req.params.reviewId)
+  Review.findById(req.params.id)
     .then(review => review.update(req.body))
-    .then(updatedReview => res.json(updatedReview)) //Dont think this will work as expected
+    .then(updatedReview => res.json(updatedReview))
     .catch(next);
 });
 

@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({ handleClick, isLoggedIn, handleInputChange, handleSearch }) => (
   <div>
     <h1>BOILERMAKER</h1>
     <nav>
@@ -22,6 +22,16 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           {/* The navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
+          <div>
+          <form className="form-group">
+            <input
+              className="form-control"
+              placeholder="Enter product name"
+              onChange={evt => handleInputChange(evt)}
+            />
+            <button onClick={handleSearch}><Link to={`/products/${handleSearch()}`}>Search</Link></button>
+          </form>
+          </div>
         </div>
       )}
     </nav>
@@ -39,9 +49,16 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => {
+  let search;
   return {
     handleClick() {
       dispatch(logout())
+    },
+    handleInputChange(evt) {
+      search = evt.target.value;
+    },
+    handleSearch() {
+      return search;
     }
   }
 }
