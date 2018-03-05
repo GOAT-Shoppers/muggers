@@ -9,3 +9,4 @@ export { Login, Signup } from './auth-form';
 export { default as AllProducts } from './AllProducts.jsx';
 export { default as Home } from './Home.jsx';
 export { default as NewAddress } from './NewAddress.jsx';
+export { default as SingleProduct } from './SingleProduct.jsx';

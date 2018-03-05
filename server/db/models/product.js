@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
-const Review = ('./review');
 
 const Product = db.define('product', {
     name: {
@@ -39,12 +38,11 @@ Product.prototype.isAvailable = function() {
 }
 
 Product.prototype.displayPrice = function(){
-    return (this.price/100).toFixed(2);
+    return (this.price / 100).toFixed(2);
 }
 
 Product.prototype.averageRating = function () {
   let instance = this
-  let average;
   return this.getReviews()
     .then(reviews => reviews.map(el => el.getDataValue('rating')))
     .then(arrayOfRating => {
