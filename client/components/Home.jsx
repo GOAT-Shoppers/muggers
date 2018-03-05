@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { fetchProducts } from '../store/productReducer';
 import { fetchCategories } from '../store/categoryReducer';
 import { AllProducts } from './AllProducts.jsx';
+import { SingleProduct } from './SingleProduct.jsx';
+
 
 export class Home extends Component {
     componentDidMount() {
@@ -18,6 +20,7 @@ export class Home extends Component {
                 <div>IMAGE</div>
                 <div>PRODUCTS</div>
                 <AllProducts products={this.props.products} />
+                <SingleProduct products={this.props.products} />
             </div>
         )
     }

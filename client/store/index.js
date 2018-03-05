@@ -10,6 +10,7 @@ import addressReducer from './addressReducer';
 import lineItem from './lineItem';
 import review from './review';
 import order from './order';
+import products from './products'
 
 const reducer = combineReducers({
   user,
@@ -18,7 +19,8 @@ const reducer = combineReducers({
   addressReducer,
   order,
   lineItem,
-  review
+  review,
+  products
 });
 
 const middleware = composeWithDevTools(applyMiddleware(
