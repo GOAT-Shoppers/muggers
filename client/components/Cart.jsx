@@ -5,7 +5,7 @@ import {default as LineItem} from './LineItem.jsx'
 import { fetchOrder, removeLineItem, checkoutOrder, changeQuant } from '../store'
 
 function Cart (props) {
-  const { order, loading, handleClick, handleCheckout, handleQuantityChange } = props
+  const { order, /*loading,*/ handleClick, handleCheckout, handleQuantityChange } = props
 
   if (order.lineItems){
     var lineItems = order.lineItems
@@ -33,7 +33,7 @@ function Cart (props) {
       </div>
       <hr />
       <LineItem
-      loading={loading}
+      /*loading={loading}*/
       lineItems={lineItems}
       clickHandle={handleClick}
       quantChangeHandle={handleQuantityChange}
