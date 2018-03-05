@@ -9,11 +9,11 @@ import { Login,
         SingleProduct,
         Cart,
         Checkout,
-        Review
+        Review,
+        NewAddress
        } from './components';
 import {me} from './store';
 import UserPage from './components/User/UserPage'
-import Review from './components/Review.jsx'
 import { fetchReviews } from './store/review';
 
 /**
@@ -34,11 +34,12 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route exact path="/products" component={AllProducts} />
+        <Route path="/products/:id" component={SingleProduct} />
         <Route path="/products/:id/reviews" component={Review} />
         <Route path="/cart" component={Cart} />
         <Route path="/checkout" component={Checkout} />
-        <Route exact path="/products" component={AllProducts} />
-        <Route path="/products/:id" component={SingleProduct} />
+        <Route path="/newaddress" component={NewAddress} />
 
         {
           isLoggedIn &&

@@ -9,6 +9,7 @@ import categoryReducer from './categoryReducer';
 import addressReducer from './addressReducer';
 import lineItem from './lineItem';
 import review from './review';
+import order from './order';
 
 const reducer = combineReducers({
   user,
