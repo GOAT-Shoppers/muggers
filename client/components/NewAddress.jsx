@@ -10,7 +10,7 @@ export class NewAddress extends Component {
                 street: '',
                 city: '',
                 state: '',
-                zip: null
+                zip: ''
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -24,7 +24,7 @@ export class NewAddress extends Component {
         const { street, city, state, zip } = this.state
 
         return (
-            <form onSubmit={(event, this.state) => this.props.handleSubmit(event, this.state)}>
+            <form onSubmit={this.props.handleSubmit}>
                 <div>
                     <label htmlFor="street">Street Address</label>
                     <input name="street" onChange={this.handleChange} value={street} />
@@ -51,14 +51,14 @@ export class NewAddress extends Component {
 
 const mapDispatch = (dispatch, ownProps) => ({
     //need to get userid off of ownProps
-    handleSubmit: (event, address) => {
+    handleSubmit: () => {
         const id = ownProps.match.params.user.id; //may need to modify. just starting point. Need to find out how our information is flowing once we all come together for the merge
         event.preventDefault();
         const newAddress = {
-            street: address.street,
-            city: address.city,
-            state: address.state,
-            zip: address.zip,
+            street: this.state.street,
+            city: this.state.city,
+            state: this.state.state,
+            zip: this.state.zip,
             userId: id
         }
         dispatch(createAddress(newAddress));

@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+
 }
 
 a {
@@ -18,6 +19,41 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+.content:before {
+  content: "";
+  background-image: url('http://ozon4life.com/data/out/46/image-159936655.jpg');
+  height: 100%;
+  width: 100%;
+  left: 0;
+  right: 0;
+  position: fixed;
+
+  filter: sepia(1);
+  z-index: -1;
+  background-size: fixed;
+  display: block;
+}
+
+.content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  margin-left: 20px;
+  margin-right: 20px;
+  filter: none;
+  color: white;
+}
+
+btn {
+  color: #ccc;
+}
+
+.rating {
+  background-color: #337ab7;
+  color: #ccc;
 }
 
 /* MIMI'S CSS HERE */

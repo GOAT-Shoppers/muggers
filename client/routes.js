@@ -13,7 +13,6 @@ import { Login,
        } from './components';
 import {me} from './store';
 import UserPage from './components/User/UserPage'
-import Review from './components/Review.jsx'
 import { fetchReviews } from './store/review';
 
 /**
