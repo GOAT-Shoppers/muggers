@@ -11,3 +11,4 @@ export { default as NewAddress } from './NewAddress.jsx';
 export { default as SingleProduct } from './SingleProduct.jsx';
 export {default as Cart} from './Cart.jsx'
 export {default as Checkout } from './Checkout.jsx'
+export {default as Review } from './Review.jsx'
