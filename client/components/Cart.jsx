@@ -5,7 +5,7 @@ import {default as LineItem} from './LineItem.jsx'
 import { fetchOrder, removeLineItem, checkoutOrder, changeQuant } from '../store'
 
 function Cart (props) {
-  const { order, loading, handleClick, handleCheckout, handleQuantityChange } = props
+  const { order, /*loading,*/ handleClick, handleCheckout, handleQuantityChange } = props
 
   if (order.lineItems){
     var lineItems = order.lineItems
@@ -15,6 +15,13 @@ function Cart (props) {
 
     totalPrice = Math.ceil(totalPrice * 100) / 100
   }
+
+  /*
+  If there is a user logged in on the state, get their cart from the database
+  else if they are a guest:
+    hit the backend route that tells us their cart that is on the session
+    pray
+  */
   return (
     <div>
       <h1>Your Cart</h1>
@@ -26,7 +33,7 @@ function Cart (props) {
       </div>
       <hr />
       <LineItem
-      loading={loading}
+      /*loading={loading}*/
       lineItems={lineItems}
       clickHandle={handleClick}
       quantChangeHandle={handleQuantityChange}

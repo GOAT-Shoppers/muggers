@@ -37,6 +37,7 @@ router.post('/logout', (req, res) => {
 })
 
 router.get('/me', (req, res) => {
+  // req.user same as req.session.user
   res.json(req.user)
 })
 //addition

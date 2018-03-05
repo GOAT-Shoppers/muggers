@@ -2,10 +2,6 @@ import axios from 'axios'
 
 const CHANGE_QUANTITY = 'CHANGE_QUANTITY'
 
-const initialState = {
-  defaultLineItem: {}
-}
-
 const changeQuantity = (lineItem) => ({
   type: CHANGE_QUANTITY,
   lineItem
@@ -23,7 +19,7 @@ export const changeQuant = (lineItemId, quantity) => {
   }
 }
 
-export default function (state = initialState, action) {
+export default function (state = {}, action) {
   switch (action.type) {
     case CHANGE_QUANTITY:
       return action.lineItem
