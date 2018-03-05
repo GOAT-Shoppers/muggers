@@ -16,6 +16,8 @@ import { Login,
 import {me} from './store';
 import UserPage from './components/User/UserPage'
 import { fetchReviews } from './store/review';
+import { fetchProducts } from './store/productReducer';
+import { fetchCategories } from './store/categoryReducer';
 
 /**
  * COMPONENT
@@ -24,6 +26,8 @@ class Routes extends Component {
   componentDidMount () {
     this.props.loadInitialData()
     this.props.fetchAllReviews()
+    this.props.loadProducts();
+    this.props.loadCategories();
 //trying to find a place to load all reviews - might have to be a product page since we will need the product ID to load reviews
   }
 
@@ -33,7 +37,6 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/products" component={AllProducts} />
@@ -65,7 +68,9 @@ const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    products: state.products,
+    categories: state.categories
   }
 }
 
@@ -76,7 +81,9 @@ const mapDispatch = (dispatch) => {
     },
     fetchAllReviews() {
       dispatch(fetchReviews())
-    }
+    },
+    loadProducts: () => dispatch(fetchProducts()),
+    loadCategories: () => dispatch(fetchCategories())
   }
 }
 

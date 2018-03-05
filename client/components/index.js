@@ -7,7 +7,6 @@ export { default as Navbar } from './navbar';
 export { default as UserHome } from './user-home';
 export { Login, Signup } from './auth-form';
 export { default as AllProducts } from './AllProducts.jsx';
-export { default as Home } from './Home.jsx';
 export { default as NewAddress } from './NewAddress.jsx';
 export { default as SingleProduct } from './SingleProduct.jsx';
 export {default as Cart} from './Cart.jsx'

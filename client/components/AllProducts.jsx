@@ -16,9 +16,7 @@ export class AllProducts extends Component {
     }
 
     render() {
-        console.log(this.props)
         const { products } = this.props;
-        console.log(this.props);
         return (
         <div>
             <div>
@@ -47,7 +45,7 @@ export class AllProducts extends Component {
                 }
             </div>
             {/* Only render below if Admin */}
-            {/* <div>
+            {/* <div> 
                 <Link to={'/addProduct'}>Add a product!</Link>
             </div> */}
         </div>
