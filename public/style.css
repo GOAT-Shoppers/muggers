@@ -1,6 +1,5 @@
 body {
   font-family: sans-serif;
-
 }
 
 a {
@@ -19,6 +18,33 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+#reviewInput {
+  width: 100%;
+  padding: 15px;
+}
+
+#reviewText {
+  width: 60vw;
+  height: 20vh;
+  color: black;
+
+}
+
+#reviewBox {
+  padding: 20px;
+}
+
+.allProds {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.displayProd {
+  width: 30%;
+  padding: 5px;
+  flex-direction: row;
 }
 
 .content:before {
@@ -51,10 +77,27 @@ btn {
   color: #ccc;
 }
 
+img {
+  height: 150px;
+  width: 150px;
+}
+
 .rating {
   background-color: #337ab7;
   color: #ccc;
 }
+
+input {
+  color: black;
+}
+
+button {
+  color: black;
+}
+
+/* .searchBar {
+  width
+} */
 
 /* MIMI'S CSS HERE */
 .flexContainer {

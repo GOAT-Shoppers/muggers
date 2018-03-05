@@ -9,23 +9,39 @@ export class AllProducts extends Component {
             quantity: null
         }
         this.handleChange = this.handleChange.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
     }
 
     handleChange(event) {
         this.setState({ quantity: event.target.quantity.value });
     }
 
+    handleSearch(event) {
+      this.setState({
+        filteredProducts: event.target.value
+      })
+    }
+
     render() {
-        const { products } = this.props;
+
+        const products  = this.state.filteredProducts ? this.props.products.filter(el => el.name.match(this.state.filteredProducts)) : this.props.products;
         return (
         <div>
             <div>
                 <h1>All Products</h1>
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text" id="inputGroup-sizing-default">Search</span>
+                  </div>
+                  <input type="text" className="form-control" aria-label="Search" aria-describedby="inputGroup-sizing-default" onChange={this.handleSearch} />
+                </div>
+                <br />
+                <br />
             </div>
-            <div>
+            <div className="allProds">
                 {
                 products.map(product => (
-                    <div key={product.id}>
+                    <div className="displayProd" key={product.id}>
                         <Link to={`/products/${product.id}`}>
                             <div>
                                 <img src={product.photo} />
@@ -40,12 +56,13 @@ export class AllProducts extends Component {
                             <input name="quantity" onChange={this.handleChange} />
                         </div>
                         <button type="submit">Add to cart</button>
+                        <br />
                     </div>
                 ))
                 }
             </div>
             {/* Only render below if Admin */}
-            {/* <div> 
+            {/* <div>
                 <Link to={'/addProduct'}>Add a product!</Link>
             </div> */}
         </div>
