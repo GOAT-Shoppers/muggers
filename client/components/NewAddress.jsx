@@ -24,6 +24,7 @@ export class NewAddress extends Component {
         const { street, city, state, zip } = this.state
 
         return (
+
             <form onSubmit={(event, this.state) => this.props.handleSubmit(event, this.state)}>
                 <div>
                     <label htmlFor="street">Street Address</label>
