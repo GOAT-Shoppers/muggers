@@ -10,7 +10,6 @@ const Navbar = ({ handleClick, isLoggedIn, handleInputChange, handleSearch }) =>
 
     <nav className="navBar">
     <h1>Muggers Inc.</h1>
-    
       {isLoggedIn ? (
         <div className="navLinks" >
           {/* The navbar will show these links after you log in */}
