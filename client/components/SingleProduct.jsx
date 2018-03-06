@@ -1,33 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import Review from './Review.jsx'
 
 export const SingleProduct = props => {
+    const { product } = props;
 
-const { product } = props;
-console.log("PRODUCT ", product)
     return (
         <div>
-            <h1>Single product page</h1>
                 { product &&
-                <div>
-                    <h1>{ product.name }</h1>
-                    <img src={product.photo} />
-                    <h5>Price: { product.price }</h5>
-                    <h5>Quantity: { product.stock }</h5>
-                    <h4>{ product.description }</h4>
-                    <button type="submit">Add to Cart</button>
-                </div>
+                  <div>
+                    <div className="prodDisplayPage">
+                      <div className="prodDescription">
+                        <h1>{ product.name }</h1>
+                        <h4>{ product.description }</h4>
+                      </div>
+                      <div className="prodImage">
+                          <img src={product.photo} />
+                          <h5>Price: ${ product.price }</h5>
+                          <h5>Quantity: { product.stock }</h5>
+                          <button type="submit">Add to Cart</button>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <Review id={product.id} />
+                    </div>
+                  </div>
                 }
-
         </div>
         )
 }
 
 const mapState = (state, ownProps) => {
-    // console.log("OWNPROPS ", ownProps)
     const productId = +ownProps.match.params.id;
-    console.log("State ", state);
     const product = state.products.find(prod => productId === prod.id);
 
     return {

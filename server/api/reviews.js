@@ -2,7 +2,9 @@ const router = require('express').Router();
 const { Review, User } = require('../db/models');
 
 router.get('/', (req, res, next) => {
-  Review.findAll()
+  Review.findAll( {
+    include: { model: User }
+  })
     .then(reviews => res.json(reviews))
     .catch(next);
 });

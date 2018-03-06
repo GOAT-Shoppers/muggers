@@ -1,6 +1,5 @@
 body {
   font-family: sans-serif;
-
 }
 
 a {
@@ -19,6 +18,37 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+#reviewInput {
+  width: 100%;
+  padding: 15px;
+}
+
+#reviewText {
+  width: 60vw;
+  height: 20vh;
+  color: black;
+
+}
+
+#reviewBox {
+  padding: 20px;
+}
+
+.allProds {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.displayProd {
+  width: 30%;
+  padding: 5px;
+  flex-direction: row;
+
+input {
+  color: black;
+
 }
 
 .content:before {
@@ -47,14 +77,68 @@ form div {
   color: white;
 }
 
+.prodDisplayPage {
+  display: flex;
+}
+
+.prodImage {
+  width: 20%;
+  margin: 10px;
+  float: right;
+}
+
+.prodDescription {
+  width: 70%;
+  margin: 10px
+}
+
+select {
+  color: black;
+}
+
 btn {
   color: #ccc;
+}
+
+img {
+  height: 150px;
+  width: 150px;
 }
 
 .rating {
   background-color: #337ab7;
   color: #ccc;
 }
+
+input {
+  color: black;
+}
+
+button {
+  color: black;
+}
+
+nav {
+  background-color: rgba(211,211,211,0.6);
+  padding: 5px;
+  margin: 10px;
+}
+
+nav h1 {
+  color: black;
+}
+
+nav a {
+  color: black;
+}
+
+.navLinks {
+  float:left;
+}
+
+/* .searchBar {
+  width
+} */
 
 /* MIMI'S CSS HERE */
 .flexContainer {

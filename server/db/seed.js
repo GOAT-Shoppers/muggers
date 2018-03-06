@@ -30,49 +30,49 @@ const productData = [
   {
     name: 'Mason',
     description: "Elegant in design, the Mason can hold all the water you might want to drink in one sitting. Lightly branded, this conveys a cool and relaxed environment. This jar says that you didn't try to decorate your home, it just happened. The Mason tells people you believe in recycling.",
-    price: 15,
+    price: 1500,
     stock: 10000,
     photo: 'https://www.amazon.com/32oz-Regular-Mouth-Canning-Mason/dp/B01N6QBJG0'
   },
   {
     name: 'Avery',
     description: "Imagine a Mason but with a handle. That means it's more portable, it's fancy, and best of all, there is no branding. This is the ideal drinking jar for anyone that wants to prove they're not limited by the restrains of capitalism. The Avery holds just as much liquid as the Mason, but speaks to a more independent water drinker. The Avery can also be used to drink kombucha, coconut milk, and craft Lacroix.",
-    price: 20,
+    price: 2000,
     stock: 5000,
     photo: 'https://target.scene7.com/is/image/Target/16728716?wid=520&hei=520&fmt=pjpeg'
   },
   {
     name: 'Borris',
     description: "The Borris is the go to mug for any hot beverage. It's got a handle shaped perfectly for your hand, and a design that works for both tea and coffee. It's tall and skinny in design, allowing you to hold as much liquid as you want, without it getting cold.",
-    price: 17,
+    price: 1700,
     stock: 2500,
     photo: 'https://i.pinimg.com/originals/fa/e6/91/fae691db77c4fcdc2325f974fda510fb.jpg'
   },
   {
     name: 'Cleopatra',
     description: "This is our fun mug. Curvy in design, it has drawn inspiration from middle eastern designs. If you want a mug to add patterns to your cabinet, this is the one to get. Currently available in just black and white, it is a classic must have in your collection. You can drink coffee or tea out of this mug and feel confident that you've made the right choice.",
-    price: 35,
+    price: 3500,
     stock: 10000,
     photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSClhZaqCpsMnCdWVX4IzxDgEseg2jOeAoxmxvl7vo53S-Ti2Ef'
   },
   {
     name: 'Rivington',
     description: "The Rivington was once a diet coke can. Since then, it has been washed, re-used, and re-cycled. We've altered both the interior and exterior of the can so that it can hold hot beverages. We've added a handle for every day use, but we've kept the adored Coke logo. If you know someone who is trying to ween off Coke and onto cappucinos, get them this gift today.",
-    price: 28,
+    price: 2800,
     stock: 10000,
     photo: 'https://images-na.ssl-images-amazon.com/images/I/61dikCP5C1L._SY355_.jpg'
   },
   {
     name: 'Kesha',
     description: "Your every day glass for espresso. The Kesha was once used for alcoholic shots but has since been remodeled to serve the needs of caffeine addicts everywhere. This comes with a colorful confetti design, which can bring the fun of a party scene into your morning espresso. A perfect gift for an individual who just got into espresso. ",
-    price: 10,
+    price: 1000,
     stock: 50000,
     photo: 'https://cdn.shopify.com/s/files/1/1348/9761/products/multi-confetti-glitter-shot-glass-slant-harlan-ruby_1280x1280.jpg?v=1501085771'
   },
   {
     name: 'Bell',
     description: "Airy, light, dynamic, fun. Not sure it's intended to drink out of.",
-    price: 5,
+    price: 500,
     stock: 10000,
   }
 ];
