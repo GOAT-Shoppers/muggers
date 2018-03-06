@@ -18,6 +18,10 @@ export const UserHome = props => {
   return (
     <div>
       <h3>Welcome, {name}</h3>
+      <div className="homepage genericBackground">
+        <p>Feel free to browse our mug selection up top.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Teacup_clipart.svg/672px-Teacup_clipart.svg.png" />
+      </div>
     </div>
   );
 }

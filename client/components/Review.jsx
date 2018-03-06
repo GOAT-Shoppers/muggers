@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 import { createReview, fetchReviews } from '../store/review';
 
 const Review = (props) => {
-  const reviews = props.reviews;
+  const {reviews,user} = props;
+  console.log(user.isLoggedIn)
 
   return (
-    <div id="reviewInput">
-      <h3>Add a review</h3>
-      <form onSubmit={evt => props.handleSubmit(evt)}>
+    <div>
+    {user.isLoggedIn ? (
+      <div id="reviewInput">
+        <h3>Add a review</h3>
+        <form onSubmit={evt => props.handleSubmit(evt)}>
             <div>
               <label htmlFor="inlineFormCustomSelect">Rating</label>
               <select className="rating" id="inlineFormCustomSelect">
@@ -23,11 +26,13 @@ const Review = (props) => {
             <div>
               <textarea aria-label="With textarea" name="text" id="reviewText" />
             </div>
-          <button type="submit" className="btn btn-outline-dark rating" disabled={!props.isLoggedIn}>Submit</button>
+          {props.user.isAdmin && (<button type="submit" className="btn btn-outline-dark rating" disabled={!props.isLoggedIn}>Submit</button>)}
       </form>
+      </div>) :
+      (<h3>Log in to leave a review!</h3>)}
       <h3>Reviews</h3>
       {reviews.reverse().map(el =>
-        (<div key={el.id} id="reviewBox" >
+        (<div key={el.id} id="reviewBox" className="genericBackground">
           <p>Rating: {el.rating}</p>
           <p>{el.text}</p>
           <button key={el.id} onClick={(evt) => props.handleDelete(evt)}>Delete</button>
@@ -45,7 +50,8 @@ const mapState = (state, ownProps) => {
   return {
     userId: state.user.id,
     reviews: reviews.filter(el => el.productId == productId),
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user: state.user
   }
 }
 
