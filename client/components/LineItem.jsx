@@ -6,6 +6,7 @@ const LineItem = (props) => {
   let lineItems = props.lineItems || []
   let handleClick = props.clickHandle
   let handleChange = props.quantChangeHandle
+  let userId = props.userId
 
   return (
     // loading ? <div>Loading your cart...</div> :
@@ -29,7 +30,7 @@ const LineItem = (props) => {
                   <input
                   type="number"
                   defaultValue={lineItem.quantity}
-                  onChange={(event) => handleChange(lineItem.id, event.target.value)}
+                  onChange={(event) => handleChange(lineItem.id, event.target.value, userId)}
                   />
                   </div>
               </div>
