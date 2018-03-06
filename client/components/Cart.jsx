@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import {default as LineItem} from './LineItem.jsx'
+import { default as LineItem } from './LineItem.jsx'
 import { default as GuestLineItem} from './GuestLineItem.jsx'
-import { fetchOrder, removeLineItem, checkoutOrder, changeQuant, fetchGuestCart, deleteLineItem, updateItemQuantity, startCheckoutGuest } from '../store'
+import { fetchActiveOrder, removeLineItem, checkoutOrder, changeQuant, fetchGuestCart, deleteLineItem, updateItemQuantity, startCheckoutGuest } from '../store'
 
 function Cart (props) {
   const { order, handleClick, handleCheckout, handleQuantityChange, user, guestCart, deleteItem, changeQuantity, checkoutGuest } = props
@@ -20,7 +20,7 @@ function Cart (props) {
       return a + b
     }, 0)
 
-    totalPrice = Math.ceil(totalPrice * 100) / 100
+    totalPrice = (Math.ceil(totalPrice * 100) / 100).toFixed(2)
   }
 
   if (guestCart) {
@@ -42,7 +42,6 @@ function Cart (props) {
       </div>
       <hr />
 
-
     {
       user.id ?
       <div>
@@ -50,9 +49,10 @@ function Cart (props) {
         lineItems={lineItems}
         clickHandle={handleClick}
         quantChangeHandle={handleQuantityChange}
+        userId={user.id}
         />
         <hr />
-        Total: {totalPrice}
+            Total: {totalPrice}
 
         <button
           onClick={handleCheckout.bind(this, order.id)}
@@ -85,13 +85,20 @@ function Cart (props) {
 }
 
 export class CartLoader extends Component{
-  componentDidMount() {
-    // Hard coded in orderId until we finish authorization
-    let orderId = 3
-    this.props.loadOrder(orderId)
-    this.props.fetchCart()
 
+
+  componentDidMount() {
+    this.props.fetchCart()
+    this.props.loadOrder(this.props.user.id)
   }
+
+  componentWillReceiveProps(nextProps){
+    if (this.props.user.id !== nextProps.user.id){
+      let id = +nextProps.user.id
+      this.props.loadOrder(id)
+    }
+  }
+
 
   render() {
     return (
@@ -110,8 +117,8 @@ export const mapState = (state) => {
 
 const mapProps = function (dispatch, ownProps) {
   return {
-    loadOrder(orderId) {
-      dispatch(fetchOrder(orderId));
+    loadOrder(userId) {
+      dispatch(fetchActiveOrder(userId));
     },
     handleClick(lineItem) {
       dispatch(removeLineItem(lineItem));
@@ -119,9 +126,9 @@ const mapProps = function (dispatch, ownProps) {
     handleCheckout(orderId) {
       dispatch(checkoutOrder(orderId, ownProps.history))
     },
-    handleQuantityChange(lineItemId, quantity, orderId) {
+    handleQuantityChange(lineItemId, quantity, userId) {
       dispatch(changeQuant(lineItemId, quantity))
-      dispatch(fetchOrder(orderId))
+      dispatch(fetchActiveOrder(userId))
     },
     fetchCart() {
       dispatch(fetchGuestCart())
@@ -132,7 +139,6 @@ const mapProps = function (dispatch, ownProps) {
     changeQuantity(productId, quantity) {
       dispatch(updateItemQuantity(productId, quantity))
     },
-    // Why is it spamming GET?
     checkoutGuest() {
       dispatch(startCheckoutGuest(ownProps.history))
     }
@@ -143,5 +149,6 @@ export default connect(mapState, mapProps)(CartLoader)
 
 Cart.propTypes = {
   order: PropTypes.object,
-  guestCart: PropTypes.array
+  //guestCart: PropTypes.array,
+  user: PropTypes.object
 }

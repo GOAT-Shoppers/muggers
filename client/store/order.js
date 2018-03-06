@@ -1,27 +1,14 @@
 import axios from 'axios'
 
-/**
- * ACTION TYPES
- **/
 const GET_ONE_ORDER = 'GET_ONE_ORDER'
 const DELETE_LINE_ITEM = 'DELETE_LINE_ITEM'
 const CHECK_OUT = 'CHECK_OUT'
-/**
- * INITIAL STATE
- **/
+const GET_ACTIVE_ORDER = 'GET_ACTIVE_ORDER'
 
-/**
- * ACTION CREATORS
- **/
 const getOneOrder = order => ({
   type: GET_ONE_ORDER,
   order
 })
-
-// const loading = status => ({
-//   type: LOADING,
-//   loading: status
-// })
 
 const deleteLineItem = (order) => ({
   type: DELETE_LINE_ITEM,
@@ -30,6 +17,11 @@ const deleteLineItem = (order) => ({
 
 const checkout = (order) => ({
   type: CHECK_OUT,
+  order
+})
+
+const getActiveOrder = order => ({
+  type: GET_ACTIVE_ORDER,
   order
 })
 
@@ -46,9 +38,18 @@ const orderGetter = (orderId) =>
 export const fetchOrder = (orderId) => {
   return function thunk(dispatch){
     orderGetter(orderId)
-      .then(orderWithLineItems =>
-        dispatch(getOneOrder(orderWithLineItems || {})))
-      // .then(() => dispatch(loading(true)))
+      .then(orderWithLineItems => dispatch(getOneOrder(orderWithLineItems || {})))
+      .catch(err => console.log(err))
+  }
+}
+
+export const fetchActiveOrder = (userId) => {
+  return function thunk(dispatch){
+    return axios.get(`/api/users/${userId}/cart`)
+      .then(order => order.data)
+      .then(orderData => {
+        console.log(orderData)
+        dispatch(getActiveOrder(orderData))})
       .catch(err => console.log(err))
   }
 }
@@ -84,10 +85,6 @@ export const removeLineItem = (lineItemId) => {
   }
 }
 
-/**
- * REDUCER
- **/
-
 export default function (state = {}, action) {
   switch (action.type) {
     case GET_ONE_ORDER:
@@ -95,6 +92,8 @@ export default function (state = {}, action) {
     case DELETE_LINE_ITEM:
       return action.order
     case CHECK_OUT:
+      return action.order
+    case GET_ACTIVE_ORDER:
       return action.order
     default:
       return state
