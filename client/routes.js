@@ -1,3 +1,4 @@
+'use strict'
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
@@ -11,7 +12,9 @@ import { Login,
         Checkout,
         Review,
         NewAddress,
-        Home
+        Home,
+        order,
+        AddProduct
        } from './components';
 import {me} from './store';
 import UserPage from './components/User/UserPage'
@@ -28,15 +31,15 @@ class Routes extends Component {
     this.props.fetchAllReviews()
     this.props.loadProducts();
     this.props.loadCategories();
-//trying to find a place to load all reviews - might have to be a product page since we will need the product ID to load reviews
   }
 
   render () {
-    const {isLoggedIn} = this.props
+    const {isLoggedIn, user } = this.props
 
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/products/:id/reviews" component={Review} />
@@ -44,13 +47,15 @@ class Routes extends Component {
         <Route path="/checkout" component={Checkout} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:id" component={SingleProduct} />
-
+        <Route path="*" component={AllProducts} />
         {
           isLoggedIn &&
             <Switch>
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
-            <Route path="/myaccount" component={UserPage} />
+              <Route path="/myaccount" component={UserPage} />
+              { user.isAdmin &&
+              <Route path="/addProduct" component={AddProduct} />}
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
@@ -69,7 +74,8 @@ const mapState = (state) => {
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
     products: state.products,
-    categories: state.categories
+    categories: state.categories,
+    user: state.user
   }
 }
 
