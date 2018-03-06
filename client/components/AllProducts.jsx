@@ -28,6 +28,9 @@ export class AllProducts extends Component {
         const filteredCategory = this.state.selectedCategory ? this.props.categories.find(el => el.id == this.state.selectedCategory) : null;
         products = filteredCategory ? filteredCategory.products : products;
 
+
+        const { user } = this.props;
+
         return (
         <div>
             <div>
@@ -70,22 +73,21 @@ export class AllProducts extends Component {
                 }
             </div>
             {/* Only render below if Admin */}
-            {/* <div>
-                <Link to={'/addProduct'}>Add a product!</Link>
-            </div> */}
+
+            { user.isAdmin &&
+                <div>
+                    <Link to={'/addProduct'}>Add a product!</Link>
+                </div>}
         </div>
         )
     }
 }
 
-const mapDispatch = dispatch => ({
-    handleSubmit: {},
-})
-
 const mapState = state => ({
     products: state.products,
-    categories: state.categoryReducer
+    categories: state.categoryReducer,
+    user: state.user
 });
 
-export default connect(mapState, mapDispatch)(AllProducts);
+export default connect(mapState, null)(AllProducts);
 

@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import Review from './Review.jsx'
 
 export const SingleProduct = props => {
-
-const { product } = props;
+    const { product } = props;
 
     return (
         <div>
@@ -33,7 +32,6 @@ const { product } = props;
 
 const mapState = (state, ownProps) => {
     const productId = +ownProps.match.params.id;
-    console.log("State ", state);
     const product = state.products.find(prod => productId === prod.id);
 
     return {

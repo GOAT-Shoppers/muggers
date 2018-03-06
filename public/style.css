@@ -45,6 +45,10 @@ form div {
   width: 30%;
   padding: 5px;
   flex-direction: row;
+
+input {
+  color: black;
+
 }
 
 .content:before {

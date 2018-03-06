@@ -5,23 +5,25 @@ import {default as LineItem} from './LineItem.jsx'
 import { fetchOrder, removeLineItem, checkoutOrder, changeQuant } from '../store'
 
 function Cart (props) {
-  const { order, /*loading,*/ handleClick, handleCheckout, handleQuantityChange } = props
+  const { order, /*loading,*/ handleClick, handleCheckout, handleQuantityChange, user } = props
+
+  console.log(user)
 
   if (order.lineItems){
     var lineItems = order.lineItems
     var totalPrice = lineItems.map((lineItem) => lineItem.getTotal * 1).reduce(function (a, b) {
       return a + b
     }, 0)
-
     totalPrice = Math.ceil(totalPrice * 100) / 100
   }
-
   /*
   If there is a user logged in on the state, get their cart from the database
   else if they are a guest:
     hit the backend route that tells us their cart that is on the session
     pray
   */
+
+
   return (
     <div>
       <h1>Your Cart</h1>
@@ -32,20 +34,25 @@ function Cart (props) {
         <div className="lineItemPriceQuantity">Quantity</div>
       </div>
       <hr />
-      <LineItem
-      /*loading={loading}*/
-      lineItems={lineItems}
-      clickHandle={handleClick}
-      quantChangeHandle={handleQuantityChange}
-       />
-      <hr />
-      {
-        // This total doesn't update dynamically.
-      }
-      Total: {totalPrice}
-      <button
-        onClick={handleCheckout.bind(this, order.id)}
-      >Checkout</button>
+
+
+    {
+      user.id ?
+      <div>
+        <LineItem
+        /*loading={loading}*/
+        lineItems={lineItems}
+        clickHandle={handleClick}
+        quantChangeHandle={handleQuantityChange}
+        />
+        <hr />
+        Total: {totalPrice}
+
+        <button
+          onClick={handleCheckout.bind(this, order.id)}
+        >Checkout</button>
+      </div> : <div />
+    }
     </div>
   )
 }
@@ -67,7 +74,7 @@ export class CartLoader extends Component{
 export const mapState = (state) => {
   return {
     order: state.order,
-    lineItems: state.order.lineItems
+    user: state.user
   }
 }
 
@@ -92,6 +99,5 @@ const mapProps = function (dispatch, ownProps) {
 export default connect(mapState, mapProps)(CartLoader)
 
 Cart.propTypes = {
-  order: PropTypes.object,
-  loading: PropTypes.bool
+  order: PropTypes.object
 }
