@@ -11,6 +11,7 @@ import { Login,
         Cart,
         Checkout,
         Review,
+        AllOrders,
         NewAddress,
         Home,
         order,
@@ -47,7 +48,7 @@ class Routes extends Component {
         <Route path="/checkout" component={Checkout} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:id" component={SingleProduct} />
-
+        <Route path="/allorders" component={AllOrders} />
         {
           isLoggedIn &&
             <Switch>
@@ -55,7 +56,8 @@ class Routes extends Component {
               <Route path="/home" component={UserHome} />
               <Route path="/myaccount" component={UserPage} />
               { user.isAdmin &&
-              <Route path="/addProduct" component={AddProduct} />}
+              <Route path="/addProduct" component={AddProduct} />
+            }
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
