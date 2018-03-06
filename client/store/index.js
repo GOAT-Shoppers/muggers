@@ -23,7 +23,7 @@ const reducer = combineReducers({
   lineItem,
   review,
   products,
-  allOrders
+  allOrders,
   guestCart
 });
 
