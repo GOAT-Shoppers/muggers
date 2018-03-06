@@ -13,6 +13,7 @@ export class AddProduct extends Component {
                 stock: '',
                 photo: ''
         }
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(evt) {
@@ -25,23 +26,24 @@ export class AddProduct extends Component {
             <form onSubmit={e => this.props.handleSubmit(e, product)}>
                 <div>
                     <label htmlFor="name">Name</label>
-                    <input name="name" onChange={this.handleChange} value={product.name} />
+                    <input name="name" onChange={this.handleChange} defaultValue={product.name} />
                 </div>
                 <div>
                     <label htmlFor="description">Description</label>
-                    <input name="description" onChange={this.handleChange} value={product.description} />
+                    <input name="description" onChange={this.handleChange} defaultValue={product.description} />
                 </div>
+                {/*Make sure price goes in db as a integer type not string*/}
                 <div>
                     <label htmlFor="price">Price</label>
-                    <input name="price" onChange={this.handleChange} value={product.price} />
+                    <input name="price" onChange={this.handleChange} defaultValue={product.price} />
                 </div>
                 <div>
                     <label htmlFor="stock">Stock</label>
-                    <input name="stock" onChange={this.handleChange} value={product.stock} />
+                    <input name="stock" onChange={this.handleChange} defaultValue={product.stock} />
                 </div>
                 <div>
                     <label htmlFor="photo">Photo</label>
-                    <input name="photo" onChange={this.handleChange} value={product.photo} />
+                    <input name="photo" onChange={this.handleChange} defaultValue={product.photo} />
                 </div>
                 {/* <div>
                     <label htmlFor="category">Category</label>
