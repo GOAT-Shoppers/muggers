@@ -71,13 +71,17 @@ export class AllProducts extends Component {
                     </div>
                 ))
                 }
+                { user.isAdmin &&
+                  <div className="displayProd">
+                    <Link to={'/addProduct'}>
+                    <img src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/blue-jelly-icons-alphanumeric/069598-blue-jelly-icon-alphanumeric-plus-sign.png" />
+                    <p><button>Add a product!</button></p>
+                    </Link>
+                  </div>}
             </div>
             {/* Only render below if Admin */}
 
-            { user.isAdmin &&
-                <div>
-                    <Link to={'/addProduct'}>Add a product!</Link>
-                </div>}
+
         </div>
         )
     }
