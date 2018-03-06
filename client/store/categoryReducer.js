@@ -2,8 +2,11 @@ import axios from 'axios';
 
 const GET_CATEGORIES = 'GET_CATEGORIES';
 const POST_CATEGORY = 'POST_CATEGORY';
+const GET_SINGLE_CATEGORY = 'GET_SINGLE_CATEGORY';
 
 export const getCategories = categories => ({ type: GET_CATEGORIES, categories });
+
+export const singleCategory = category => ({ type: GET_SINGLE_CATEGORY, category })
 
 export const postCategory = category => ({ type: POST_CATEGORY, category });
 
@@ -13,6 +16,13 @@ export const fetchCategories = () => dispatch => {
         .then(categories => dispatch(getCategories(categories)))
         .catch(error => console.error('Could not get categories ', error));
 }
+
+// export const getCategoryById = (id) => dispatch => {
+//   axios.get(`/api/categories/${id}`)
+//     .then(result => result.data)
+//     .then(category => dispatch(singleCategory(category[0])))
+//     .catch(error => console.error('Could not get single category', error))
+// }
 
 export const createCategory = category => dispatch => {
     axios.post('/api/categories', category)
