@@ -3,12 +3,10 @@ import { connect } from 'react-redux';
 import { createReview, fetchReviews } from '../store/review';
 
 const Review = (props) => {
-  const {reviews,user} = props;
-  console.log(user.isLoggedIn)
-
+  const {reviews, user, isLoggedIn} = props;
   return (
     <div>
-    {user.isLoggedIn ? (
+    {isLoggedIn ? (
       <div id="reviewInput">
         <h3>Add a review</h3>
         <form onSubmit={evt => props.handleSubmit(evt)}>
