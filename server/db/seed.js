@@ -32,7 +32,7 @@ const productData = [
     description: "Elegant in design, the Mason can hold all the water you might want to drink in one sitting. Lightly branded, this conveys a cool and relaxed environment. This jar says that you didn't try to decorate your home, it just happened. The Mason tells people you believe in recycling.",
     price: 1500,
     stock: 10000,
-    photo: 'https://www.amazon.com/32oz-Regular-Mouth-Canning-Mason/dp/B01N6QBJG0'
+    photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0MiS0bjHk7_2CjlBhvyvUqCtO5Mt53_k9u3F4SgeuAfk2dTJzYQ'
   },
   {
     name: 'Avery',
@@ -60,20 +60,21 @@ const productData = [
     description: "The Rivington was once a diet coke can. Since then, it has been washed, re-used, and re-cycled. We've altered both the interior and exterior of the can so that it can hold hot beverages. We've added a handle for every day use, but we've kept the adored Coke logo. If you know someone who is trying to ween off Coke and onto cappucinos, get them this gift today.",
     price: 2800,
     stock: 10000,
-    photo: 'https://images-na.ssl-images-amazon.com/images/I/61dikCP5C1L._SY355_.jpg'
+    photo: 'https://ih1.redbubble.net/image.97974222.3097/mug,travel,x400,center-bg,ffffff.2u1.jpg'
   },
   {
     name: 'Kesha',
     description: "Your every day glass for espresso. The Kesha was once used for alcoholic shots but has since been remodeled to serve the needs of caffeine addicts everywhere. This comes with a colorful confetti design, which can bring the fun of a party scene into your morning espresso. A perfect gift for an individual who just got into espresso. ",
     price: 1000,
     stock: 50000,
-    photo: 'https://cdn.shopify.com/s/files/1/1348/9761/products/multi-confetti-glitter-shot-glass-slant-harlan-ruby_1280x1280.jpg?v=1501085771'
+    photo: 'https://secure.img1-ag.wfcdn.com/im/70259239/resize-h310-w310%5Ecompr-r85/2820/28203854/beckey-4-piece-demitasse-espresso-cups-set.jpg'
   },
   {
     name: 'Bell',
     description: "Airy, light, dynamic, fun. Not sure it's intended to drink out of.",
     price: 500,
     stock: 10000,
+    photo: 'http://www.utopia-tableware.com/image/cache/catalog/utopia2016/R90089-750x750.jpg'
   }
 ];
 
