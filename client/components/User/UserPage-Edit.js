@@ -12,13 +12,7 @@ class UserPageEdit extends Component {
   }
 
   handleChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
+    this.setState({[ event.target.name ]: event.target.value });
   }
 
   render() {
