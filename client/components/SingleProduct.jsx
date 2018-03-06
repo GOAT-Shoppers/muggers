@@ -10,7 +10,7 @@ export const SingleProduct = props => {
                 { product &&
                   <div>
                     <div className="prodDisplayPage">
-                      <div className="prodDescription">
+                      <div className="prodDescription genericBackground">
                         <h1>{ product.name }</h1>
                         <h4>{ product.description }</h4>
                       </div>
@@ -21,7 +21,7 @@ export const SingleProduct = props => {
                           <button type="submit">Add to Cart</button>
                       </div>
                     </div>
-                    <div className="row">
+                    <div>
                       <Review id={product.id} />
                     </div>
                   </div>
