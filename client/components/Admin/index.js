@@ -17,6 +17,4 @@ class AdminPage extends React.Component {
       <Link to="/adminsettings/users"> Users </Link>
     )
   }
-
 } 
- 

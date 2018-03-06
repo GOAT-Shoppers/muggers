@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { fetchCategories } from '../store/categoryReducer';
 
 export class AllProducts extends Component {
     constructor() {
@@ -9,23 +10,49 @@ export class AllProducts extends Component {
             quantity: null
         }
         this.handleChange = this.handleChange.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
     }
 
     handleChange(event) {
-        this.setState({ quantity: event.target.quantity.value });
+      this.setState({ selectedCategory: event.target.value})
+    }
+
+    handleSearch(event) {
+      this.setState({
+      [event.target.name]: event.target.value
+      })
     }
 
     render() {
-        const { products } = this.props;
+        let products  = this.state.filteredProductName ? this.props.products.filter(el => el.name.match(this.state.filteredProductName)) : this.props.products;
+        const filteredCategory = this.state.selectedCategory ? this.props.categories.find(el => el.id == this.state.selectedCategory) : null;
+        products = filteredCategory ? filteredCategory.products : products;
+
+
+        const { user } = this.props;
+
         return (
         <div>
             <div>
                 <h1>All Products</h1>
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text" id="inputGroup-sizing-default">Search by Name</span>
+                  </div>
+                  <input type="text" className="form-control" name="filteredProductName" aria-label="Search" aria-describedby="inputGroup-sizing-default" onChange={this.handleSearch} />
+                  <select id="inlineFormCustomSelect" onChange={this.handleChange}>
+                    <option value="all">All</option>
+                    {this.props.categories.map(el => <option key={el.id} value={el.id}>{el.name}</option>)}
+                  </select>
+
+                </div>
+                <br />
+                <br />
             </div>
-            <div>
+            <div className="allProds">
                 {
                 products.map(product => (
-                    <div key={product.id}>
+                    <div className="displayProd" key={product.id}>
                         <Link to={`/products/${product.id}`}>
                             <div>
                                 <img src={product.photo} />
@@ -40,26 +67,27 @@ export class AllProducts extends Component {
                             <input name="quantity" onChange={this.handleChange} />
                         </div>
                         <button type="submit">Add to cart</button>
+                        <br />
                     </div>
                 ))
                 }
             </div>
             {/* Only render below if Admin */}
-            {/* <div> 
-                <Link to={'/addProduct'}>Add a product!</Link>
-            </div> */}
+
+            { user.isAdmin &&
+                <div>
+                    <Link to={'/addProduct'}>Add a product!</Link>
+                </div>}
         </div>
         )
     }
 }
 
-const mapDispatch = dispatch => ({
-    handleSubmit: {}
-})
-
 const mapState = state => ({
-    products: state.products
+    products: state.products,
+    categories: state.categoryReducer,
+    user: state.user
 });
 
-export default connect(mapState, mapDispatch)(AllProducts);
+export default connect(mapState, null)(AllProducts);
 

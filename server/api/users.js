@@ -67,3 +67,25 @@ router.delete('/:id', (req, res, next) => {
     .then(() => res.status(204).end())
     .catch(next);
 });
+
+router.get('/:id/cart', (req, res, next) => {
+  User.findById(req.params.id)
+    .then(user => {
+      let email = user.email
+      Order.findOrCreate({
+        where: {
+          userId: req.params.id,
+          status: 'shopping'
+        }, defaults: {
+          userId: req.params.id,
+          status: 'shopping',
+          email: user.email
+        }
+      })
+        .then(instanceArr => instanceArr[0])
+        .then(order => res.json(order))
+        .catch(next)
+    })
+    .catch(next)
+
+})

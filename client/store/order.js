@@ -4,7 +4,6 @@ import axios from 'axios'
  * ACTION TYPES
  **/
 const GET_ONE_ORDER = 'GET_ONE_ORDER'
-const LOADING = 'LOADING'
 const DELETE_LINE_ITEM = 'DELETE_LINE_ITEM'
 const CHECK_OUT = 'CHECK_OUT'
 /**
