@@ -6,7 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
-//const UPDATE_USER = 'UPDATE_USER'
+const UPDATE_USER = 'UPDATE_USER'
 
 
 /**
@@ -17,9 +17,9 @@ const defaultUser = {}
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GET_USER, user})
-const removeUser = () => ({type: REMOVE_USER})
-//const updateUser = user => ({type: UPDATE_USER})
+export const getUser = user => ({type: GET_USER, user})
+export const removeUser = () => ({type: REMOVE_USER})
+export const updateUser = user => ({type: UPDATE_USER, user})
 
 /**
  * THUNK CREATORS
@@ -51,13 +51,13 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
-// export const updatingUser = user => 
-//   dispatch => {
-//      axios.put(`/api/users/${user.id}`, user)
-//            .then(results => results.data)
-//           .then(updatedUser => dispatch(updateUser(updatedUser)))
-//           .catch(error => console.error('Could not update user ', error));
-//}
+export const updatingUser = user =>
+  dispatch => {
+     axios.put(`/api/users/${user.id}`, user)
+           .then(results => results.data)
+          .then(updatedUser => dispatch(updateUser(updatedUser)))
+          .catch(error => console.error('Could not update user ', error));
+}
 /**
  * REDUCER
  */
@@ -66,7 +66,9 @@ export default function (state = defaultUser, action) {
     case GET_USER:
       return action.user
     case REMOVE_USER:
-      return defaultUser
+      return defaultUser;
+    case UPDATE_USER:
+      return action.user;
     default:
       return state
   }

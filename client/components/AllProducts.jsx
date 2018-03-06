@@ -16,7 +16,7 @@ export class AllProducts extends Component {
     }
 
     render() {
-        const { products } = this.props;
+        const { products, user } = this.props;
         return (
         <div>
             <div>
@@ -45,21 +45,19 @@ export class AllProducts extends Component {
                 }
             </div>
             {/* Only render below if Admin */}
-            {/* <div> 
-                <Link to={'/addProduct'}>Add a product!</Link>
-            </div> */}
+            { user.isAdmin &&
+                <div>
+                    <Link to={'/addProduct'}>Add a product!</Link>
+                </div>}
         </div>
         )
     }
 }
 
-const mapDispatch = dispatch => ({
-    handleSubmit: {}
-})
-
 const mapState = state => ({
-    products: state.products
+    products: state.products,
+    user: state.user
 });
 
-export default connect(mapState, mapDispatch)(AllProducts);
+export default connect(mapState, null)(AllProducts);
 

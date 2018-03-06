@@ -21,6 +21,10 @@ form div {
   display: inline-block;
 }
 
+input {
+  color: black;
+}
+
 .content:before {
   content: "";
   background-image: url('http://ozon4life.com/data/out/46/image-159936655.jpg');
