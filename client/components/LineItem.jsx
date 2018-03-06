@@ -29,7 +29,7 @@ const LineItem = (props) => {
                   <input
                   type="number"
                   defaultValue={lineItem.quantity}
-                  onChange={(event) => handleChange(lineItem.id, event.target.value, lineItem.orderId)}
+                  onChange={(event) => handleChange(lineItem.id, event.target.value)}
                   />
                   </div>
               </div>

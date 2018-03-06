@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Order, LineItem, Address } = require('../db/models');
+const { User, Order, LineItem, Address, Product } = require('../db/models');
 module.exports = router;
 
 router.get('/', (req, res, next) => {
@@ -71,7 +71,6 @@ router.delete('/:id', (req, res, next) => {
 router.get('/:id/cart', (req, res, next) => {
   User.findById(req.params.id)
     .then(user => {
-      let email = user.email
       Order.findOrCreate({
         where: {
           userId: req.params.id,
@@ -80,7 +79,11 @@ router.get('/:id/cart', (req, res, next) => {
           userId: req.params.id,
           status: 'shopping',
           email: user.email
-        }
+        },
+        include: [{
+          model: LineItem,
+          include: Product
+        }, Address]
       })
         .then(instanceArr => instanceArr[0])
         .then(order => res.json(order))
