@@ -80,4 +80,12 @@ btn {
 .lineItemImg{
   max-height: 4em;
 }
+
+input {
+  color: black;
+}
+
+button {
+  color: black;
+}
 /* MIMI'S CSS HERE */

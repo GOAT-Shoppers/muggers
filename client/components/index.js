@@ -12,3 +12,4 @@ export { default as SingleProduct } from './SingleProduct.jsx';
 export {default as Cart} from './Cart.jsx'
 export {default as Checkout } from './Checkout.jsx'
 export {default as Review } from './Review.jsx'
+export {default as GuestLineItem} from './GuestLineItem.jsx'
