@@ -11,6 +11,7 @@ import { Login,
         Cart,
         Checkout,
         Review,
+        AllOrders,
         NewAddress,
         AddProduct
        } from './components';
@@ -37,7 +38,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        
+
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/products/:id/reviews" component={Review} />
@@ -45,6 +46,11 @@ class Routes extends Component {
         <Route path="/checkout" component={Checkout} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:id" component={SingleProduct} />
+<<<<<<< HEAD
+=======
+        <Route path="/allorders" component={AllOrders} />
+        <Route path="*" component={AllProducts} />
+>>>>>>> 997d1d4295b457df605eb3559b6749e390f6dda7
         {
           isLoggedIn &&
             <Switch>
@@ -52,7 +58,8 @@ class Routes extends Component {
               <Route path="/home" component={UserHome} />
               <Route path="/myaccount" component={UserPage} />
               { user.isAdmin &&
-              <Route path="/addProduct" component={AddProduct} />}
+              <Route path="/addProduct" component={AddProduct} />
+            }
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
