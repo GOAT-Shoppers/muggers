@@ -20,7 +20,7 @@ function Cart (props) {
       return a + b
     }, 0)
 
-    totalPrice = Math.ceil(totalPrice * 100) / 100
+    totalPrice = (Math.ceil(totalPrice * 100) / 100).toFixed(2)
   }
 
   if (guestCart) {
@@ -49,9 +49,10 @@ function Cart (props) {
         lineItems={lineItems}
         clickHandle={handleClick}
         quantChangeHandle={handleQuantityChange}
+        userId={user.id}
         />
         <hr />
-        Total: {totalPrice}
+            Total: {totalPrice}
 
         <button
           onClick={handleCheckout.bind(this, order.id)}
@@ -93,9 +94,11 @@ export class CartLoader extends Component{
 
   componentWillReceiveProps(nextProps){
     if (this.props.user.id !== nextProps.user.id){
-      this.props.loadOrder(nextProps.user.id)
+      let id = +nextProps.user.id
+      this.props.loadOrder(id)
     }
   }
+
 
   render() {
     return (
@@ -123,9 +126,9 @@ const mapProps = function (dispatch, ownProps) {
     handleCheckout(orderId) {
       dispatch(checkoutOrder(orderId, ownProps.history))
     },
-    handleQuantityChange(lineItemId, quantity) {
+    handleQuantityChange(lineItemId, quantity, userId) {
       dispatch(changeQuant(lineItemId, quantity))
-      dispatch(fetchActiveOrder())
+      dispatch(fetchActiveOrder(userId))
     },
     fetchCart() {
       dispatch(fetchGuestCart())
