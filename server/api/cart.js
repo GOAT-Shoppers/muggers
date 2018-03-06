@@ -8,11 +8,10 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   if (!req.session.user) {
-    if (req.session.cart) {
-      req.session.cart.push(req.body)
-    } else {
+    if (!req.session.cart) {
       req.session.cart = []
     }
+    req.session.cart.push(req.body)
   }
   res.json(req.session.cart)
 });

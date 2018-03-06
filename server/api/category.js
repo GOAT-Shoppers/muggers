@@ -15,13 +15,13 @@ router.post('/', (req, res, next) => {
   .catch(next)
 });
 
-// router.get('/:id', (req, res, next) => { 
-//   Category.findAll({
-//     where: { id: req.params.id },
-//     include: [{ model: Product }]
-//   })
-//   .then(category => res.json(category))
-//   .catch(next)
-// })
+router.get('/:id', (req, res, next) => {
+  Category.findAll({
+    where: { id: req.params.id },
+    include: [{ model: Product }]
+  })
+  .then(category => res.json(category))
+  .catch(next)
+})
 
 module.exports = router;

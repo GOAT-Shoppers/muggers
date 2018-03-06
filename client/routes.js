@@ -11,8 +11,11 @@ import { Login,
         Cart,
         Checkout,
         Review,
-        AddProduct,
-        AllOrders
+        AllOrders,
+        NewAddress,
+        Home,
+        order,
+        AddProduct
        } from './components';
 import {me} from './store';
 import UserPage from './components/User/UserPage'
