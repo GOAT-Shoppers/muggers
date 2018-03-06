@@ -38,6 +38,7 @@ class UserPageEdit extends Component {
   }
 }
 
+
 const mapState = state => ({ user: state.user });
 
 const mapDispatch = dispatch => ({
@@ -46,6 +47,4 @@ const mapDispatch = dispatch => ({
     dispatch(updatingUser(user));
   }
 })
-
-
 export default connect(mapState, mapDispatch)(UserPageEdit);

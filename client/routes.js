@@ -30,10 +30,11 @@ class Routes extends Component {
     this.props.fetchAllReviews()
     this.props.loadProducts();
     this.props.loadCategories();
+//trying to find a place to load all reviews - might have to be a product page since we will need the product ID to load reviews
   }
 
   render () {
-    const {isLoggedIn, user } = this.props
+    const {isLoggedIn} = this.props
 
     return (
       <Switch>
@@ -51,10 +52,8 @@ class Routes extends Component {
             <Switch>
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
-              <Route path="/myaccount" component={UserPage} />
-              { user.isAdmin &&
-              <Route path="/addProduct" component={AddProduct} />
-            }
+
+            <Route path="/myaccount" component={UserPage} />
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
