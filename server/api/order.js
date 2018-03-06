@@ -1,24 +1,20 @@
 const router = require('express').Router();
 const { Order, LineItem, Address, Product } = require('../db/models');
+const { isLoggedIn, makeError, isAdmin } = require('./utility')
 
 module.exports = router;
 
 //GET ALL ORDERS
 router.get('/', (req, res, next) => {
-  // is there a req.session.cart
-  // literally this easy
-  // editmycookie
-  if (req.session.cart){
-    req.session.cart.push('hey')
-  } else {
-    req.session.cart = []
-  }
   // console.log(req.session.cart)
   // console.log(req.session.passport.user)
-
-  Order.findAll()
+  if (!req.user) {
+    return res.json({})
+  } else if (req.user && req.user.isAdmin){
+    Order.findAll()
       .then(orders => res.json(orders))
       .catch(next);
+  }
 });
 
 //POST ORDER NEED TO ADD DEFAULT VALUE OF STATUS AS OPEN
