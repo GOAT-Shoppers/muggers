@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { fetchCategories } from '../store/categoryReducer';
 
 export class AllProducts extends Component {
     constructor() {
@@ -13,27 +14,34 @@ export class AllProducts extends Component {
     }
 
     handleChange(event) {
-        this.setState({ quantity: event.target.quantity.value });
+      this.setState({ selectedCategory: event.target.value})
     }
 
     handleSearch(event) {
       this.setState({
-        filteredProducts: event.target.value
+      [event.target.name]: event.target.value
       })
     }
 
     render() {
+        let products  = this.state.filteredProductName ? this.props.products.filter(el => el.name.match(this.state.filteredProductName)) : this.props.products;
+        const filteredCategory = this.state.selectedCategory ? this.props.categories.find(el => el.id == this.state.selectedCategory) : null;
+        products = filteredCategory ? filteredCategory.products : products;
 
-        const products  = this.state.filteredProducts ? this.props.products.filter(el => el.name.match(this.state.filteredProducts)) : this.props.products;
         return (
         <div>
             <div>
                 <h1>All Products</h1>
                 <div className="input-group mb-3">
                   <div className="input-group-prepend">
-                    <span className="input-group-text" id="inputGroup-sizing-default">Search</span>
+                    <span className="input-group-text" id="inputGroup-sizing-default">Search by Name</span>
                   </div>
-                  <input type="text" className="form-control" aria-label="Search" aria-describedby="inputGroup-sizing-default" onChange={this.handleSearch} />
+                  <input type="text" className="form-control" name="filteredProductName" aria-label="Search" aria-describedby="inputGroup-sizing-default" onChange={this.handleSearch} />
+                  <select id="inlineFormCustomSelect" onChange={this.handleChange}>
+                    <option value="all">All</option>
+                    {this.props.categories.map(el => <option key={el.id} value={el.id}>{el.name}</option>)}
+                  </select>
+
                 </div>
                 <br />
                 <br />
@@ -71,11 +79,12 @@ export class AllProducts extends Component {
 }
 
 const mapDispatch = dispatch => ({
-    handleSubmit: {}
+    handleSubmit: {},
 })
 
 const mapState = state => ({
-    products: state.products
+    products: state.products,
+    categories: state.categoryReducer
 });
 
 export default connect(mapState, mapDispatch)(AllProducts);

@@ -10,17 +10,16 @@ const { product } = props;
         <div>
                 { product &&
                   <div>
-                    <div className="row">
-                      <div className="col-8">
-                          <h1>{ product.name }</h1>
+                    <div className="prodDisplayPage">
+                      <div className="prodDescription">
+                        <h1>{ product.name }</h1>
+                        <h4>{ product.description }</h4>
+                      </div>
+                      <div className="prodImage">
                           <img src={product.photo} />
                           <h5>Price: ${ product.price }</h5>
                           <h5>Quantity: { product.stock }</h5>
                           <button type="submit">Add to Cart</button>
-                      </div>
-                      <div className="col-4">
-                          <h4>{ product.description }</h4>
-
                       </div>
                     </div>
                     <div className="row">

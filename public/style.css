@@ -73,6 +73,25 @@ form div {
   color: white;
 }
 
+.prodDisplayPage {
+  display: flex;
+}
+
+.prodImage {
+  width: 20%;
+  margin: 10px;
+  float: right;
+}
+
+.prodDescription {
+  width: 70%;
+  margin: 10px
+}
+
+select {
+  color: black;
+}
+
 btn {
   color: #ccc;
 }
