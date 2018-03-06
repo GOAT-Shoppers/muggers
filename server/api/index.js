@@ -8,6 +8,7 @@ router.use('/reviews', require('./reviews'));
 router.use('/orders', require('./order'));
 router.use('/lineitems', require('./lineItem'));
 router.use('/addresses', require('./address'));
+router.use('/cart', require('./cart'))
 
 
 router.use((req, res, next) => {
