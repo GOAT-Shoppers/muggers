@@ -4,7 +4,7 @@ import Review from './Review.jsx'
 
 export const SingleProduct = props => {
     const { product } = props;
-
+    const isAvailable = +product.stock > 0;
     return (
         <div>
                 { product &&
@@ -18,7 +18,7 @@ export const SingleProduct = props => {
                           <img src={product.photo} />
                           <h5>Price: ${ product.price }</h5>
                           <h5>Quantity: { product.stock }</h5>
-                          <button type="submit">Add to Cart</button>
+                          <button type="submit" disabled={!isAvailable} className="btn">Add to Cart</button>
                       </div>
                     </div>
                     <div>

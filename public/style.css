@@ -148,7 +148,7 @@ nav h1 {
   flex-wrap: wrap;
 }
 
-div h3 {
+div h3, div h2 {
   padding-top: 10px;
   text-align: center;
   display: block;
@@ -194,7 +194,8 @@ nav a {
 }
 
 .lineItemImg{
-  max-height: 4em;
+  width: 50px;
+  height: 50px;
 }
 
 input {
@@ -203,5 +204,15 @@ input {
 
 button {
   color: black;
+}
+
+.ipsum {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+
+.homepageImage {
+  float: right;
 }
 /* MIMI'S CSS HERE */

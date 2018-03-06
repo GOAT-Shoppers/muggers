@@ -6,6 +6,7 @@ import { adminGetInfo } from '../../store';
 import User from './User';
 import Product from './Product';
 import Order from './Order';
+import AddProduct from '../AddProduct.jsx';
 
 class AdminPage extends React.Component {
   componentDidMount() {
@@ -13,7 +14,7 @@ class AdminPage extends React.Component {
   }
   render() {
     const { users, products, orders } = this.props
- 
+
     return (
       <div>
       <h1 >Admin Panel</h1>
@@ -27,10 +28,11 @@ class AdminPage extends React.Component {
             <Route exact path="/myaccount/adminsettings/user" render={() => <User users={users} />} />
             <Route path="/myaccount/adminsettings/order" render={() => <Order orders={orders}  />} />
             <Route path="/myaccount/adminsettings/product" render={() => <Product products={products} />} />
+            <Route path="/myaccount/adminsettings/addproduct" render={() => <AddProduct />} />
           </Switch>
         </div>
       </div>
-    )                            
+    )
   }
 }
 
