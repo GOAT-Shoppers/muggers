@@ -1,24 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import Review from './Review.jsx'
 
 export const SingleProduct = props => {
-
     const { product } = props;
 
     return (
         <div>
                 { product &&
-                <div>
-                    <h1>{ product.name }</h1>
-                    <img src={product.photo} />
-                    <h5>Price: { product.price }</h5>
-                    <h5>Quantity: { product.stock }</h5>
-                    <h4>{ product.description }</h4>
-                    <button type="submit">Add to Cart</button>
-                </div>
+                  <div>
+                    <div className="prodDisplayPage">
+                      <div className="prodDescription">
+                        <h1>{ product.name }</h1>
+                        <h4>{ product.description }</h4>
+                      </div>
+                      <div className="prodImage">
+                          <img src={product.photo} />
+                          <h5>Price: ${ product.price }</h5>
+                          <h5>Quantity: { product.stock }</h5>
+                          <button type="submit">Add to Cart</button>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <Review id={product.id} />
+                    </div>
+                  </div>
                 }
-
         </div>
         )
 }

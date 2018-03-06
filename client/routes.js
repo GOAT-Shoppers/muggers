@@ -11,6 +11,7 @@ import { Login,
         Cart,
         Checkout,
         Review,
+        NewAddress,
         AddProduct
        } from './components';
 import {me} from './store';
