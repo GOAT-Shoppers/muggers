@@ -8,13 +8,13 @@ router.get('/', (req, res, next) => {
   // is there a req.session.cart
   // literally this easy
   // editmycookie
-  if(req.session.cart){
+  if (req.session.cart){
     req.session.cart.push('hey')
   } else {
     req.session.cart = []
   }
-  console.log(req.session.cart)
-
+  // console.log(req.session.cart)
+  // console.log(req.session.passport.user)
 
   Order.findAll()
       .then(orders => res.json(orders))

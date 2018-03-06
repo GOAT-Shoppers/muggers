@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 
 export const SingleProduct = props => {
 
-const { product } = props;
-console.log("PRODUCT ", product)
+    const { product } = props;
+
     return (
         <div>
-            <h1>Single product page</h1>
                 { product &&
                 <div>
                     <h1>{ product.name }</h1>
@@ -25,9 +24,7 @@ console.log("PRODUCT ", product)
 }
 
 const mapState = (state, ownProps) => {
-    // console.log("OWNPROPS ", ownProps)
     const productId = +ownProps.match.params.id;
-    console.log("State ", state);
     const product = state.products.find(prod => productId === prod.id);
 
     return {
