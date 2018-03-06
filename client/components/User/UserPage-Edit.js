@@ -1,39 +1,41 @@
 
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateUser } from '../../store'
-// import { Link } from 'react-router-dom';
+import { updatingUser } from '../../store'
 
 
 class UserPageEdit extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      user: {}
-    }
+  constructor(props) {
+    super(props);
+    this.state = this.props.user;
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({ user: this.props.user })
+  handleChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
   }
 
   render() {
-    const user = this.state.user
-
+    const user = this.state;
     return (
       <div className="col-md-12">
             <h3> Edit your Profile</h3>
             <h4>Details</h4>
-              <form onClick={this.handleSubmit}>
+              <form onSubmit={(e) => this.props.handleSubmit(e, user)}>
                   <h4>First Name</h4>
-                        <input type="text" placeholder={user.firstName} name="FirstName" value={this.state.user.firstName} />
+                        <input type="text" placeholder={user.firstName} name="firstName" defaultValue={this.state.firstName} onChange={this.handleChange} />
                     <h4>Last Name</h4>
-                          <input type="text" placeholder={user.lastName} name="lastName" value={this.state.user.lastName} />
+                          <input type="text" placeholder={user.lastName} name="lastName" defaultValue={this.state.lastName} onChange={this.handleChange} />
                     <h4>Email</h4>
-                      <input type="text" placeholder={user.email} name="email" value={this.state.user.email} />
+                      <input type="text" placeholder={user.email} name="email" defaultValue={this.state.email} onChange={this.handleChange} />
                     <h4>Password</h4>
-                          <input type="text" name="password" value={this.state.password} />
+                          <input type="text" name="password" defaultValue={this.state.password} onChange={this.handleChange} />
                           <br />
                     <div><button type="submit">Submit</button> </div>
                 </form>
@@ -42,25 +44,12 @@ class UserPageEdit extends Component {
   }
 }
 
-const mapState = state => {
-  console.log("state!!!!!!!!!!!! ", state.user)
-    if (!state.user.firstName) state.user.firstName = "first";
-    if (!state.user.lasttName) state.user.lastName = "last";
-  return {
-    user: state.user
-  }
-}
-const mapDispatch = dispatch => ({
-  handleSubmit (e, firstName, lastName, email, password) {
-    e.preventDefault();
+const mapState = state => ({ user: state.user });
 
-    const user = {
-      firstName: e.target.FirstName.value,
-      lastName: e.tartget.lastName.value,
-      email: e.target.email.value,
-      password: e.target.password.value
-    }
-    dispatch(updateUser(user));
+const mapDispatch = dispatch => ({
+  handleSubmit (e, user) {
+    e.preventDefault();
+    dispatch(updatingUser(user));
   }
 })
 
