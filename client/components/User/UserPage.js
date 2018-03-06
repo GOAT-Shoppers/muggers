@@ -4,15 +4,18 @@ import { connect } from 'react-redux'
 import UserPageDetails from './UserPage-Details'
 import UserPageEdit from './UserPage-Edit'
 //import UserPageOrders from './UserPage-Orders'
+import Admin from '../Admin'
 
 const UserPage = (props) => {
-  const { user, isLoggedIn } = props
-
+  const { user, isLoggedIn} = props
   return (
   <div>
                   <div>
                     <h3 >Welcome {user.firstName}</h3>
                   </div>
+              {user.isAdmin && <div>
+                     <Link to="/myaccount/adminsettings/"> Admin Settings</Link>
+                </div>}
                   <div>
                         <Link to="/myaccount/detail"> Profile</Link>
                         <br />

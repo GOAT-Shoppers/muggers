@@ -52,11 +52,6 @@ export default UserPageEdit;
 // const mapState = state =>({
 
 // })
-// const mapDispatch = (dispatch) => {
-//   return {
-
-//   }
-// }
 
 
 //export default connect(mapState)(UserPageEdit);
