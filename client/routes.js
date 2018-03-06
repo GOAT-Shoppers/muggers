@@ -13,8 +13,6 @@ import { Login,
         Review,
         AllOrders,
         NewAddress,
-        Home,
-        order,
         AddProduct
        } from './components';
 import {me} from './store';
@@ -70,6 +68,7 @@ class Routes extends Component {
  * CONTAINER
  */
 const mapState = (state) => {
+  // console.log("STATE", state)
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
@@ -78,6 +77,7 @@ const mapState = (state) => {
     categories: state.categories,
     user: state.user
   }
+  // console.log("!!!!!!!!!", user);
 }
 
 const mapDispatch = (dispatch) => {

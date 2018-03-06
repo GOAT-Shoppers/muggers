@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import NewAddress from './NewAddress.jsx';
 
 /*
 Guest: Add email + address
@@ -85,7 +86,8 @@ function CheckoutComponent (props) {
       }
 
       <div>Add Address</div>
-      <form>
+      <NewAddress />
+      {/* <form>
 
         <label>
           Street: <input type="text" name="street" />
@@ -102,7 +104,7 @@ function CheckoutComponent (props) {
         <label>
           Zip Code: <input type="text" name="zipcode" />
         </label>
-      </form>
+      </form> */}
 
       <button>Complete Order</button>
     </div>
