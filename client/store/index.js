@@ -12,6 +12,7 @@ import review from './review';
 import order from './order';
 import products from './products'
 import guestCart from './guestCart'
+import adminInfo from './adminInfo'
 
 const reducer = combineReducers({
   user,
@@ -22,7 +23,8 @@ const reducer = combineReducers({
   lineItem,
   review,
   products,
-  guestCart
+  guestCart,
+  adminInfo
 });
 
 const middleware = composeWithDevTools(applyMiddleware(
@@ -37,3 +39,4 @@ export * from './order'
 export * from './lineItem'
 export * from './products';
 export * from './guestCart';
+export * from './adminInfo';

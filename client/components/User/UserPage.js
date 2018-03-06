@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import UserPageDetails from './UserPage-Details'
 import UserPageEdit from './UserPage-Edit'
 //import UserPageOrders from './UserPage-Orders'
-import Admin from '../Admin'
+import AdminPage from '../Admin'
 
 const UserPage = (props) => {
   const { user, isLoggedIn} = props
@@ -28,6 +28,7 @@ const UserPage = (props) => {
           <Switch>
             <Route exact path="/myaccount/detail" render={() => <UserPageDetails user={user} />} />
             <Route path="/myaccount/edit" render={() => <UserPageEdit user={user} />} />
+            <Route path="/myaccount/adminsettings" component={AdminPage} />
           </Switch>
         </div>
         :
