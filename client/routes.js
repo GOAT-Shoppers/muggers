@@ -46,14 +46,7 @@ class Routes extends Component {
         <Route path="/checkout" component={Checkout} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:id" component={SingleProduct} />
-<<<<<<< HEAD
-=======
         <Route path="/allorders" component={AllOrders} />
-<<<<<<< HEAD
-        <Route path="*" component={AllProducts} />
->>>>>>> 997d1d4295b457df605eb3559b6749e390f6dda7
-=======
->>>>>>> c4906b254167909d01d0c90ea9e5cfbbcaa4d01b
         {
           isLoggedIn &&
             <Switch>
