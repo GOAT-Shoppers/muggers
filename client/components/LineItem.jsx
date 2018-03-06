@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 
 
 const LineItem = (props) => {
-  let loading = props.loading
   let lineItems = props.lineItems || []
   let handleClick = props.clickHandle
   let handleChange = props.quantChangeHandle
-  // req.session.userId = user id
+
   return (
     // loading ? <div>Loading your cart...</div> :
     //   (
