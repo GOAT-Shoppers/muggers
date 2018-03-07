@@ -4,6 +4,7 @@ const GET_ONE_ORDER = 'GET_ONE_ORDER'
 const DELETE_LINE_ITEM = 'DELETE_LINE_ITEM'
 const CHECK_OUT = 'CHECK_OUT'
 const GET_ACTIVE_ORDER = 'GET_ACTIVE_ORDER'
+const UNLOAD_ORDER = 'UNLOAD_ORDER'
 
 const getOneOrder = order => ({
   type: GET_ONE_ORDER,
@@ -23,6 +24,10 @@ const checkout = (order) => ({
 const getActiveOrder = order => ({
   type: GET_ACTIVE_ORDER,
   order
+})
+
+const unloadOrder = () => ({
+  type: UNLOAD_ORDER
 })
 
 /**
@@ -84,6 +89,12 @@ export const removeLineItem = (lineItemId) => {
   }
 }
 
+export const unloadOrderFromState = () => {
+  return function thunk (dispatch) {
+    return dispatch(unloadOrder())
+  }
+}
+
 export default function (state = {}, action) {
   switch (action.type) {
     case GET_ONE_ORDER:
@@ -94,6 +105,8 @@ export default function (state = {}, action) {
       return action.order
     case GET_ACTIVE_ORDER:
       return action.order
+    case UNLOAD_ORDER:
+      return {}
     default:
       return state
    }
