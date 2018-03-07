@@ -22,7 +22,7 @@ let addresses = [{ id: 1, fullAddress: "12346" }, { id: 2, fullAddress: "12345" 
 function CheckoutComponent (props) {
 
   let order;
-  const { user, handleUserCheckout, lineItems, allProducts } = props
+  const { user, handleUserCheckout, lineItems, allProducts, isLoggedIn } = props
 
   if (user.id) {
     order = props.order
@@ -77,7 +77,7 @@ function CheckoutComponent (props) {
       <div>
         {user.id ?
           <button
-            onClick={handleUserCheckout.bind(this, order.id, lineItems, allProducts)}
+            onClick={handleUserCheckout.bind(this, order.id, lineItems, allProducts, isLoggedIn)}
           >Complete Checkout</button> : <button>Guest Checkout</button>
         }
       </div>
@@ -91,14 +91,15 @@ export const mapState = (state => {
     guestCart: state.guestCart,
     user: state.user,
     lineItems: state.order.lineItems,
-    allProducts: state.products
+    allProducts: state.products,
+    isLoggedIn: !!state.user.id
   }
 })
 
 const mapProps = function (dispatch, ownProps) {
   return {
     // Checkout
-    handleUserCheckout(orderId, lineItems, allProducts) {
+    handleUserCheckout(orderId, lineItems, allProducts, isLoggedIn) {
       dispatch(checkoutOrder(orderId, ownProps.history))
       let currentProd
       lineItems.forEach((lineItem) => {

@@ -14,6 +14,7 @@ router.post('/', (req, res, next) => {
     if (!req.session.cart) {
       req.session.cart = []
     }
+    console.log(req.body)
     req.session.cart.push(req.body)
   }
   res.json(req.session.cart)
