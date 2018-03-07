@@ -57,7 +57,7 @@ export class AllProducts extends Component {
                             <div>
                                 <img src={product.photo} />
                             </div>
-                            <div>
+                            <div className="titleBackground">
                                 <h4>{ product.name }</h4>
                                 <h5>{ product.price }</h5>
                             </div>
