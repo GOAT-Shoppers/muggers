@@ -20,10 +20,14 @@ export const fetchProducts = () => dispatch => {
         .catch(error => console.error('Could not get all products ', error));
 }
 
-export const createProduct = product => dispatch => {
+export const createProduct = (product, history) => dispatch => {
     axios.post('/api/products', product)
         .then(results => results.data)
-        .then(newProduct => dispatch(postProduct(newProduct)))
+        .then(newProduct =>
+          {
+            dispatch(postProduct(newProduct))
+            history.push('/products');
+          })
         .catch(error => console.error('Error posting product ', error));
 }
 

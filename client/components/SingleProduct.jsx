@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Review from './Review.jsx'
+import Review from './Review.jsx';
 
 export const SingleProduct = props => {
     const { product } = props;
