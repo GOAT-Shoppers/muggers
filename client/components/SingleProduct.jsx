@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Review from './Review.jsx';
-import { fetchActiveOrder, createLineItem } from '../store';
+import { fetchActiveOrder, createLineItem, clearLineItems } from '../store';
 
 export class SingleProduct extends Component {
   constructor() {
@@ -19,13 +19,20 @@ export class SingleProduct extends Component {
   componentDidMount() {
     this.props.loadOrder(this.props.userId);
   }
-  
+
+  componentWillUnmount(){
+    this.props.clearLineItem();
+  }
+
   render() {
 
-    const { product, userId, isLoggedIn, orderId } = this.props;
+    const { product, userId, isLoggedIn, orderId, lineItem } = this.props;
     const { quantity } = this.state;
     const isAvailable = +product.stock > 0;
-    
+    let successText = ''
+
+    if (Object.keys(lineItem).length){successText = 'Successfully Added to Cart'}
+
     return (
         <div>
                 { product &&
@@ -42,9 +49,10 @@ export class SingleProduct extends Component {
 
                           <form onSubmit={(e) => this.props.handleSubmit(e, quantity, product.price, product.id, orderId, isLoggedIn)}>
                           <input name="quantity" value={quantity} onChange={this.handleChange} />
-                          <button type="submit" disabled={!isAvailable} className="btn">Add to Cart</button>
+                          <button type="submit" disabled={!isAvailable} className="btn"
+                          >Add to Cart</button>
                           </form>
-
+                          <div>{successText}</div>
                       </div>
                     </div>
                     <div>
@@ -65,7 +73,8 @@ const mapState = (state, ownProps) => {
         product,
         isLoggedIn: !!state.user.id,
         userId: state.user.id,
-        orderId: state.order.id
+        orderId: state.order.id,
+        lineItem: state.lineItem
     }
 }
 
@@ -75,16 +84,18 @@ const mapDispatch = dispatch => {
       evt.preventDefault();
       let item = {
         quantity,
-        price, 
+        price,
         productId,
         orderId
       }
       if (loggedIn){
         dispatch(createLineItem(item))
+
       }
   },
-  loadOrder: id => dispatch(fetchActiveOrder(id))
-  
+  loadOrder: id => dispatch(fetchActiveOrder(id)),
+  clearLineItem: () => dispatch(clearLineItems())
+
 }
 }
 
