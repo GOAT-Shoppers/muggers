@@ -23,7 +23,25 @@ router.post('/', (req, res, next) => {
   LineItem.create(req.body)
     .then(lineItem => res.json(lineItem))
     .catch(next)
-})
+  })
+//   LineItem.findOrCreate({ where: {
+//     productId: req.body.productId,
+//     orderId: req.body.orderId
+//   },
+//   defaults: {
+//     productId: req.body.productId,
+//     orderId: req.body.orderId,
+//     quantity: req.body.quantity,
+//     price: req.body.price
+//   }
+// })
+//     .then(lineitem => {
+      
+//       lineitem[0].quantity = +req.body.quantity;
+//       res.json(lineitem[0]);
+//     })
+//     .catch(next)
+
 
 router.put('/:id', (req, res, next) => {
   LineItem.findById(req.params.id)

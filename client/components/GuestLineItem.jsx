@@ -18,7 +18,6 @@ const GuestLineItem = (props) => {
     {
       lineItems.map(lineItem => {
         let prod = product(lineItem.productId)
-        console.log(prod)
         return (
           <div className="cartContainer" key = { lineItem.productId }>
             <div className="lineItemName">
