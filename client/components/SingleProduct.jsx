@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Review from './Review.jsx';
-import { fetchActiveOrder, createLineItem, clearLineItems } from '../store';
+import { fetchActiveOrder, createLineItem, clearLineItems, newGuestLineItem } from '../store';
 
 export class SingleProduct extends Component {
   constructor() {
@@ -85,12 +85,13 @@ const mapDispatch = dispatch => {
       let item = {
         quantity,
         price,
-        productId,
-        orderId
+        productId
       }
       if (loggedIn){
+        item.orderId = orderId
         dispatch(createLineItem(item))
-
+      } else {
+        dispatch(newGuestLineItem(item))
       }
   },
   loadOrder: id => dispatch(fetchActiveOrder(id)),
