@@ -57,23 +57,17 @@ export class AllProducts extends Component {
                             <div>
                                 <img src={product.photo} />
                             </div>
-                            <div>
+                            <div className="titleBackground">
                                 <h4>{ product.name }</h4>
                                 <h5>{ product.price }</h5>
                             </div>
                         </Link>
-                        <div>
-                            <label htmlFor="quantity">Quantity</label>
-                            <input name="quantity" onChange={this.handleChange} />
-                        </div>
-                        <button type="submit">Add to cart</button>
-                        <br />
                     </div>
                 ))
                 }
                 { user.isAdmin &&
                   <div className="displayProd">
-                    <Link to={'/addProduct'}>
+                    <Link to={'/myaccount/adminsettings/addproduct'}>
                     <img src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/blue-jelly-icons-alphanumeric/069598-blue-jelly-icon-alphanumeric-plus-sign.png" />
                     <p><button>Add a product!</button></p>
                     </Link>

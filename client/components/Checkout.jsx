@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NewAddress from './NewAddress.jsx';
-
+import { checkoutOrder, updatingProduct } from '../store'
+import { Link } from 'react-router-dom'
 /*
 Guest: Add email + address
 LoggedIn: Select Address, add Address, display e-mail
@@ -15,45 +16,30 @@ Checkout Button:
 
 Grab checkout button functionality from Cart.jsx
  */
+let addresses = [{ id: 1, fullAddress: "12346" }, { id: 2, fullAddress: "12345" } ]
+
 
 function CheckoutComponent (props) {
-  const testUser = {
-    id: 2,
-    loggedIn: true,
-    email: "abcd@aol.com"
-  }
 
-  const testUserAddresses = [
-    {
-      id: 1,
-      street: "123 Somewhere St",
-      state: "New Hampshire",
-      city: "City",
-      zip: 12345,
-      fullAddress: "123 Somewhere St, City, New Hampshire, 12345",
-      userId: 2
-    },
-    {
-      id: 2,
-      street: "456 Place Ave",
-      state: "New York",
-      city: "Another",
-      zip: 98765,
-      fullAddress: "456 Place Ave, New York, New York, 98765",
-      userId: 2
-    }
-  ]
+  let order;
+  const { user, handleUserCheckout, lineItems, allProducts, isLoggedIn } = props
+
+  if (user.id) {
+    order = props.order
+  } else {
+    order = props.guestCart
+  }
 
   return (
     <div>
       {
-        testUser.loggedIn ? (
+        user.id ? (
           <div>
             Loggedin View
-            <div>Email: {testUser.email}</div>
+            <div>Email: {user.email}</div>
             {
               // Can't make these radios unique without knowing what the state is like for user/addresses
-              testUserAddresses.map((address) => {return (
+              addresses.map((address) => {return (
                 <label
                 key={address.id}
                 >
@@ -87,28 +73,42 @@ function CheckoutComponent (props) {
 
       <div>Add Address</div>
       <NewAddress />
-      {/* <form>
 
-        <label>
-          Street: <input type="text" name="street" />
-        </label>
-
-        <label>
-          City: <input type="text" name="city" />
-        </label>
-
-        <label>
-          State: <input type="text" name="state" />
-        </label>
-
-        <label>
-          Zip Code: <input type="text" name="zipcode" />
-        </label>
-      </form> */}
-
-      <button>Complete Order</button>
+      <div>
+        {user.id ?
+          <button
+            onClick={handleUserCheckout.bind(this, order.id, lineItems, allProducts, isLoggedIn)}
+          >Complete Checkout</button> : <button>Guest Checkout</button>
+        }
+      </div>
     </div>
   )
 }
 
-export default CheckoutComponent
+export const mapState = (state => {
+  return {
+    order: state.order,
+    guestCart: state.guestCart,
+    user: state.user,
+    lineItems: state.order.lineItems,
+    allProducts: state.products,
+    isLoggedIn: !!state.user.id
+  }
+})
+
+const mapProps = function (dispatch, ownProps) {
+  return {
+    // Checkout
+    handleUserCheckout(orderId, lineItems, allProducts, isLoggedIn) {
+      dispatch(checkoutOrder(orderId, ownProps.history))
+      let currentProd
+      lineItems.forEach((lineItem) => {
+        currentProd = allProducts.find(e => e.id === lineItem.productId)
+        currentProd.stock = currentProd.stock - lineItem.quantity
+        dispatch(updatingProduct(currentProd))
+      })
+    }
+  }
+}
+
+export default connect(mapState, mapProps)(CheckoutComponent)

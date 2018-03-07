@@ -13,15 +13,16 @@ const UserPage = (props) => {
                   <div>
                     <h3 >Welcome {user.firstName}</h3>
                   </div>
-              {user.isAdmin && <div>
-                     <Link to="/myaccount/adminsettings/"> Admin Settings</Link>
-                </div>}
                   <div>
-                        <Link to="/myaccount/detail"> Profile</Link>
-                        <br />
-                        <Link to="/myaccount/orders">Orders</Link>
-                        <br />
-                        <Link to="/myaccount/edit" >Settings</Link>
+              {user.isAdmin &&
+                <button className="btn"><Link to="/myaccount/adminsettings/"> Admin Settings</Link>
+                </button>}
+
+                        <button className="btn"><Link to="/myaccount/detail"> Profile</Link></button>
+
+                        <button className="btn"><Link to="/myaccount/orders">Orders</Link></button>
+
+                        <button className="btn"><Link to="/myaccount/edit" >Settings</Link></button>
                   </div>
       {isLoggedIn ?
         <div>
@@ -35,7 +36,7 @@ const UserPage = (props) => {
         :
         <h4>Please sign up or login to see your account</h4>
       }
-    </div>        
+    </div>
   )
 }
 

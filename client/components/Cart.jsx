@@ -3,17 +3,16 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { default as LineItem } from './LineItem.jsx'
 import { default as GuestLineItem} from './GuestLineItem.jsx'
-import { fetchActiveOrder, removeLineItem, checkoutOrder, changeQuant, fetchGuestCart, deleteLineItem, updateItemQuantity, startCheckoutGuest } from '../store'
+import { fetchActiveOrder, removeLineItem, changeQuant, fetchGuestCart, deleteLineItem, updateItemQuantity, startCheckoutGuest } from '../store'
 
 function Cart (props) {
-  const { order, handleClick, handleCheckout, handleQuantityChange, user, guestCart, deleteItem, changeQuantity, checkoutGuest } = props
+  const { order, handleClick, handleQuantityChange, user, guestCart, deleteItem, changeQuantity, checkoutGuest, goCheckout } = props
   /*
   If there is a user logged in on the state, get their cart from the database
   else if they are a guest:
     hit the backend route that tells us their cart that is on the session
     pray
   */
-
   if (order.lineItems){
     var lineItems = order.lineItems
     var totalPrice = lineItems.map((lineItem) => lineItem.getTotal * 1).reduce(function (a, b) {
@@ -30,6 +29,7 @@ function Cart (props) {
 
     guestCart.Total = guestCart.Total.toFixed(2)
   }
+  let bool = !!(+totalPrice <= 0)
 
   return (
     <div>
@@ -54,9 +54,13 @@ function Cart (props) {
         <hr />
             Total: {totalPrice}
 
-        <button
-          onClick={handleCheckout.bind(this, order.id)}
-        >Checkout</button>
+        <div>
+          <button
+            disabled={bool}
+            onClick={goCheckout.bind(this)}
+            className="btn"
+          >Checkout</button>
+        </div>
       </div> : (
         <div>
           {
@@ -65,17 +69,20 @@ function Cart (props) {
             lineItems={guestCart}
             clickHandle={deleteItem}
             changeHandle={changeQuantity}
-             />
-
+            />
             :
             <h1>Your cart is empty. Add something!</h1>
           }
           <hr />
               Total: {guestCart.Total ? <span>{guestCart.Total}</span> : <span>0</span> }
               <div>
-              <button
-              onClick={checkoutGuest.bind(this)}
-              >Checkout</button>
+              <div>
+                <button
+                onClick={checkoutGuest.bind(this)}
+                disabled={!guestCart.length}
+                className="btn"
+                >Checkout</button>
+              </div>
               </div>
         </div>
       )
@@ -98,7 +105,6 @@ export class CartLoader extends Component{
       this.props.loadOrder(id)
     }
   }
-
 
   render() {
     return (
@@ -123,9 +129,6 @@ const mapProps = function (dispatch, ownProps) {
     handleClick(lineItem) {
       dispatch(removeLineItem(lineItem));
     },
-    handleCheckout(orderId) {
-      dispatch(checkoutOrder(orderId, ownProps.history))
-    },
     handleQuantityChange(lineItemId, quantity, userId) {
       dispatch(changeQuant(lineItemId, quantity))
       dispatch(fetchActiveOrder(userId))
@@ -141,6 +144,9 @@ const mapProps = function (dispatch, ownProps) {
     },
     checkoutGuest() {
       dispatch(startCheckoutGuest(ownProps.history))
+    },
+    goCheckout() {
+      ownProps.history.push('/checkout')
     }
   }
 }

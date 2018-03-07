@@ -3,9 +3,19 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom'
 //import SingleOrder from './SingleOrder';
 
+const makeRow = (order) =>
+  (
+    <div key={order.id}>
+      <hr />
+      <div className="orderContainer">
+        <p>  OrderId: {order.id}  </p>
+        <p>  Status: {order.status}</p>
+        <p>  Email: {order.email}</p>
+      </div>
+    </div>
+  )
 
 export default function Order(props) {
-  console.log(props.orders)
   return (
     <div>
     <div>
@@ -29,4 +39,3 @@ const makeRow = (order) =>
 
 
 //render={() => <SingleOrder orders={props.orders} />} 
-

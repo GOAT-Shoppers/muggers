@@ -12,7 +12,15 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  Product.create(req.body)
+  Product.create(req.body, {
+    include: [{
+      model: Category
+    }]
+    })
+    .then(product => {
+      product.setCategories(+req.body.category.id)
+      return product;
+    })
     .then(product => res.json(product))
     .catch(next)
 });
