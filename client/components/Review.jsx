@@ -34,7 +34,7 @@ const Review = (props) => {
         (<div key={el.id} id="reviewBox" className="genericBackground">
           <p>Rating: {el.rating}</p>
           <p>{el.text}</p>
-          <button key={el.id} onClick={(evt) => props.handleDelete(evt, el.id)}>Delete</button>
+          {user.isAdmin && <button key={el.id} onClick={(evt) => props.handleDelete(evt, el.id)}>Delete</button>}
         </div>
       )
     )}
@@ -69,8 +69,8 @@ const mapDispatch = (dispatch, ownProps) => {
       fetchReviews();
     },
     handleDelete(evt, id){
-      dispatch(deleteReview(id)); //import delete func
-      fetchReviews();
+      dispatch(deleteReview(id));
+      dispatch(fetchReviews());
     }
   }
 }

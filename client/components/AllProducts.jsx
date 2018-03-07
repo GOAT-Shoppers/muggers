@@ -57,17 +57,11 @@ export class AllProducts extends Component {
                             <div>
                                 <img src={product.photo} />
                             </div>
-                            <div>
+                            <div className="titleBackground">
                                 <h4>{ product.name }</h4>
                                 <h5>{ product.price }</h5>
                             </div>
                         </Link>
-                        <div>
-                            <label htmlFor="quantity">Quantity</label>
-                            <input name="quantity" onChange={this.handleChange} />
-                        </div>
-                        <button type="submit">Add to cart</button>
-                        <br />
                     </div>
                 ))
                 }

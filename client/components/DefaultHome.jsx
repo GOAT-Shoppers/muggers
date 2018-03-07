@@ -1,9 +1,6 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import {connect} from 'react-redux';
 
 const DefaultHome = () => {
-  console.log('testing comp')
   return (
     <div>
       <h2>Welcome</h2>

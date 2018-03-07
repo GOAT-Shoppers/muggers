@@ -15,7 +15,7 @@ import { Login,
         DefaultHome,
         NewAddress,
         AddProduct,
-        Test
+        Confirmation
        } from './components';
 import {me} from './store';
 import UserPage from './components/User/UserPage'
@@ -48,16 +48,15 @@ class Routes extends Component {
         <Route path="/checkout" component={Checkout} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:id" component={SingleProduct} />
-        <Route path="/allorders" component={AllOrders} />
-        <Route path="/orderconfirmation" component={AllProducts} />
-      
+        <Route path ="/allorders" component={AllOrders} />
+        <Route path ="/orderconfirmation" component={Confirmation} />
         {
           isLoggedIn &&
             <Switch>
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
 
-            <Route path="/myaccount" component={UserPage} />
+              <Route path="/myaccount" component={UserPage} />
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
