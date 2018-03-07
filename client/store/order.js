@@ -4,6 +4,9 @@ const GET_ONE_ORDER = 'GET_ONE_ORDER'
 const DELETE_LINE_ITEM = 'DELETE_LINE_ITEM'
 const CHECK_OUT = 'CHECK_OUT'
 const GET_ACTIVE_ORDER = 'GET_ACTIVE_ORDER'
+const UNLOAD_ORDER = 'UNLOAD_ORDER'
+
+const CHECKOUT_GUEST_CART = 'CHECKOUT_GUEST_CART'
 
 const getOneOrder = order => ({
   type: GET_ONE_ORDER,
@@ -23,6 +26,18 @@ const checkout = (order) => ({
 const getActiveOrder = order => ({
   type: GET_ACTIVE_ORDER,
   order
+})
+
+const unloadOrder = () => ({
+  type: UNLOAD_ORDER
+})
+
+// makes a new order
+// puts line items in and associates them with that order
+// gives us back the cart
+const checkoutGuestCart = cart => ({
+  type: CHECKOUT_GUEST_CART,
+  order: cart
 })
 
 /**
@@ -84,6 +99,37 @@ export const removeLineItem = (lineItemId) => {
   }
 }
 
+export const unloadOrderFromState = () => {
+  return function thunk (dispatch) {
+    return dispatch(unloadOrder())
+  }
+}
+
+export const checkoutGuestOrder = (cart, guestInfo, history) => {
+  return function thunk(dispatch) {
+    let order = {
+      email: guestInfo.email,
+      status: 'checkedOut',
+      addressId: guestInfo.addressId
+    }
+
+    return axios.post(`/api/orders`, order)
+      .then(orderInstance => orderInstance.data)
+      .then(orderData => {
+        let orderId = orderData.id
+
+        // has quantity, price, productId
+        cart.forEach(lineItem => {
+          axios.post('/api/lineitems', {...lineItem, orderId })
+        })
+
+        dispatch(checkoutGuestCart(orderData))
+        axios.delete(`/api/cart`)
+        history.push('/orderconfirmation')
+      })
+  }
+}
+
 export default function (state = {}, action) {
   switch (action.type) {
     case GET_ONE_ORDER:
@@ -93,6 +139,10 @@ export default function (state = {}, action) {
     case CHECK_OUT:
       return action.order
     case GET_ACTIVE_ORDER:
+      return action.order
+    case UNLOAD_ORDER:
+      return {}
+    case CHECKOUT_GUEST_CART:
       return action.order
     default:
       return state
