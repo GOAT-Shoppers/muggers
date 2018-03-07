@@ -6,7 +6,7 @@ const POST_PRODUCT = 'POST_PRODUCT';
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 
 //ACTION CREATORS
-export const setProducts = allProducts => ({ type: SET_PRODUCTS, allProducts });
+export const setProducts = products => ({ type: SET_PRODUCTS, products });
 
 export const postProduct = product => ({ type: POST_PRODUCT, product });
 
@@ -39,7 +39,7 @@ export default (products = [], action) => {
 
     switch (action.type) {
         case SET_PRODUCTS:
-            return action.allProducts;
+            return action.products;
 
         case POST_PRODUCT:
             return [...products, action.product ];

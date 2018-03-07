@@ -22,7 +22,7 @@ export class SingleProduct extends Component {
   
   render() {
 
-    const { product, userId, isLoggedIn, orderId } = this.props;
+    const { product, isLoggedIn, orderId } = this.props;
     const { quantity } = this.state;
     const isAvailable = +product.stock > 0;
     

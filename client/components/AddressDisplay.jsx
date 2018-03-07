@@ -1,28 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import NewAddress from './NewAddress.jsx'
+import NewAddress from './NewAddress.jsx';
 
-export const AllAddresses = props => {
+export const AddressDisplay = props => {
 
-        const { addresses } = props;
-        return (
-            <div>
-                <h1>Addresses</h1>
+    const { addresses, uId } = props;
+    // console.log('----------', props);
+    return (
+        <div>
+            { addresses &&
                 <div>
-                    {
-                        addresses.map(address => address) //match userid here
-                    }
+                    <h1>Addresses</h1>
+                    <div>
+                        {
+                            addresses.map(address => {
+                                return (
+                                    <label key={address.id}>
+                                    <input type="radio" value="option2" />
+                                    {address.fullAddress}
+                                    </label>
+                            )
+                            })
+                        }
+                        {addresses && console.log('=---------,', addresses)}
+                    </div>
+                    { addresses && addresses.length <= 5 && <NewAddress /> }
                 </div>
-                { addresses.length <= 5 && <NewAddress /> }
-            </div>
-        )
+            }
+        </div>
+    )
 }
 
-const mapState = (state, ownProps) => ({
-    //get userId and attach so we can match address to user
+
+const mapState = state => ({
+    uId: state.user.id,
     addresses: state.addresses
 });
 
-export default connect(mapState, null)(AllAddresses);
+export default connect(mapState, null)(AddressDisplay);
 

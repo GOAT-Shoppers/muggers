@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import { fetchActiveOrder } from '../store';
+import { fetchActiveOrder, fetchAddresses } from '../store';
 
 /**
  * COMPONENT
@@ -10,6 +10,7 @@ class UserHome extends Component {
 
   componentDidMount() {
     this.props.loadOrder(this.props.user.id);
+    this.props.loadAddresses();
   }
   render() {
     const {fullName, email} = this.props;
@@ -37,7 +38,8 @@ class UserHome extends Component {
 
 const mapDispatch = dispatch => {
   return {
-    loadOrder: id => dispatch(fetchActiveOrder(id))
+    loadOrder: id => dispatch(fetchActiveOrder(id)),
+    loadAddresses: () => dispatch(fetchAddresses())
   }
 }
 export const mapState = state => {

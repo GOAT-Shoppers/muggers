@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NewAddress from './NewAddress.jsx';
+import AddressDisplay from './AddressDisplay.jsx';
 import { checkoutOrder } from '../store'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 /*
 Guest: Add email + address
@@ -17,7 +18,7 @@ Checkout Button:
 
 Grab checkout button functionality from Cart.jsx
  */
-let addresses = [{ id: 1, fullAddress: "12346" }, { id: 2, fullAddress: "12345" } ]
+// let addresses = [{ id: 1, fullAddress: "12346" }, { id: 2, fullAddress: "12345" } ]
 
 
 function CheckoutComponent (props) {
@@ -38,17 +39,18 @@ function CheckoutComponent (props) {
           <div>
             Loggedin View
             <div>Email: {user.email}</div>
+            <AddressDisplay />
             {
-              // Can't make these radios unique without knowing what the state is like for user/addresses
-              addresses.map((address) => {return (
-                <label
-                key={address.id}
-                >
-                  <input type="radio" value="option2" />
-                  {address.fullAddress}
-                </label>
-              )
-            })
+              // // Can't make these radios unique without knowing what the state is like for user/addresses
+              // addresses.map((address) => {return (
+              //   <label
+              //   key={address.id}
+              //   >
+              //     <input type="radio" value="option2" />
+              //     {address.fullAddress}
+              //   </label>
+              // )
+            // })
           }
         </div>
       ) : (
@@ -73,7 +75,7 @@ function CheckoutComponent (props) {
       }
 
       <div>Add Address</div>
-      <NewAddress />
+      
 
       <div>
         {user.id ?
