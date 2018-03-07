@@ -48,7 +48,6 @@ export const fetchActiveOrder = (userId) => {
     return axios.get(`/api/users/${userId}/cart`)
       .then(order => order.data)
       .then(orderData => {
-        console.log(orderData)
         dispatch(getActiveOrder(orderData))})
       .catch(err => console.log(err))
   }
@@ -63,7 +62,7 @@ export const checkoutOrder = (orderId, history) => {
       .then(order => order.data)
       .then(orderData => {
         dispatch(checkout(orderData))
-        history.push(`/checkout`)
+        history.push('/orderconfirmation')
       })
       .catch(err => console.log(err))
   }
