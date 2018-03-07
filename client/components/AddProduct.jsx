@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createProduct } from '../store';
-
+import { fetchCategories } from '../store/categoryReducer';
+import { history, withRouter } from 'react-router-dom'
 
 export class AddProduct extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
                 name: '',
                 description: '',
                 price: '',
                 stock: '',
-                photo: ''
+                photo: '',
+                categoryId: '',
+                currentCategory: props.category
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -45,10 +48,14 @@ export class AddProduct extends Component {
                     <label htmlFor="photo">Photo</label>
                     <input name="photo" onChange={this.handleChange} defaultValue={product.photo} />
                 </div>
-                {/* <div>
-                    <label htmlFor="category">Category</label>
-                    <input name="category" onChange={this.handleChange} value={product.category} />
-                </div> */}
+                <div>
+                  <select name="category" onChange={this.handleChange} >
+                    {this.state.currentCategory.map(el => (
+                      <option key={el.id} value={el.id}>{el.name}</option>
+                    ))}
+
+                  </select>
+                </div>
                 <div>
                     <button type="submit">Add</button>
                 </div>
@@ -57,11 +64,15 @@ export class AddProduct extends Component {
     }
 }
 
-const mapDispatch = dispatch => ({
+const mapDispatch = (dispatch, ownProps) => ({
     handleSubmit: (evt, product) => {
         evt.preventDefault();
-        dispatch(createProduct(product));
+        dispatch(createProduct(product, ownProps.history));
     }
 })
 
-export default connect(null, mapDispatch)(AddProduct);
+const mapState = state => ({
+  category: state.categoryReducer
+})
+
+export default withRouter(connect(mapState, mapDispatch)(AddProduct));

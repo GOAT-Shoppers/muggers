@@ -168,6 +168,38 @@ nav a {
   font-size: 20px;
 }
 
+.orderContainer{
+  background-color: rgba(56,56,56,0.5);
+  display: flex;
+  border-radius: 25px;
+  justify-content: space-between;
+}
+
+.orderContainer p {
+  padding: 5em;
+}
+
+.userContainer{
+  display: flex;
+  background-color: rgba(56,56,56,0.5);
+  border-radius: 25px;
+  justify-content: space-between;
+}
+
+.userrContainer p {
+  padding: 2em;
+}
+
+.productContainer {
+  display: flex;
+  background-color: rgba(56,56,56,0.5);
+  border-radius: 25px;
+  justify-content: space-between;
+}
+.productContainer p {
+  margin: 5em;
+}
+
 /* .searchBar {
   width
 } */

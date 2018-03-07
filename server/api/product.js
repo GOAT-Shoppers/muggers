@@ -13,6 +13,10 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   Product.create(req.body)
+    .then(product => {
+      product.setCategories(+req.body.categoryId)
+      return product;
+    })
     .then(product => res.json(product))
     .catch(next)
 });

@@ -12,8 +12,12 @@ export default function Order(props) {
 }
 
 const makeRow = (order) =>
-  <div key={order.id} className="flexContainer">
-    <p>  OrderId: {order.id}  </p>
-    <p>  Status: {order.status}</p>
-    <p>  Email: {order.email}</p>
+
+  <div>
+  <hr />
+    <div key={order.id} className="orderContainer">
+      <p>  OrderId: {order.id}  </p>
+      <p>  Status: {order.status}</p>
+      <p>  Email: {order.email}</p>
+    </div>
   </div>

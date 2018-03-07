@@ -6,14 +6,21 @@ console.log(props.user)
   return (
     <div>
       {props.users && props.users.map(user => makeRow(user))}
-     </div>   
+     </div>
   );
 }
 
 const makeRow = (user) =>
-  <div key= {user.id} className="flexContainer">
-    <p>  UserId: {user.id}  </p>
-    <p>  Name: {user.fullName}</p>
-    <p>  Email: {user.email}</p>
-    <p>  isAdmin: {user.isAdmin ? 'Admin' : 'User'}</p>
+  <div>
+    <hr />
+    <div key= {user.id} className="userContainer">
+
+      <p>  UserId: </p>
+      <p> {user.id}  </p>
+      <p>  Name: </p>
+      <p> {user.fullName}</p>
+      <p>  Email: </p>
+      <p> {user.email}</p>
+      <p> {user.isAdmin ? 'Admin' : 'User'}</p>
+      </div>
     </div>
