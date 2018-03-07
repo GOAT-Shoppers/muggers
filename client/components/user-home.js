@@ -13,14 +13,14 @@ class UserHome extends Component {
   }
   render() {
     const {fullName, email} = this.props;
-  
+
     let name;
       if (fullName === 'null null') {
         if (!email) name = 'Guest';
         else name = email;
       }
       else { name = fullName; }
-  
+
      return (
         <div>
           <h3>Welcome, {name}</h3>
@@ -29,6 +29,7 @@ class UserHome extends Component {
             <div className="homepageImage">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Teacup_clipart.svg/672px-Teacup_clipart.svg.png" />
         </div>
+      </div>
       </div>
     );
   }
