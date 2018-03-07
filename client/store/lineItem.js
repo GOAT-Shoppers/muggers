@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const CHANGE_QUANTITY = 'CHANGE_QUANTITY';
 const POST_LINE_ITEM = 'POST_LINE_ITEM';
+const CLEAR_LINE_ITEM = 'CLEAR_LINE_ITEM'
 
 //post lineItem for add product
 
@@ -10,7 +11,17 @@ const changeQuantity = (lineItem) => ({
   lineItem
 })
 
+const clearLineItem = () => ({
+  type: CLEAR_LINE_ITEM
+})
+
 const postLineItem = lineItem => ({ type: POST_LINE_ITEM, lineItem });
+
+export const clearLineItems = () => {
+  return function thunk(dispatch) {
+    dispatch(clearLineItem())
+  }
+}
 
 export const changeQuant = (lineItemId, quantity) => {
   return function thunk(dispatch) {
@@ -36,6 +47,8 @@ export default function (state = {}, action) {
       return action.lineItem;
     case POST_LINE_ITEM:
       return action.lineItem;
+    case CLEAR_LINE_ITEM:
+      return {}
     default:
       return state
   }
