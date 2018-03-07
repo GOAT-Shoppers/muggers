@@ -83,7 +83,7 @@ export class AllProducts extends Component {
 
 const mapState = state => ({
     products: state.products,
-    categories: state.categoryReducer,
+    categories: state.categories,
     user: state.user
 });
 

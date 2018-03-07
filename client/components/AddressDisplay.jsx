@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import NewAddress from './NewAddress.jsx';
@@ -6,7 +6,7 @@ import NewAddress from './NewAddress.jsx';
 export const AddressDisplay = props => {
 
     const { addresses, uId } = props;
-    // console.log('----------', props);
+    console.log('----------', props);
     return (
         <div>
             { addresses &&
@@ -23,7 +23,7 @@ export const AddressDisplay = props => {
                             )
                             })
                         }
-                        {addresses && console.log('=---------,', addresses)}
+                        {/* {addresses && console.log('=---------,', addresses)} */}
                     </div>
                     { addresses && addresses.length <= 5 && <NewAddress /> }
                 </div>
