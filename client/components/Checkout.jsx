@@ -42,7 +42,7 @@ function CheckoutComponent (props) {
               addresses.map((address) => {return (
                 <label
                 key={address.id}
-                >
+                className="genericBackground">
                   <input type="radio" value="option2" />
                   {address.fullAddress}
                 </label>
