@@ -25,10 +25,6 @@ const newItem = cart => ({
   type: NEW_ITEM,
   cart: cart
 })
-// const checkoutGuestCart = cart => ({
-//   type: CHECKOUT_GUEST_CART,
-//   cart
-// })
 
 const startCheckoutG = cart => ({
   type: START_CHECKOUT_GUEST,

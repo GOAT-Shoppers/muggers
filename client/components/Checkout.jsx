@@ -102,7 +102,7 @@ export const mapState = (state => {
 const mapProps = function (dispatch, ownProps) {
   return {
     // Checkout
-    handleUserCheckout(orderId, lineItems, allProducts) {
+    handleUserCheckout(orderId, lineItems, allProducts, isLoggedIn) {
       dispatch(checkoutOrder(orderId, ownProps.history))
       let currentProd
       lineItems.forEach((lineItem) => {
