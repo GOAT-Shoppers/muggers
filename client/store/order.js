@@ -4,9 +4,10 @@ const GET_ONE_ORDER = 'GET_ONE_ORDER'
 const DELETE_LINE_ITEM = 'DELETE_LINE_ITEM'
 const CHECK_OUT = 'CHECK_OUT'
 const GET_ACTIVE_ORDER = 'GET_ACTIVE_ORDER'
+const GET_ORDER = 'GET_ORDER'
 const UNLOAD_ORDER = 'UNLOAD_ORDER'
-
 const CHECKOUT_GUEST_CART = 'CHECKOUT_GUEST_CART'
+
 
 const getOneOrder = order => ({
   type: GET_ONE_ORDER,
@@ -25,6 +26,10 @@ const checkout = (order) => ({
 
 const getActiveOrder = order => ({
   type: GET_ACTIVE_ORDER,
+  order
+})
+const getOrder = (order) => ({
+  type: GET_ORDER,
   order
 })
 
@@ -99,6 +104,17 @@ export const removeLineItem = (lineItemId) => {
   }
 }
 
+
+export const getUserOrder = (userId) => {
+  return function thunk(dispatch){
+    return axios.get(`/api/users/${userId}/orders`)
+      .then(order =>  order.data)
+      .then(orderData => {
+          dispatch(getOrder(orderData))
+        })
+      }
+  }
+
 export const unloadOrderFromState = () => {
   return function thunk (dispatch) {
     return dispatch(unloadOrder())
@@ -139,6 +155,8 @@ export default function (state = {}, action) {
     case CHECK_OUT:
       return action.order
     case GET_ACTIVE_ORDER:
+      return action.order
+    case GET_ORDER:
       return action.order
     case UNLOAD_ORDER:
       return {}

@@ -33,13 +33,16 @@ router.get('/:id', (req, res, next) => {
 router.get('/:id/orders', (req, res, next) => {
   Order.findAll({
     where: {
-      userId: req.params.id
+      userId: req.params.id,
     },
-    include: { model: LineItem }
+  include: [{
+      model: LineItem}]
   })
-    .then(orders => res.json(orders))
-    .catch(next);
-});
+    .then(instanceArr => instanceArr[0])
+    .then(order => res.json(order))
+    .catch(next)
+})
+
 
 router.get('/:id/addresses', (req, res, next) => {
   Address.findAll({
@@ -95,3 +98,4 @@ router.get('/:id/cart', (req, res, next) => {
     return req.session.cart
   }
 })
+
