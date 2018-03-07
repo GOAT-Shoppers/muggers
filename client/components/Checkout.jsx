@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NewAddress from './NewAddress.jsx';
-import { checkoutOrder, updatingProduct } from '../store'
+import { checkoutOrder, updatingProduct, checkoutGuestOrder } from '../store'
 import { Link } from 'react-router-dom'
 /*
 Guest: Add email + address
@@ -22,7 +22,7 @@ let addresses = [{ id: 1, fullAddress: "12346" }, { id: 2, fullAddress: "12345" 
 function CheckoutComponent (props) {
 
   let order;
-  const { user, handleUserCheckout, lineItems, allProducts, isLoggedIn } = props
+  const { user, handleUserCheckout, lineItems, allProducts, handleGuestCheckout, guestCart } = props
 
   if (user.id) {
     order = props.order
@@ -77,8 +77,11 @@ function CheckoutComponent (props) {
       <div>
         {user.id ?
           <button
-            onClick={handleUserCheckout.bind(this, order.id, lineItems, allProducts, isLoggedIn)}
-          >Complete Checkout</button> : <button>Guest Checkout</button>
+            onClick={handleUserCheckout.bind(this, order.id, lineItems, allProducts)}
+          >Complete Checkout</button> :
+          <button
+          onClick={handleGuestCheckout.bind(this, guestCart, {email: 'mimi@test.com', address: '123 nowhere st'}, allProducts)}
+          >Guest Checkout</button>
         }
       </div>
     </div>
@@ -99,10 +102,19 @@ export const mapState = (state => {
 const mapProps = function (dispatch, ownProps) {
   return {
     // Checkout
-    handleUserCheckout(orderId, lineItems, allProducts, isLoggedIn) {
+    handleUserCheckout(orderId, lineItems, allProducts) {
       dispatch(checkoutOrder(orderId, ownProps.history))
       let currentProd
       lineItems.forEach((lineItem) => {
+        currentProd = allProducts.find(e => e.id === lineItem.productId)
+        currentProd.stock = currentProd.stock - lineItem.quantity
+        dispatch(updatingProduct(currentProd))
+      })
+    },
+    handleGuestCheckout(cart, guestInfo, allProducts) {
+      dispatch(checkoutGuestOrder(cart, guestInfo, ownProps.history))
+      let currentProd
+      cart.forEach((lineItem) => {
         currentProd = allProducts.find(e => e.id === lineItem.productId)
         currentProd.stock = currentProd.stock - lineItem.quantity
         dispatch(updatingProduct(currentProd))
