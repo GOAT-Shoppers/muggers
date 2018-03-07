@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Confirmation = () => {
+
   return (
   <div>
-    <h2>Congratulations, You've been mugged</h2>
+    <h2>Congratulations, you've been mugged.</h2>
     <div className="homepage genericBackground">
     <h3>We've sent you a confirmation email</h3>
       <div>
@@ -18,7 +20,7 @@ const Confirmation = () => {
     </div>
   </div>
   </div>
-  )}
+)}
 
 
 export default Confirmation;
