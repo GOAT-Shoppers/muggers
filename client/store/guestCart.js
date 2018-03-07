@@ -5,7 +5,6 @@ const DELETE_ITEM = 'DELETE_ITEM'
 const UPDATE_ITEM = 'UPDATE_ITEM'
 const START_CHECKOUT_GUEST = 'START_CHECKOUT_GUEST'
 const NEW_ITEM = 'NEW_ITEM'
-// const CHECKOUT_GUEST_CART = 'CHECKOUT_GUEST_CART'
 
 const getGuestCart = cart => ({
   type: GET_GUEST_CART,
@@ -26,10 +25,6 @@ const newItem = cart => ({
   type: NEW_ITEM,
   cart: cart
 })
-// const checkoutGuestCart = cart => ({
-//   type: CHECKOUT_GUEST_CART,
-//   cart
-// })
 
 const startCheckoutG = cart => ({
   type: START_CHECKOUT_GUEST,
