@@ -16,9 +16,9 @@ export class SingleProduct extends Component {
     this.setState({ quantity: evt.target.value });
   }
 
-  componentDidMount() {
-    this.props.loadOrder(this.props.userId);
-  }
+  // componentDidMount() {
+  //   this.props.loadOrder(this.props.userId);
+  // }
   
   render() {
 
@@ -82,9 +82,7 @@ const mapDispatch = dispatch => {
       if (loggedIn){
         dispatch(createLineItem(item))
       }
-  },
-  loadOrder: id => dispatch(fetchActiveOrder(id))
-  
+  }  
 }
 }
 

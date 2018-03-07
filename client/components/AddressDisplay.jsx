@@ -9,23 +9,24 @@ export const AddressDisplay = props => {
     console.log('----------', props);
     return (
         <div>
-            { addresses &&
+            {
                 <div>
                     <h1>Addresses</h1>
                     <div>
-                        {
-                            addresses.map(address => {
+                        {  addresses &&
+                            addresses.filter(address => {
+                                
                                 return (
                                     <label key={address.id}>
-                                    <input type="radio" value="option2" />
-                                    {address.fullAddress}
+                                    <input type="radio" value={address.id} />
+                                    {`${address.street}\n${address.state} ${address.city} ${address.zip} `}
                                     </label>
                             )
                             })
                         }
                         {/* {addresses && console.log('=---------,', addresses)} */}
                     </div>
-                    { addresses && addresses.length <= 5 && <NewAddress /> }
+                    { addresses && (addresses.length <= 5) && <NewAddress /> }
                 </div>
             }
         </div>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchCategories } from '../store/categoryReducer';
 
 export class AllProducts extends Component {
     constructor() {
@@ -73,9 +72,6 @@ export class AllProducts extends Component {
                     </Link>
                   </div>}
             </div>
-            {/* Only render below if Admin */}
-
-
         </div>
         )
     }
