@@ -24,6 +24,7 @@ export class SingleProduct extends Component {
 
     const { product, userId, isLoggedIn, orderId } = this.props;
     const { quantity } = this.state;
+    const isAvailable = +product.stock > 0;
     
     return (
         <div>
@@ -41,10 +42,9 @@ export class SingleProduct extends Component {
 
                           <form onSubmit={(e) => this.props.handleSubmit(e, quantity, product.price, product.id, orderId, isLoggedIn)}>
                           <input name="quantity" value={quantity} onChange={this.handleChange} />
-                          <button type="submit">Add to Cart</button>
+                          <button type="submit" disabled={!isAvailable} className="btn">Add to Cart</button>
                           </form>
 
-                          
                       </div>
                     </div>
                     <div>

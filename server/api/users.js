@@ -69,7 +69,7 @@ router.delete('/:id', (req, res, next) => {
 });
 
 router.get('/:id/cart', (req, res, next) => {
-  if(req.user){
+  if (req.user){
     User.findById(req.params.id)
       .then(user => {
         Order.findOrCreate({
