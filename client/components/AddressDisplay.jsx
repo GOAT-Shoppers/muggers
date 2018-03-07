@@ -2,29 +2,30 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import NewAddress from './NewAddress.jsx';
+import PropTypes from 'prop-types';
+
 
 export const AddressDisplay = props => {
 
     const { addresses, uId } = props;
-    console.log('----------', props);
+    const addressArray = addresses.filter(address => {
+        return (
+            <button type="radio">
+            `${address.street} ${address.city}, ${address.state} ${address.zip} `
+            </button>
+        )
+    })
+    // console.log('----------', props);
     return (
         <div>
-            {
+            { addresses &&
                 <div>
                     <h1>Addresses</h1>
                     <div>
-                        {  addresses &&
-                            addresses.filter(address => {
-                                
-                                return (
-                                    <label key={address.id}>
-                                    <input type="radio" value={address.id} />
-                                    {`${address.street}\n${address.state} ${address.city} ${address.zip} `}
-                                    </label>
-                            )
-                            })
+                        {
+                         addressArray
                         }
-                        {/* {addresses && console.log('=---------,', addresses)} */}
+                        {addresses && console.log('=---------,', addresses)}
                     </div>
                     { addresses && (addresses.length <= 5) && <NewAddress /> }
                 </div>
@@ -41,3 +42,6 @@ const mapState = state => ({
 
 export default connect(mapState, null)(AddressDisplay);
 
+AddressDisplay.proptypes = {
+    addresses: PropTypes.array
+}
