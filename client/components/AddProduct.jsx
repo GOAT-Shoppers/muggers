@@ -69,8 +69,8 @@ const mapDispatch = (dispatch, ownProps) => ({
     handleSubmit: (evt, product, prodState) => {
         evt.preventDefault();
         product.category = {id: prodState.category}
-        console.log(product.category)
         dispatch(createProduct(product, ownProps.history));
+        dispatch(fetchCategories());
     }
 })
 
