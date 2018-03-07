@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NewAddress from './NewAddress.jsx';
-import { checkoutOrder } from '../store'
+import { checkoutOrder, updatingProduct } from '../store'
 import { Link } from 'react-router-dom'
-
 /*
 Guest: Add email + address
 LoggedIn: Select Address, add Address, display e-mail
@@ -23,7 +22,7 @@ let addresses = [{ id: 1, fullAddress: "12346" }, { id: 2, fullAddress: "12345" 
 function CheckoutComponent (props) {
 
   let order;
-  const { user, handleUserCheckout } = props
+  const { user, handleUserCheckout, lineItems, allProducts } = props
 
   if (user.id) {
     order = props.order
@@ -78,7 +77,7 @@ function CheckoutComponent (props) {
       <div>
         {user.id ?
           <button
-            onClick={handleUserCheckout.bind(this, order.id)}
+            onClick={handleUserCheckout.bind(this, order.id, lineItems, allProducts)}
           >Complete Checkout</button> : <button>Guest Checkout</button>
         }
       </div>
@@ -90,17 +89,24 @@ export const mapState = (state => {
   return {
     order: state.order,
     guestCart: state.guestCart,
-    user: state.user
+    user: state.user,
+    lineItems: state.order.lineItems,
+    allProducts: state.products
   }
 })
 
 const mapProps = function (dispatch, ownProps) {
   return {
     // Checkout
-    handleUserCheckout(orderId) {
+    handleUserCheckout(orderId, lineItems, allProducts) {
       dispatch(checkoutOrder(orderId, ownProps.history))
-    },
-
+      let currentProd
+      lineItems.forEach((lineItem) => {
+        currentProd = allProducts.find(e => e.id === lineItem.productId)
+        currentProd.stock = currentProd.stock - lineItem.quantity
+        dispatch(updatingProduct(currentProd))
+      })
+    }
   }
 }
 

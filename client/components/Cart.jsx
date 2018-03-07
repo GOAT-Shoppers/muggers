@@ -69,8 +69,7 @@ function Cart (props) {
             lineItems={guestCart}
             clickHandle={deleteItem}
             changeHandle={changeQuantity}
-             />
-
+            />
             :
             <h1>Your cart is empty. Add something!</h1>
           }
