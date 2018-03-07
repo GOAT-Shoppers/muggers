@@ -15,3 +15,4 @@ export { default as Checkout } from './Checkout.jsx';
 export { default as Review } from './Review.jsx';
 export { default as AddProduct } from './AddProduct.jsx';
 export { default as AllOrders } from './AllOrders.jsx';
+export { default as DefaultHome } from './DefaultHome.jsx';
