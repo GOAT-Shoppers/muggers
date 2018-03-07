@@ -44,7 +44,7 @@ export class SingleProduct extends Component {
                       </div>
                       <div className="prodImage">
                           <img src={product.photo} />
-                          <h5>Price: ${ product.price }</h5>
+                          <h5>Price: ${ (product.price / 100).toFixed(2) }</h5>
                           <h5>{ product.stock } left</h5>
 
                           <form onSubmit={(e) => this.props.handleSubmit(e, quantity, product.price, product.id, orderId, isLoggedIn)}>

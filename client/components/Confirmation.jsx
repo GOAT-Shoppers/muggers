@@ -18,6 +18,7 @@ function Confirmation (props) {
       <h2>Congratulations, you've been mugged.</h2>
       <div className="homepage genericBackground">
       <h3>We've sent you a confirmation email</h3>
+      <h3>Your order Id is: {orderId}</h3>
 
         <div>
           <div className="ipsum" >Feel free to continue shopping, or enjoy this hipster ipsum in the meanwhile:
