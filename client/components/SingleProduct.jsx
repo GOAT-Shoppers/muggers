@@ -58,7 +58,6 @@ export class SingleProduct extends Component {
 }
 
 const mapState = (state, ownProps) => {
-  console.log("-------", ownProps )
     const productId = +ownProps.match.params.id;
     const product = state.products.find(prod => productId === prod.id);
 
