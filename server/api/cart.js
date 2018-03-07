@@ -3,6 +3,9 @@ const router = require('express').Router();
 // console.log(req.session.cart)
 // console.log(req.session.passport.user)
 router.get('/', (req, res, next) => {
+  if (!req.session.cart){
+    req.session.cart = []
+  }
   res.json(req.session.cart)
 });
 

@@ -41,7 +41,6 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/products/:id/reviews" component={Review} />
@@ -50,8 +49,7 @@ class Routes extends Component {
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:id" component={SingleProduct} />
         <Route path ="/allorders" component={AllOrders} />
-        <Route path ="/confirmation" component={Confirmation} />
-
+        <Route path ="/orderconfirmation" component={Confirmation} />
         {
           isLoggedIn &&
             <Switch>
