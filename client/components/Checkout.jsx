@@ -16,7 +16,7 @@ Checkout Button:
 
 Grab checkout button functionality from Cart.jsx
  */
-let addresses = [{ id: 1, fullAddress: "12346" }, { id: 2, fullAddress: "12345" } ]
+let addresses = [{ id: 1, fullAddress: "5 Hanover Square New York, NY 12346" }, { id: 2, fullAddress: "1950 Putnam Ave Queens, NY 12345" },{ id: 3, fullAddress: "346 Lean On Me Ave Ridgewood, NY 28445" }, { id: 4, fullAddress: "1625 New Here St Brooklyn, NY 12345" } ]
 
 
 function CheckoutComponent (props) {
