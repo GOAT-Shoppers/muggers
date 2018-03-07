@@ -13,7 +13,7 @@ export class AddProduct extends Component {
                 price: '',
                 stock: '',
                 photo: '',
-                categoryId: '',
+                category: '',
                 currentCategory: props.category
         }
         this.handleChange = this.handleChange.bind(this);
@@ -26,7 +26,7 @@ export class AddProduct extends Component {
     render () {
         const product = this.state;
         return (
-            <form onSubmit={e => this.props.handleSubmit(e, product)}>
+            <form onSubmit={e => this.props.handleSubmit(e, product, this.state)}>
                 <div>
                     <label htmlFor="name">Name</label>
                     <input name="name" onChange={this.handleChange} defaultValue={product.name} />
@@ -50,6 +50,7 @@ export class AddProduct extends Component {
                 </div>
                 <div>
                   <select name="category" onChange={this.handleChange} >
+                    <option>Select Category</option>
                     {this.state.currentCategory.map(el => (
                       <option key={el.id} value={el.id}>{el.name}</option>
                     ))}
@@ -65,8 +66,10 @@ export class AddProduct extends Component {
 }
 
 const mapDispatch = (dispatch, ownProps) => ({
-    handleSubmit: (evt, product) => {
+    handleSubmit: (evt, product, prodState) => {
         evt.preventDefault();
+        product.category = {id: prodState.category}
+        console.log(product.category)
         dispatch(createProduct(product, ownProps.history));
     }
 })
