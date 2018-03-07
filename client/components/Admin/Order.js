@@ -28,14 +28,14 @@ export default function Order(props) {
   );
 }
 
-const makeRow = (order) =>
-  <div key={order.id} className="flexContainer">
-    <Link to={`/myaccount/adminsettings/order/${order.id}`}>
-    <div>  OrderId: {order.id}  </div>
-    <div>  Status: {order.status}</div>
-    <div>  Email: {order.email}</div>
-    </Link>
-  </div>
+// const makeRow = (order) =>
+//   <div key={order.id} className="flexContainer">
+//     <Link to={`/myaccount/adminsettings/order/${order.id}`}>
+//     <div>  OrderId: {order.id}  </div>
+//     <div>  Status: {order.status}</div>
+//     <div>  Email: {order.email}</div>
+//     </Link>
+//   </div>
 
 
-//render={() => <SingleOrder orders={props.orders} />} 
+//render={() => <SingleOrder orders={props.orders} />}
