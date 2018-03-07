@@ -4,6 +4,7 @@ const GET_ONE_ORDER = 'GET_ONE_ORDER'
 const DELETE_LINE_ITEM = 'DELETE_LINE_ITEM'
 const CHECK_OUT = 'CHECK_OUT'
 const GET_ACTIVE_ORDER = 'GET_ACTIVE_ORDER'
+const GET_ORDER = 'GET_ORDER'
 
 const getOneOrder = order => ({
   type: GET_ONE_ORDER,
@@ -24,7 +25,11 @@ const getActiveOrder = order => ({
   type: GET_ACTIVE_ORDER,
   order
 })
+const getOrder = (order) => ({
+  type: GET_ORDER,
+  order
 
+})
 /**
  * THUNK CREATORS
  **/
@@ -85,6 +90,16 @@ export const removeLineItem = (lineItemId) => {
   }
 }
 
+export const getUserOrder = (userId) => {
+  return function thunk(dispatch){
+    return axios.get(`/api/users/${userId}/orders`)
+      .then(order =>  order.data)
+      .then(orderData => {
+          dispatch(getOrder(orderData))
+        })
+      }
+  }
+
 export default function (state = {}, action) {
   switch (action.type) {
     case GET_ONE_ORDER:
@@ -94,6 +109,8 @@ export default function (state = {}, action) {
     case CHECK_OUT:
       return action.order
     case GET_ACTIVE_ORDER:
+      return action.order
+    case GET_ORDER:
       return action.order
     default:
       return state

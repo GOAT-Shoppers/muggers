@@ -3,7 +3,7 @@ import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import UserPageDetails from './UserPage-Details'
 import UserPageEdit from './UserPage-Edit'
-//import UserPageOrders from './UserPage-Orders'
+import UserPageOrders from './UserPage-Order'
 import AdminPage from '../Admin'
 
 const UserPage = (props) => {
@@ -29,6 +29,7 @@ const UserPage = (props) => {
             <Route exact path="/myaccount/detail" render={() => <UserPageDetails user={user} />} />
             <Route path="/myaccount/edit" render={() => <UserPageEdit user={user} />} />
             <Route path="/myaccount/adminsettings" component={AdminPage} />
+            <Route path="/myaccount/orders" render={() => <UserPageOrders user={user}/>} />
           </Switch>
         </div>
         :
