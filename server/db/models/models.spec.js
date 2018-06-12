@@ -93,18 +93,6 @@ describe('Product', () => {
       .then(createdOrder =>
         {
           currentOrder = createdOrder
-    //       Review.create({
-    //         productId: currentOrder.id,
-    //         rating: 4
-    //       })
-    //       Review.create({
-    //         productId: currentOrder.id,
-    //         rating: 3
-    //       })
-    //       Review.create({
-    //         productId: currentOrder.id,
-    //         rating: 5
-    //       })
         }
       )
     })

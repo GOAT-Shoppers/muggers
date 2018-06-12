@@ -4,10 +4,7 @@ const { isLoggedIn, makeError, isAdmin } = require('./utility')
 
 module.exports = router;
 
-//GET ALL ORDERS
 router.get('/', (req, res, next) => {
-  // console.log(req.session.cart)
-  // console.log(req.session.passport.user)
   if (!req.user) {
     return res.json({})
   } else if (req.user && req.user.isAdmin){
@@ -17,14 +14,12 @@ router.get('/', (req, res, next) => {
   }
 });
 
-//POST ORDER NEED TO ADD DEFAULT VALUE OF STATUS AS OPEN
 router.post('/', (req, res, next) => {
   Order.create(req.body)
       .then(order => res.json(order))
       .catch(next);
 });
 
-//GET ORDER BY ID W/EAGER LOADED LINE ITEMS
 router.get('/:id', (req, res, next) => {
   Order.findById(req.params.id, { include: [{
     model: LineItem,
@@ -34,7 +29,6 @@ router.get('/:id', (req, res, next) => {
       .catch(next);
 });
 
-//UPDATE ORDER BY ID
 router.put('/:id', (req, res, next) => {
   Order.findById(req.params.id)
     .then(order => order.update(req.body))

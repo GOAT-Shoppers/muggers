@@ -20,7 +20,6 @@ export const AllAddresses = props => {
 }
 
 const mapState = (state, ownProps) => ({
-    //get userId and attach so we can match address to user
     addresses: state.addresses
 });
 

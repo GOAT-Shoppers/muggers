@@ -37,18 +37,11 @@ const unloadOrder = () => ({
   type: UNLOAD_ORDER
 })
 
-// makes a new order
-// puts line items in and associates them with that order
-// gives us back the cart
 const checkoutGuestCart = cart => ({
   type: CHECKOUT_GUEST_CART,
   order: cart
 })
 
-/**
- * THUNK CREATORS
- **/
-// All this does is get an order by orderId from the backend.
 const orderGetter = (orderId) =>
   {
     return axios.get(`/api/orders/${orderId}`)
