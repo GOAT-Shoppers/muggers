@@ -1,19 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {logout} from '../store'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { logout } from '../store'
 
-const Navbar = ({ handleClick, isLoggedIn, handleInputChange, handleSearch }) => (
+const Navbar = ({ handleClick, isLoggedIn }) => (
 
   <div>
-  <nav className="navBar">
-    <div className="globalnavLinks">
+    <nav className="navBar">
+      <div className="globalnavLinks">
 
-      <Link to="/home">Home</Link>
-      <Link to="/products">Browse Products</Link>
-    </div>
-    <h1>Muggers Inc.</h1>
+        <Link to="/home">Home</Link>
+        <Link to="/products">Browse Products</Link>
+      </div>
+      <h1>Muggers Inc.</h1>
       {isLoggedIn ? (
         <div className="navLinks" >
           {/* The navbar will show these links after you log in */}
@@ -24,17 +24,17 @@ const Navbar = ({ handleClick, isLoggedIn, handleInputChange, handleSearch }) =>
           </a>
         </div>
       ) : (
-        <div className="navLinks" >
-          {/* The navbar will show these links before you log in */}
-          <Link to="/cart">My Cart</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+          <div className="navLinks" >
+            {/* The navbar will show these links before you log in */}
+            <Link to="/cart">My Cart</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
 
-        </div>
+          </div>
         )}
-      </nav>
-      <hr />
-    </div>
+    </nav>
+    <hr />
+  </div>
 
 
 )
@@ -53,12 +53,6 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
-    },
-    handleInputChange(evt) {
-      search = evt.target.value;
-    },
-    handleSearch() {
-      return search;
     }
   }
 }

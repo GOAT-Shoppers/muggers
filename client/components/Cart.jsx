@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { default as LineItem } from './LineItem.jsx'
-import { default as GuestLineItem} from './GuestLineItem.jsx'
+import { default as GuestLineItem } from './GuestLineItem.jsx'
 import { fetchActiveOrder, removeLineItem, changeQuant, fetchGuestCart, deleteLineItem, updateItemQuantity, startCheckoutGuest } from '../store'
 
-function Cart (props) {
+function Cart(props) {
   const { order, handleClick, handleQuantityChange, user, guestCart, deleteItem, changeQuantity, checkoutGuest, goCheckout } = props
   /*
   If there is a user logged in on the state, get their cart from the database
@@ -13,7 +13,7 @@ function Cart (props) {
     hit the backend route that tells us their cart that is on the session
     pray
   */
-  if (order.lineItems){
+  if (order.lineItems) {
     var lineItems = order.lineItems
     var totalPrice = lineItems.map((lineItem) => lineItem.getTotal * 1).reduce(function (a, b) {
       return a + b
@@ -42,56 +42,56 @@ function Cart (props) {
       </div>
       <hr />
 
-    {
-      user.id ?
-      <div>
-        <LineItem
-        lineItems={lineItems}
-        clickHandle={handleClick}
-        quantChangeHandle={handleQuantityChange}
-        userId={user.id}
-        />
-        <hr />
+      {
+        user.id ?
+          <div>
+            <LineItem
+              lineItems={lineItems}
+              clickHandle={handleClick}
+              quantChangeHandle={handleQuantityChange}
+              userId={user.id}
+            />
+            <hr />
             Total: {totalPrice}
 
-        <div>
-          <button
-            disabled={bool}
-            onClick={goCheckout.bind(this)}
-            className="btn"
-          >Checkout</button>
-        </div>
-      </div> : (
-        <div>
-          {
-            guestCart.length >= 1 ?
-            <GuestLineItem
-            lineItems={guestCart}
-            clickHandle={deleteItem}
-            changeHandle={changeQuantity}
-            />
-            :
-            <h1>Your cart is empty. Add something!</h1>
-          }
-          <hr />
-              Total: {guestCart.Total ? <span>{guestCart.Total}</span> : <span>0</span> }
-              <div>
-              <div>
-                <button
-                onClick={checkoutGuest.bind(this)}
-                disabled={!guestCart.length}
+            <div>
+              <button
+                disabled={bool}
+                onClick={goCheckout.bind(this)}
                 className="btn"
-                >Checkout</button>
+              >Checkout</button>
+            </div>
+          </div> : (
+            <div>
+              {
+                guestCart.length >= 1 ?
+                  <GuestLineItem
+                    lineItems={guestCart}
+                    clickHandle={deleteItem}
+                    changeHandle={changeQuantity}
+                  />
+                  :
+                  <h1>Your cart is empty. Add something!</h1>
+              }
+              <hr />
+              Total: {guestCart.Total ? <span>{guestCart.Total}</span> : <span>0</span>}
+              <div>
+                <div>
+                  <button
+                    onClick={checkoutGuest.bind(this)}
+                    disabled={!guestCart.length}
+                    className="btn"
+                  >Checkout</button>
+                </div>
               </div>
-              </div>
-        </div>
-      )
-    }
+            </div>
+          )
+      }
     </div>
   )
 }
 
-export class CartLoader extends Component{
+export class CartLoader extends Component {
 
 
   componentDidMount() {
@@ -99,8 +99,8 @@ export class CartLoader extends Component{
     this.props.loadOrder(this.props.user.id)
   }
 
-  componentWillReceiveProps(nextProps){
-    if (this.props.user.id !== nextProps.user.id){
+  componentWillReceiveProps(nextProps) {
+    if (this.props.user.id !== nextProps.user.id) {
       let id = +nextProps.user.id
       this.props.loadOrder(id)
     }
@@ -155,6 +155,6 @@ export default connect(mapState, mapProps)(CartLoader)
 
 Cart.propTypes = {
   order: PropTypes.object,
-  //guestCart: PropTypes.array,
+  guestCart: PropTypes.array,
   user: PropTypes.object
 }
