@@ -17,13 +17,6 @@ export const fetchCategories = () => dispatch => {
         .catch(error => console.error('Could not get categories ', error));
 }
 
-// export const getCategoryById = (id) => dispatch => {
-//   axios.get(`/api/categories/${id}`)
-//     .then(result => result.data)
-//     .then(category => dispatch(singleCategory(category[0])))
-//     .catch(error => console.error('Could not get single category', error))
-// }
-
 export const createCategory = category => dispatch => {
     axios.post('/api/categories', category)
         .then(results => results.data)

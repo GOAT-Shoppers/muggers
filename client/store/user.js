@@ -1,29 +1,17 @@
 import axios from 'axios'
 import history from '../history'
 
-/**
- * ACTION TYPES
- */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const UPDATE_USER = 'UPDATE_USER'
 
 
-/**
- * INITIAL STATE
- */
 const defaultUser = {}
 
-/**
- * ACTION CREATORS
- */
 export const getUser = user => ({type: GET_USER, user})
 export const removeUser = () => ({type: REMOVE_USER})
 export const updateUser = user => ({type: UPDATE_USER, user})
 
-/**
- * THUNK CREATORS
- */
 export const me = () =>
   dispatch =>
     axios.get('/auth/me')
@@ -58,9 +46,7 @@ export const updatingUser = user =>
           .then(updatedUser => dispatch(updateUser(updatedUser)))
           .catch(error => console.error('Could not update user ', error));
 }
-/**
- * REDUCER
- */
+
 export default function (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:

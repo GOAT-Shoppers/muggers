@@ -15,8 +15,8 @@ const AuthForm = (props) => {
       {name === 'signup' && <div>
         <div>
           <label className ="firstName"><small>First Name</small></label>
-          <input name="firstName" type="firstName" /> 
-        </div> 
+          <input name="firstName" type="firstName" />
+        </div>
         <div>
           <label htmlFor="lastName"><small>Last Name</small></label>
           <input name="lastName" type="lastName" />
@@ -39,13 +39,6 @@ const AuthForm = (props) => {
   )
 }
 
-/**
- * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
- */
 const mapLogin = (state) => {
   return {
     name: 'login',

@@ -19,12 +19,12 @@ import { getUserOrder} from '../../store/order'
     return (
      <div>
             <h3 > My Order History</h3>
-           
+
         {this.props.order.lineItems ? this.props.order.lineItems.map(lineItem => makeRow(lineItem)) : <h4>You not made any purchases .</h4>}
       </div>
     )
   }
- } 
+ }
 const makeRow = (lineItem) =>
   <div key={lineItem.id} className="flexContainer">
     <p>  Price per item: {lineItem.getPrice}  </p>
@@ -44,8 +44,4 @@ const mapDispatch = (dispatch, ownProp) => ({
 })
 
 export default connect(mapState, mapDispatch)(UserPageOrders)
-
-// {
-//   this.props.orders &&
-//   this.props.orders.map((order, i) => order.status}
 

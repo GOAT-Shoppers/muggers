@@ -4,19 +4,8 @@ import { connect } from 'react-redux'
 import NewAddress from './NewAddress.jsx'
 import { checkoutOrder, updatingProduct, checkoutGuestOrder } from '../store'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
-/*
-Guest: Add email + address
-LoggedIn: Select Address, add Address, display e-mail
 
-Checkout Button:
-- shopping -> checkout
-- Decrease inventory
-- Confirmation e-mail
-- Post guest order
 
-Grab checkout button functionality from Cart.jsx
- */
 let addresses = [{ id: 1, fullAddress: "5 Hanover Square New York, NY 12346" }, { id: 2, fullAddress: "1950 Putnam Ave Queens, NY 12345" }, { id: 3, fullAddress: "346 Lean On Me Ave Ridgewood, NY 28445" }, { id: 4, fullAddress: "1625 New Here St Brooklyn, NY 12345" }]
 
 

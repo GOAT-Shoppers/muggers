@@ -1,7 +1,5 @@
 const router = require('express').Router();
 
-// console.log(req.session.cart)
-// console.log(req.session.passport.user)
 router.get('/', (req, res, next) => {
   if (!req.session.cart){
     req.session.cart = []
@@ -20,7 +18,6 @@ router.post('/', (req, res, next) => {
   res.json(req.session.cart)
 });
 
-// This route can ONLY change the quantity on a line item of a guest session
 router.put('/:id', (req, res, next) => {
   let quantity = req.body.quantity
   let cart = req.session.cart

@@ -32,7 +32,6 @@ class Routes extends Component {
     this.props.fetchAllReviews()
     this.props.loadProducts();
     this.props.loadCategories();
-//trying to find a place to load all reviews - might have to be a product page since we will need the product ID to load reviews
   }
 
   render () {
@@ -67,20 +66,13 @@ class Routes extends Component {
   }
 }
 
-/**
- * CONTAINER
- */
 const mapState = (state) => {
-  // console.log("STATE", state)
   return {
-    // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
-    // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
     products: state.products,
     categories: state.categories,
     user: state.user
   }
-  // console.log("!!!!!!!!!", user);
 }
 
 const mapDispatch = (dispatch) => {
@@ -96,13 +88,8 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-// The `withRouter` wrapper makes sure that updates are not blocked
-// when the url changes
 export default withRouter(connect(mapState, mapDispatch)(Routes))
 
-/**
- * PROP TYPES
- */
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
